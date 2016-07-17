@@ -7,20 +7,47 @@ public class Format {
     private String nameScope;
     private int numberScope;
     private float priceScope;
+    private String unitScope;
     private float totalMoneyScope;
     private float saveMoneyScope;
 
-    public Format(String nameScope, int numberScope, float priceScope, float totalMoneyScope, float saveMoneyScope) {
-        this.nameScope = nameScope;
-        this.numberScope = numberScope;
-        this.priceScope = priceScope;
-        this.totalMoneyScope = totalMoneyScope;
-        this.saveMoneyScope = saveMoneyScope;
-    }
+    private Format(){}
 
-    @Override
-    public int hashCode(){
-        return 1;
+    public static class Builder{
+        private Format format = new Format();
+        public Builder setNameScope(String nameScope) {
+            format.nameScope = nameScope;
+            return this;
+        }
+
+        public Builder setNumberScope(int numberScope) {
+            format.numberScope = numberScope;
+            return this;
+        }
+
+        public Builder setPriceScope(float priceScope) {
+            format.priceScope = priceScope;
+            return this;
+        }
+
+        public Builder setUnitScope(String unitScope) {
+            format.unitScope = unitScope;
+            return this;
+        }
+
+        public Builder setTotalMoneyScope(float totalMoneyScope) {
+            format.totalMoneyScope = totalMoneyScope;
+            return this;
+        }
+
+        public Builder setSaveMoneyScope(float saveMoneyScope) {
+            format.saveMoneyScope = saveMoneyScope;
+            return this;
+        }
+
+        public Format build(){
+            return format;
+        }
     }
 
     @Override
@@ -33,4 +60,5 @@ public class Format {
                 & (this.saveMoneyScope == format.saveMoneyScope);
         return isEqual;
     }
+
 }

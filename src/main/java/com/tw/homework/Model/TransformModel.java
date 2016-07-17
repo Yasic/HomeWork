@@ -51,12 +51,12 @@ public class TransformModel{
         }
         HashMap<String, Format> testList = new HashMap<String, Format>();
         for (String key : barcodeHashMap.keySet()){
-            testList.put(key,
-                    new Format(ProductInfoHelper.getProductInfoList().get(key).getName(),
-                            barcodeHashMap.get(key),
-                            ProductInfoHelper.getProductInfoList().get(key).getPrice(),
-                            ProductInfoHelper.getProductInfoList().get(key).getPrice() * barcodeHashMap.get(key),
-                            0));
+            testList.put(key,new Format.Builder().setNameScope(ProductInfoHelper.getProductInfoList().get(key).getName())
+                    .setNumberScope(barcodeHashMap.get(key))
+                    .setPriceScope(ProductInfoHelper.getProductInfoList().get(key).getPrice())
+                    .setTotalMoneyScope(ProductInfoHelper.getProductInfoList().get(key).getPrice() * barcodeHashMap.get(key))
+                    .setSaveMoneyScope(0)
+                    .build());
         }
         return testList;
     }

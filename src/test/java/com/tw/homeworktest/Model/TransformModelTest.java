@@ -109,9 +109,9 @@ public class TransformModelTest {
         HashMap<String, Format> exceptList = transformModel.transformHashMapToBarcodeFormatHashMap(beforeList);
 
         HashMap<String, Format> testList = new HashMap<String, Format>();
-        testList.put("ITEM000001", new Format(ProductInfoHelper.getProductInfoList().get("ITEM000001").getName(), 5, ProductInfoHelper.getProductInfoList().get("ITEM000001").getPrice(), 15.0f, 0));
-        testList.put("ITEM000003", new Format(ProductInfoHelper.getProductInfoList().get("ITEM000003").getName(), 2, ProductInfoHelper.getProductInfoList().get("ITEM000003").getPrice(), 4.0f, 0));
-        testList.put("ITEM000005", new Format(ProductInfoHelper.getProductInfoList().get("ITEM000005").getName(), 3, ProductInfoHelper.getProductInfoList().get("ITEM000005").getPrice(), 3.0f, 0));
+        testList.put("ITEM000001", new Format.Builder().setNameScope(ProductInfoHelper.getProductInfoList().get("ITEM000001").getName()).setNumberScope(5).setPriceScope(ProductInfoHelper.getProductInfoList().get("ITEM000001").getPrice()).setUnitScope("瓶").setTotalMoneyScope(15.0f).setSaveMoneyScope(0).build());
+        testList.put("ITEM000003", new Format.Builder().setNameScope(ProductInfoHelper.getProductInfoList().get("ITEM000003").getName()).setNumberScope(2).setPriceScope(ProductInfoHelper.getProductInfoList().get("ITEM000003").getPrice()).setUnitScope("个").setTotalMoneyScope(4.0f).setSaveMoneyScope(0).build());
+        testList.put("ITEM000005", new Format.Builder().setNameScope(ProductInfoHelper.getProductInfoList().get("ITEM000005").getName()).setNumberScope(3).setPriceScope(ProductInfoHelper.getProductInfoList().get("ITEM000005").getPrice()).setUnitScope("斤").setTotalMoneyScope(3.0f).setSaveMoneyScope(0).build());
         assertEquals(testList, exceptList);
     }
 
