@@ -1,7 +1,8 @@
 package com.tw.homeworktest.Model;
 
-import com.tw.homework.Exception.EmptyStringInputException;
+import com.tw.homework.Exception.EmptyInputException;
 import com.tw.homework.Exception.WrongStringInputException;
+import com.tw.homework.JavaBean.Format;
 import com.tw.homework.Model.TransformModel;
 import org.junit.Before;
 import org.junit.Test;
@@ -19,13 +20,13 @@ public class TransformModelTest {
 
     }
 
-    @Test(expected = EmptyStringInputException.class)
+    @Test(expected = EmptyInputException.class)
     public void TransformToHashMapShouldThrowExceptionWhenEncounterEmptyInput() throws Exception{
         TransformModel transformModel = new TransformModel();
         transformModel.transformToBarcodeAndNumberHashMap("");
     }
 
-    @Test(expected = EmptyStringInputException.class)
+    @Test(expected = EmptyInputException.class)
     public void TransformToHashMapShouldThrowExceptionWhenEncounterNullInput() throws Exception{
         TransformModel transformModel = new TransformModel();
         transformModel.transformToBarcodeAndNumberHashMap(null);
@@ -80,9 +81,36 @@ public class TransformModelTest {
         assertEquals(transformModel.transformToBarcodeAndNumberHashMap(barcodeInput), expectList);
     }
 
-    @Test
-    public void shouldGetNonRepeatProductListFromHashMapByMethodOfTransformToProductList() throws Exception {
-
+    @Test(expected = EmptyInputException.class)
+    public void TransformToBarcodeAndFormatHashMapShouldThrowExceptionWhenEncounterNullInput() throws Exception{
+        TransformModel transformModel = new TransformModel();
+        transformModel.transformHashMapToBarcodeFormatHashMap(null);
     }
 
+    @Test
+    public void shouldGetFormatHashMapFromHashMapByMethodOfTransformToFormatList() throws Exception {
+        TransformModel transformModel = new TransformModel();
+
+        // when
+        String barcodeInput = "[" +
+                "    'ITEM000001',\n" +
+                "    'ITEM000001',\n" +
+                "    'ITEM000001',\n" +
+                "    'ITEM000001',\n" +
+                "    'ITEM000001',\n" +
+                "    'ITEM000003-2',\n" +
+                "    'ITEM000005',\n" +
+                "    'ITEM000005',\n" +
+                "    'ITEM000005'\n" +
+                "]";
+        HashMap<String, Integer> beforeList = transformModel.transformToBarcodeAndNumberHashMap(barcodeInput);
+
+        HashMap<String, Format> exceptList = transformModel.transformHashMapToBarcodeFormatHashMap(beforeList);
+
+        HashMap<String, Format> testList = new HashMap<String, Format>();
+        testList.put("ITEM000001", new Format("1", 5, 3.0f, 15.0f, 0));
+        testList.put("ITEM000003", new Format("3", 2, 1.0f, 2.0f, 0));
+        testList.put("ITEM000005", new Format("5", 3, 1.0f, 3.0f, 0));
+        assertEquals(testList, exceptList);
+    }
 }

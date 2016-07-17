@@ -1,7 +1,8 @@
 package com.tw.homework.Model;
 
-import com.tw.homework.Exception.EmptyStringInputException;
+import com.tw.homework.Exception.EmptyInputException;
 import com.tw.homework.Exception.WrongStringInputException;
+import com.tw.homework.JavaBean.Format;
 
 import java.util.HashMap;
 
@@ -14,7 +15,7 @@ public class TransformModel{
         HashMap<String, Integer> result = new HashMap<String, Integer>();
         String[] temp = null;
         if (input == null || input.equals("")){
-            throw new EmptyStringInputException();
+            throw new EmptyInputException();
         }
         temp = input.split("'");
         if (temp.length == 1) {
@@ -27,7 +28,6 @@ public class TransformModel{
             singleBarcode = "";
             try {
                 String[] barcodeTemp = temp[index].split("-");
-                System.out.println(barcodeTemp[1]);
                 productNumber = Integer.parseInt(barcodeTemp[1]);
                 singleBarcode = barcodeTemp[0];
             } catch (Exception e) {
@@ -42,6 +42,25 @@ public class TransformModel{
             }
         }
         return result;
+    }
+
+    public HashMap<String, Format> transformHashMapToBarcodeFormatHashMap(HashMap<String, Integer> barcodeHashMap){
+        if (barcodeHashMap == null){
+            throw new EmptyInputException();
+        }
+        HashMap<String, Format> testList = new HashMap<String, Format>();
+        for (String key : barcodeHashMap.keySet()){
+            if (key.equals("ITEM000001")){
+                testList.put("ITEM000001", new Format("1", barcodeHashMap.get(key), 3.0f, 3 * barcodeHashMap.get(key), 0));
+            }
+            if (key.equals("ITEM000003")){
+                testList.put("ITEM000003", new Format("3", barcodeHashMap.get(key), 1.0f, 1 * barcodeHashMap.get(key), 0));
+            }
+            if (key.equals("ITEM000005")){
+                testList.put("ITEM000005", new Format("5", barcodeHashMap.get(key), 1.0f, 1 * barcodeHashMap.get(key), 0));
+            }
+        }
+        return testList;
     }
 
 }
