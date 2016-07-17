@@ -57,6 +57,7 @@ public class Format {
         isEqual = isEqual & (this.nameScope.equals(format.nameScope)) & (this.numberScope == format.numberScope)
                 & (this.priceScope == format.priceScope)
                 & (this.totalMoneyScope == format.totalMoneyScope)
+                & (this.unitScope.equals(format.unitScope))
                 & (this.saveMoneyScope == format.saveMoneyScope);
         return isEqual;
     }

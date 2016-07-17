@@ -12,7 +12,7 @@ import java.util.HashMap;
  */
 public class TransformModel{
 
-    public HashMap<String, Integer> transformToBarcodeAndNumberHashMap (String input) {
+    public HashMap<String, Integer> transformInputToBarcodeAndNumber(String input) {
         HashMap<String, Integer> result = new HashMap<String, Integer>();
         String[] temp = null;
         if (input == null || input.equals("")){
@@ -45,7 +45,7 @@ public class TransformModel{
         return result;
     }
 
-    public HashMap<String, Format> transformHashMapToBarcodeFormatHashMap(HashMap<String, Integer> barcodeHashMap){
+    public HashMap<String, Format> transformBarcodeAndNumberToBarcodeAndFormat(HashMap<String, Integer> barcodeHashMap){
         if (barcodeHashMap == null){
             throw new EmptyInputException();
         }
@@ -54,6 +54,7 @@ public class TransformModel{
             testList.put(key,new Format.Builder().setNameScope(ProductInfoHelper.getProductInfoList().get(key).getName())
                     .setNumberScope(barcodeHashMap.get(key))
                     .setPriceScope(ProductInfoHelper.getProductInfoList().get(key).getPrice())
+                    .setUnitScope(ProductInfoHelper.getProductInfoList().get(key).getUnitType())
                     .setTotalMoneyScope(ProductInfoHelper.getProductInfoList().get(key).getPrice() * barcodeHashMap.get(key))
                     .setSaveMoneyScope(0)
                     .build());

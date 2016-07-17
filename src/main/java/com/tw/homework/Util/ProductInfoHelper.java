@@ -29,7 +29,7 @@ public class ProductInfoHelper {
                 .setBarcode("ITEM000005")
                 .setName("苹果")
                 .setPrice(1.0f)
-                .setUnitType("个")
+                .setUnitType("斤")
                 .build());
         return productList;
     }
