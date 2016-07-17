@@ -34,15 +34,21 @@ public class TransformModelTest {
     @Test(expected = WrongStringInputException.class)
     public void TransformToHashMapShouldThrowExceptionWhenInputFormatIsWrong() throws Exception{
         TransformModel transformModel = new TransformModel();
-        transformModel.transformToBarcodeAndNumberHashMap("[1234]");
+        transformModel.transformToBarcodeAndNumberHashMap("1234");
     }
 
     @Test
     public void shouldGetBarcodeAndNumberHashMapFromInputString() throws Exception {
         TransformModel transformModel = new TransformModel();
+
+        //When
         String barcodeInput = "[ 'ITEM000001']";
+
+        //Expect to
         HashMap<String, Integer> expectList = new HashMap<String, Integer>();
         expectList.put("ITEM000001", 1);
+
+        //Then
         assertEquals(transformModel.transformToBarcodeAndNumberHashMap(barcodeInput), expectList);
     }
 
@@ -72,6 +78,11 @@ public class TransformModelTest {
 
         // then
         assertEquals(transformModel.transformToBarcodeAndNumberHashMap(barcodeInput), expectList);
+    }
+
+    @Test
+    public void shouldGetNonRepeatProductListFromHashMapByMethodOfTransformToProductList() throws Exception {
+
     }
 
 }

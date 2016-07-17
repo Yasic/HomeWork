@@ -7,7 +7,6 @@ public class Product {
     private String barcode;
     private String name;
     private float price;
-    private int number;
     private String unitType;
 
     public static class Builder{
@@ -19,11 +18,6 @@ public class Product {
 
         public Builder setName(String name) {
             product.name = name;
-            return this;
-        }
-
-        public Builder setNumber(int number) {
-            product.number = number;
             return this;
         }
 
