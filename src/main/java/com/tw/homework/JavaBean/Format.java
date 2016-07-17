@@ -10,4 +10,11 @@ public class Format {
     private float totalMoneyScope;
     private float saveMoneyScope;
 
+    public Format(String nameScope, String numberScope, float priceScope, float totalMoneyScope, float saveMoneyScope) {
+        this.nameScope = nameScope;
+        this.numberScope = numberScope;
+        this.priceScope = priceScope;
+        this.totalMoneyScope = totalMoneyScope;
+        this.saveMoneyScope = saveMoneyScope;
+    }
 }
