@@ -44,7 +44,7 @@ public class TransformModelTest {
         TransformModel transformModel = new TransformModel();
 
         //When
-        String barcodeInput = "[ 'ITEM000001']";
+        String barcodeInput = "['ITEM000001']";
 
         //Expect to
         HashMap<String, Integer> expectList = new HashMap<String, Integer>();
