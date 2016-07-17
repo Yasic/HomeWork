@@ -3,6 +3,7 @@ package com.tw.homework.Model;
 import com.tw.homework.Exception.EmptyInputException;
 import com.tw.homework.Exception.WrongStringInputException;
 import com.tw.homework.JavaBean.Format;
+import com.tw.homework.Util.ProductInfoHelper;
 
 import java.util.HashMap;
 
@@ -50,15 +51,12 @@ public class TransformModel{
         }
         HashMap<String, Format> testList = new HashMap<String, Format>();
         for (String key : barcodeHashMap.keySet()){
-            if (key.equals("ITEM000001")){
-                testList.put("ITEM000001", new Format("1", barcodeHashMap.get(key), 3.0f, 3 * barcodeHashMap.get(key), 0));
-            }
-            if (key.equals("ITEM000003")){
-                testList.put("ITEM000003", new Format("3", barcodeHashMap.get(key), 1.0f, 1 * barcodeHashMap.get(key), 0));
-            }
-            if (key.equals("ITEM000005")){
-                testList.put("ITEM000005", new Format("5", barcodeHashMap.get(key), 1.0f, 1 * barcodeHashMap.get(key), 0));
-            }
+            testList.put(key,
+                    new Format(ProductInfoHelper.getProductInfoList().get(key).getName(),
+                            barcodeHashMap.get(key),
+                            ProductInfoHelper.getProductInfoList().get(key).getPrice(),
+                            ProductInfoHelper.getProductInfoList().get(key).getPrice() * barcodeHashMap.get(key),
+                            0));
         }
         return testList;
     }

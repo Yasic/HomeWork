@@ -9,6 +9,8 @@ public class Product {
     private float price;
     private String unitType;
 
+    private Product(){}
+
     public static class Builder{
         private Product product = new Product();
         public Builder setBarcode(String barcode) {
@@ -26,9 +28,30 @@ public class Product {
             return this;
         }
 
+        public Builder setUnitType(String unitType) {
+            product.unitType = unitType;
+            return this;
+        }
+
         public Product build(){
             return product;
         }
+    }
+
+    public String getBarcode() {
+        return barcode;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public float getPrice() {
+        return price;
+    }
+
+    public String getUnitType() {
+        return unitType;
     }
 }
 

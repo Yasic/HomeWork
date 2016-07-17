@@ -4,6 +4,7 @@ import com.tw.homework.Exception.EmptyInputException;
 import com.tw.homework.Exception.WrongStringInputException;
 import com.tw.homework.JavaBean.Format;
 import com.tw.homework.Model.TransformModel;
+import com.tw.homework.Util.ProductInfoHelper;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -108,9 +109,11 @@ public class TransformModelTest {
         HashMap<String, Format> exceptList = transformModel.transformHashMapToBarcodeFormatHashMap(beforeList);
 
         HashMap<String, Format> testList = new HashMap<String, Format>();
-        testList.put("ITEM000001", new Format("1", 5, 3.0f, 15.0f, 0));
-        testList.put("ITEM000003", new Format("3", 2, 1.0f, 2.0f, 0));
-        testList.put("ITEM000005", new Format("5", 3, 1.0f, 3.0f, 0));
+        testList.put("ITEM000001", new Format(ProductInfoHelper.getProductInfoList().get("ITEM000001").getName(), 5, ProductInfoHelper.getProductInfoList().get("ITEM000001").getPrice(), 15.0f, 0));
+        testList.put("ITEM000003", new Format(ProductInfoHelper.getProductInfoList().get("ITEM000003").getName(), 2, ProductInfoHelper.getProductInfoList().get("ITEM000003").getPrice(), 4.0f, 0));
+        testList.put("ITEM000005", new Format(ProductInfoHelper.getProductInfoList().get("ITEM000005").getName(), 3, ProductInfoHelper.getProductInfoList().get("ITEM000005").getPrice(), 3.0f, 0));
         assertEquals(testList, exceptList);
     }
+
+
 }
