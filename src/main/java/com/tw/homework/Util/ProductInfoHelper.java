@@ -8,11 +8,12 @@ import java.util.HashMap;
  * Created by Yasic on 2016/7/17.
  */
 public class ProductInfoHelper {
+    private HashMap<String, Product> productList = new HashMap<String, Product>(){
+    };
     private ProductInfoHelper(){
     }
 
-    public static HashMap<String, Product> getProductInfoList(){
-        HashMap<String, Product> productList = new HashMap<String, Product>();
+    public HashMap<String, Product> getProductInfoList(){
         productList.put("ITEM000001", new Product.Builder()
                 .setBarcode("ITEM000001")
                 .setName("可口可乐")
@@ -34,11 +35,11 @@ public class ProductInfoHelper {
         return productList;
     }
 
-    /*public static ProductInfoHelper getInstance() {
+    public static ProductInfoHelper getInstance() {
         return SingletonHolder.instance;
     }
 
     private static class SingletonHolder {
         private static final ProductInfoHelper instance = new ProductInfoHelper();
-    }*/
+    }
 }

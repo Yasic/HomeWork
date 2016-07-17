@@ -1,7 +1,5 @@
 package com.tw.homework.JavaBean;
 
-import com.tw.homework.Util.PromotionType;
-
 /**
  * Created by Yasic on 2016/7/17.
  */
@@ -12,7 +10,6 @@ public class Format {
     private String unitScope;
     private float totalMoneyScope;
     private float saveMoneyScope;
-    private PromotionType promotionType;
 
     private Format(){}
 
@@ -48,14 +45,38 @@ public class Format {
             return this;
         }
 
-        public Builder setPromotionType(PromotionType promotionType) {
+        /*public Builder setPromotionType(PromotionType promotionType) {
             format.promotionType = promotionType;
             return this;
-        }
+        }*/
 
         public Format build(){
             return format;
         }
+    }
+
+    public String getNameScope() {
+        return nameScope;
+    }
+
+    public int getNumberScope() {
+        return numberScope;
+    }
+
+    public float getPriceScope() {
+        return priceScope;
+    }
+
+    public String getUnitScope() {
+        return unitScope;
+    }
+
+    public float getTotalMoneyScope() {
+        return totalMoneyScope;
+    }
+
+    public float getSaveMoneyScope() {
+        return saveMoneyScope;
     }
 
     public void setTotalMoneyScope(float totalMoneyScope) {
@@ -66,9 +87,9 @@ public class Format {
         this.saveMoneyScope = saveMoneyScope;
     }
 
-    public void setPromotionType(PromotionType promotionType) {
+    /*public void setPromotionType(PromotionType promotionType) {
         this.promotionType = promotionType;
-    }
+    }*/
 
     @Override
     public boolean equals(Object obj) {
