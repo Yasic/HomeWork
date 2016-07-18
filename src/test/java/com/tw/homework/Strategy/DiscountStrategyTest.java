@@ -2,7 +2,6 @@ package com.tw.homework.Strategy;
 
 import com.tw.homework.JavaBean.Format;
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 
 import java.util.HashMap;
@@ -29,7 +28,7 @@ public class DiscountStrategyTest {
         givenList.put("ITEM000001", new Format.Builder()
                 .setNameScope(" ")
                 .setNumberScope(1)
-                .setPriceScope(0)
+                .setPriceScope(3.0f)
                 .setUnitScope(" ")
                 .setTotalMoneyScope(3.0f).setSaveMoneyScope(0)
                 .build());
@@ -41,7 +40,7 @@ public class DiscountStrategyTest {
         testList.put("ITEM000001", new Format.Builder()
                 .setNameScope(" ")
                 .setNumberScope(1)
-                .setPriceScope(0)
+                .setPriceScope(3.0f)
                 .setUnitScope(" ")
                 .setTotalMoneyScope(2.85f).setSaveMoneyScope(0.15f)
                 .build());
@@ -75,10 +74,4 @@ public class DiscountStrategyTest {
         // then
         assertEquals(testList, expectList);
     }
-
-
-
-
-
-
 }

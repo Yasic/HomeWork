@@ -1,11 +1,9 @@
 package com.tw.homework.JavaBean;
 
-import com.sun.org.apache.xerces.internal.impl.xs.SchemaSymbols;
 import org.junit.Before;
 import org.junit.Test;
 
-import static com.sun.tools.doclint.Entity.delta;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 /**
  * Created by lichenqiang on 16/7/18.

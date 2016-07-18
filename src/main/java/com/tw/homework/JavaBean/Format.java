@@ -87,6 +87,10 @@ public class Format {
         this.saveMoneyScope = saveMoneyScope;
     }
 
+    public void setNumberScope(int numberScope) {
+        this.numberScope = numberScope;
+    }
+
     /*public void setPromotionType(PromotionType promotionType) {
         this.promotionType = promotionType;
     }*/

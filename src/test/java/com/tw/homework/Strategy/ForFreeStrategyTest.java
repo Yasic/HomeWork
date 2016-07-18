@@ -30,7 +30,7 @@ public class ForFreeStrategyTest {
                 .setTotalMoneyScope(3.0f).setSaveMoneyScope(0)
                 .build());
         // when
-        DiscountStrategy builder = new DiscountStrategy();
+        ForFreeStrategy builder = new ForFreeStrategy();
         HashMap<String, Format> expectList = builder.calculatePromotion(givenList);
         // expect to
         HashMap<String, Format> testList = new HashMap<String, Format>();
@@ -53,19 +53,19 @@ public class ForFreeStrategyTest {
         givenList.put("ITEM000001", new Format.Builder()
                 .setNameScope(" ")
                 .setNumberScope(2)
-                .setPriceScope(0)
+                .setPriceScope(3.0f)
                 .setUnitScope(" ")
                 .setTotalMoneyScope(6.0f).setSaveMoneyScope(0)
                 .build());
         // when
-        DiscountStrategy builder = new DiscountStrategy();
+        ForFreeStrategy builder = new ForFreeStrategy();
         HashMap<String, Format> expectList = builder.calculatePromotion(givenList);
         // expect to
         HashMap<String, Format> testList = new HashMap<String, Format>();
         testList.put("ITEM000001", new Format.Builder()
                 .setNameScope(" ")
                 .setNumberScope(3)
-                .setPriceScope(0)
+                .setPriceScope(3.0f)
                 .setUnitScope(" ")
                 .setTotalMoneyScope(6.0f).setSaveMoneyScope(3.0f)
                 .build());
@@ -80,21 +80,21 @@ public class ForFreeStrategyTest {
         givenList.put("ITEM000001", new Format.Builder()
                 .setNameScope(" ")
                 .setNumberScope(5)
-                .setPriceScope(0)
+                .setPriceScope(3.0f)
                 .setUnitScope(" ")
                 .setTotalMoneyScope(15.0f).setSaveMoneyScope(0)
                 .build());
         // when
-        DiscountStrategy builder = new DiscountStrategy();
+        ForFreeStrategy builder = new ForFreeStrategy();
         HashMap<String, Format> expectList = builder.calculatePromotion(givenList);
         // expect to
         HashMap<String, Format> testList = new HashMap<String, Format>();
         testList.put("ITEM000001", new Format.Builder()
                 .setNameScope(" ")
-                .setNumberScope(5)
-                .setPriceScope(0)
+                .setNumberScope(7)
+                .setPriceScope(3.0f)
                 .setUnitScope(" ")
-                .setTotalMoneyScope(12.0f).setSaveMoneyScope(3.0f)
+                .setTotalMoneyScope(15.0f).setSaveMoneyScope(6.0f)
                 .build());
         // then
         assertEquals(testList, expectList);
