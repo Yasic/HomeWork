@@ -5,15 +5,15 @@ import com.tw.homework.Exception.WrongStringInputException;
 import com.tw.homework.JavaBean.Format;
 import com.tw.homework.Util.ProductInfoHelper;
 
-import java.util.LinkedHashMap;
+import java.util.TreeMap;
 
 /**
  * Created by yasic on 16-7-16.
  */
 public class TransformModel{
 
-    public LinkedHashMap<String, Integer> transformInputToBarcodeAndNumber(String input) {
-        LinkedHashMap<String, Integer> result = new LinkedHashMap<String, Integer>();
+    public TreeMap<String, Integer> transformInputToBarcodeAndNumber(String input) {
+        TreeMap<String, Integer> result = new TreeMap<String, Integer>();
         String[] temp = null;
         if (input == null || input.equals("")){
             throw new EmptyInputException();
@@ -45,11 +45,11 @@ public class TransformModel{
         return result;
     }
 
-    public LinkedHashMap<String, Format> transformBarcodeAndNumberToBarcodeAndFormat(LinkedHashMap<String, Integer> barcodeHashMap){
+    public TreeMap<String, Format> transformBarcodeAndNumberToBarcodeAndFormat(TreeMap<String, Integer> barcodeHashMap){
         if (barcodeHashMap == null){
             throw new EmptyInputException();
         }
-        LinkedHashMap<String, Format> testList = new LinkedHashMap<String, Format>();
+        TreeMap<String, Format> testList = new TreeMap<String, Format>();
         for (String key : barcodeHashMap.keySet()){
             testList.put(key,new Format.Builder().setNameScope(ProductInfoHelper.getInstance().getProductInfoList().get(key).getName())
                     .setNumberScope(barcodeHashMap.get(key))

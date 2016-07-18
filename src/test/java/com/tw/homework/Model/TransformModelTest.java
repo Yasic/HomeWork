@@ -8,6 +8,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.util.LinkedHashMap;
+import java.util.TreeMap;
 
 import static org.junit.Assert.assertEquals;
 
@@ -103,9 +104,9 @@ public class TransformModelTest {
                 "    'ITEM000005',\n" +
                 "    'ITEM000005'\n" +
                 "]";
-        LinkedHashMap<String, Integer> beforeList = transformModel.transformInputToBarcodeAndNumber(barcodeInput);
+        TreeMap<String, Integer> beforeList = transformModel.transformInputToBarcodeAndNumber(barcodeInput);
 
-        LinkedHashMap<String, Format> exceptList = transformModel.transformBarcodeAndNumberToBarcodeAndFormat(beforeList);
+        TreeMap<String, Format> exceptList = transformModel.transformBarcodeAndNumberToBarcodeAndFormat(beforeList);
 
         LinkedHashMap<String, Format> testList = new LinkedHashMap<String, Format>();
         testList.put("ITEM000001", new Format.Builder()

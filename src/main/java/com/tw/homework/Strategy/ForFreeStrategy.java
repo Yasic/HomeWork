@@ -20,7 +20,7 @@ public class ForFreeStrategy extends BasePromotionStrategy {
             if (promotionList.contains(item)){
                 int newProductNumber = formatHashMap.get(item).getNumberScope() / FORFREENUMBER + formatHashMap.get(item).getNumberScope();
                 formatHashMap.get(item).setNumberScope(newProductNumber);
-                formatHashMap.get(item).setSaveMoneyScope(newProductNumber * formatHashMap.get(item).getPriceScope() - formatHashMap.get(item).getTotalMoneyScope());
+                //formatHashMap.get(item).setSaveMoneyScope(0);
             }
         }
         return formatHashMap;

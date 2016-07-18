@@ -67,7 +67,7 @@ public class ForFreeStrategyTest {
                 .setNumberScope(3)
                 .setPriceScope(3.0f)
                 .setUnitScope(" ")
-                .setTotalMoneyScope(6.0f).setSaveMoneyScope(3.0f)
+                .setTotalMoneyScope(6.0f).setSaveMoneyScope(0)
                 .build());
         // then
         assertEquals(testList, expectList);
@@ -94,7 +94,7 @@ public class ForFreeStrategyTest {
                 .setNumberScope(7)
                 .setPriceScope(3.0f)
                 .setUnitScope(" ")
-                .setTotalMoneyScope(15.0f).setSaveMoneyScope(6.0f)
+                .setTotalMoneyScope(15.0f).setSaveMoneyScope(0)
                 .build());
         // then
         assertEquals(testList, expectList);

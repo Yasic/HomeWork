@@ -3,18 +3,16 @@ package com.tw.homework.Model;
 import com.tw.homework.JavaBean.Format;
 import com.tw.homework.Strategy.BasePromotionStrategy;
 
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by Yasic on 2016/7/17.
  */
 public class OutputModel {
     private static final String HEADINFO = "***<没钱赚商店>购物清单***\n";
+    private static final String PARTINGLINE = "----------------";
 
-    public String getFormatProductArrray(LinkedHashMap<String, Format> formatHashMap) {
+    public String getFormatProductArray(TreeMap<String, Format> formatHashMap) {
         StringBuffer productArrayBuffer = new StringBuffer();
         for (String barcode : formatHashMap.keySet()) {
             productArrayBuffer.append("名称：")
@@ -36,7 +34,7 @@ public class OutputModel {
         return productArrayBuffer.toString();
     }
 
-    public String getFormatProductArrray(LinkedHashMap<String, Format> formatHashMap, List<BasePromotionStrategy> promotionList) {
+    public String getFormatProductArray(LinkedHashMap<String, Format> formatHashMap, List<BasePromotionStrategy> promotionList) {
         StringBuffer productArrayBuffer = new StringBuffer();
         Collections.sort(promotionList);
         for (String barcode : formatHashMap.keySet()) {
@@ -59,7 +57,7 @@ public class OutputModel {
         return productArrayBuffer.toString();
     }
 
-    public String getFormatString(HashMap<String, Format> formatHashMap){
+    public String getFormatString(TreeMap<String, Format> formatHashMap){
         return "***<没钱赚商店>购物清单***\n" +
                 "\n" +
                 "名称：可口可乐，数量：3瓶，单价：3.00(元)，小计：6.00(元)\n" +
