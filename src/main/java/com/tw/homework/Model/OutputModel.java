@@ -40,8 +40,14 @@ public class OutputModel {
                     .append("，")
                     .append("小计：")
                     .append(formatHashMap.get(barcode).getTotalMoneyScope())
-                    .append("(元)")
-                    .append("\n");
+                    .append("(元)");
+            if (formatHashMap.get(barcode).getPromotionFlag() == 1){
+                productArrayBuffer.append("，")
+                        .append("节省")
+                        .append(formatHashMap.get(barcode).getSaveMoneyScope())
+                        .append("(元)");
+            }
+            productArrayBuffer.append("\n");
         }
         System.out.println(productArrayBuffer.toString());
         return productArrayBuffer.toString();
