@@ -14,7 +14,7 @@ public class OutputModel {
     private static final String HEADINFO = "***<没钱赚商店>购物清单***\n";
     private static final String PARTINGLINE = "----------------";
 
-    public String getFormatProductArray(TreeMap<String, Format> formatHashMap) {
+    public String getProductArrayInfoScope(TreeMap<String, Format> formatHashMap) {
         TreeSet<BasePromotionStrategy> promotionStrategyTreeSet = new TreeSet<BasePromotionStrategy>();
         promotionStrategyTreeSet.add(new ForFreeStrategy());
         promotionStrategyTreeSet.add(new DiscountStrategy());
@@ -53,7 +53,7 @@ public class OutputModel {
         return productArrayBuffer.toString();
     }
 
-    public String getFormatProductArray(LinkedHashMap<String, Format> formatHashMap, TreeSet<BasePromotionStrategy> promotionSet) {
+    public String getProductArrayInfoScope(LinkedHashMap<String, Format> formatHashMap, TreeSet<BasePromotionStrategy> promotionSet) {
         StringBuffer productArrayBuffer = new StringBuffer();
         for (String barcode : formatHashMap.keySet()) {
             productArrayBuffer.append("名称：")
