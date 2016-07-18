@@ -25,9 +25,9 @@ public class OutputModelTest {
                 "    'ITEM000005'\n" +
                 "]";
         String test = outputModel.getFormatProductArray(transformModel.transformBarcodeAndNumberToBarcodeAndFormat(transformModel.transformInputToBarcodeAndNumber(barcodeInput)));
-        String exceptString = "名称：可口可乐，数量：5瓶，单价：3.0(元)，小计：15.0(元)\n" +
-                "名称：羽毛球，数量：2个，单价：2.0(元)，小计：4.0(元)\n" +
-                "名称：苹果，数量：3斤，单价：1.0(元)，小计：3.0(元)\n";
+        String exceptString = "名称：可口可乐，数量：7瓶，单价：3.0(元)，小计：15.0(元)\n" +
+                "名称：羽毛球，数量：3个，单价：2.0(元)，小计：4.0(元)\n" +
+                "名称：苹果，数量：3斤，单价：1.0(元)，小计：2.85(元)\n";
         Assert.assertTrue(test.equals(exceptString));
     }
 

@@ -2,6 +2,8 @@ package com.tw.homework.Model;
 
 import com.tw.homework.JavaBean.Format;
 import com.tw.homework.Strategy.BasePromotionStrategy;
+import com.tw.homework.Strategy.DiscountStrategy;
+import com.tw.homework.Strategy.ForFreeStrategy;
 
 import java.util.*;
 
@@ -13,6 +15,16 @@ public class OutputModel {
     private static final String PARTINGLINE = "----------------";
 
     public String getFormatProductArray(TreeMap<String, Format> formatHashMap) {
+        TreeSet<BasePromotionStrategy> promotionStrategyTreeSet = new TreeSet<BasePromotionStrategy>();
+        promotionStrategyTreeSet.add(new ForFreeStrategy());
+        promotionStrategyTreeSet.add(new DiscountStrategy());
+        Iterator iterator = promotionStrategyTreeSet.iterator();
+
+        while (iterator.hasNext()){
+            BasePromotionStrategy basePromotionStrategy = (BasePromotionStrategy) iterator.next();
+            basePromotionStrategy.calculatePromotion(formatHashMap);
+        }
+
         StringBuffer productArrayBuffer = new StringBuffer();
         for (String barcode : formatHashMap.keySet()) {
             productArrayBuffer.append("名称：")
@@ -31,12 +43,12 @@ public class OutputModel {
                     .append("(元)")
                     .append("\n");
         }
+        System.out.println(productArrayBuffer.toString());
         return productArrayBuffer.toString();
     }
 
-    public String getFormatProductArray(LinkedHashMap<String, Format> formatHashMap, List<BasePromotionStrategy> promotionList) {
+    public String getFormatProductArray(LinkedHashMap<String, Format> formatHashMap, TreeSet<BasePromotionStrategy> promotionSet) {
         StringBuffer productArrayBuffer = new StringBuffer();
-        Collections.sort(promotionList);
         for (String barcode : formatHashMap.keySet()) {
             productArrayBuffer.append("名称：")
                     .append(formatHashMap.get(barcode).getNameScope())

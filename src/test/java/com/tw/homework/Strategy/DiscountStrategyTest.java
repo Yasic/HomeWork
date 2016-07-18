@@ -5,6 +5,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.HashMap;
+import java.util.TreeMap;
 
 import static org.junit.Assert.assertEquals;
 
@@ -24,7 +25,7 @@ public class DiscountStrategyTest {
     @Test
     public void shouldGetDiscountWhen1ItemInList() throws Exception {
         // given
-        HashMap<String, Format> givenList = new HashMap<String, Format>();
+        TreeMap<String, Format> givenList = new TreeMap<String, Format>();
         givenList.put("ITEM000001", new Format.Builder()
                 .setNameScope(" ")
                 .setNumberScope(1)
@@ -34,7 +35,7 @@ public class DiscountStrategyTest {
                 .build());
         // when
         DiscountStrategy builder = new DiscountStrategy();
-        HashMap<String, Format> expectList = builder.calculatePromotion(givenList);
+        TreeMap<String, Format> expectList = builder.calculatePromotion(givenList);
         // expect to
         HashMap<String, Format> testList = new HashMap<String, Format>();
         testList.put("ITEM000001", new Format.Builder()
@@ -51,7 +52,7 @@ public class DiscountStrategyTest {
     @Test
     public void shouldGetDiscountWhen3ItemInList() throws Exception {
         // given
-        HashMap<String, Format> givenList = new HashMap<String, Format>();
+        TreeMap<String, Format> givenList = new TreeMap<String, Format>();
         givenList.put("ITEM000001", new Format.Builder()
                 .setNameScope(" ")
                 .setNumberScope(3)
@@ -61,7 +62,7 @@ public class DiscountStrategyTest {
                 .build());
         // when
         DiscountStrategy builder = new DiscountStrategy();
-        HashMap<String, Format> expectList = builder.calculatePromotion(givenList);
+        TreeMap<String, Format> expectList = builder.calculatePromotion(givenList);
         // expect to
         HashMap<String, Format> testList = new HashMap<String, Format>();
         testList.put("ITEM000001", new Format.Builder()
@@ -74,4 +75,9 @@ public class DiscountStrategyTest {
         // then
         assertEquals(testList, expectList);
     }
+
+
+
+
+
 }

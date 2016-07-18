@@ -108,27 +108,27 @@ public class TransformModelTest {
 
         TreeMap<String, Format> exceptList = transformModel.transformBarcodeAndNumberToBarcodeAndFormat(beforeList);
 
-        LinkedHashMap<String, Format> testList = new LinkedHashMap<String, Format>();
+        TreeMap<String, Format> testList = new TreeMap<String, Format>();
         testList.put("ITEM000001", new Format.Builder()
                 .setNameScope(ProductInfoHelper.getInstance().getProductInfoList().get("ITEM000001").getName())
                 .setNumberScope(5)
                 .setPriceScope(ProductInfoHelper.getInstance().getProductInfoList().get("ITEM000001").getPrice())
                 .setUnitScope(ProductInfoHelper.getInstance().getProductInfoList().get("ITEM000001").getUnitType())
-                .setTotalMoneyScope(15.0f).setSaveMoneyScope(0)
+                .setTotalMoneyScope(ProductInfoHelper.getInstance().getProductInfoList().get("ITEM000001").getPrice() * 5)
                 .build());
         testList.put("ITEM000003", new Format.Builder()
                 .setNameScope(ProductInfoHelper.getInstance().getProductInfoList().get("ITEM000003").getName())
                 .setNumberScope(2)
                 .setPriceScope(ProductInfoHelper.getInstance().getProductInfoList().get("ITEM000003").getPrice())
                 .setUnitScope(ProductInfoHelper.getInstance().getProductInfoList().get("ITEM000003").getUnitType())
-                .setTotalMoneyScope(4.0f).setSaveMoneyScope(0)
+                .setTotalMoneyScope(ProductInfoHelper.getInstance().getProductInfoList().get("ITEM000003").getPrice() * 2)
                 .build());
         testList.put("ITEM000005", new Format.Builder()
                 .setNameScope(ProductInfoHelper.getInstance().getProductInfoList().get("ITEM000005").getName())
                 .setNumberScope(3)
                 .setPriceScope(ProductInfoHelper.getInstance().getProductInfoList().get("ITEM000005").getPrice())
                 .setUnitScope(ProductInfoHelper.getInstance().getProductInfoList().get("ITEM000005").getUnitType())
-                .setTotalMoneyScope(3.0f).setSaveMoneyScope(0)
+                .setTotalMoneyScope(ProductInfoHelper.getInstance().getProductInfoList().get("ITEM000005").getPrice() * 3)
                 .build());
         assertEquals(testList, exceptList);
     }

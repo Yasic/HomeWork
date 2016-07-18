@@ -3,8 +3,8 @@ package com.tw.homework.Strategy;
 import com.tw.homework.JavaBean.Format;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
+import java.util.TreeMap;
 
 /**
  * Created by yasic on 16-7-16.
@@ -14,13 +14,13 @@ public class ForFreeStrategy extends BasePromotionStrategy {
     private static final int FORFREENUMBER = 2;
 
 
-    public HashMap<String, Format> calculatePromotion(HashMap<String, Format> formatHashMap) {
+    public TreeMap<String, Format> calculatePromotion(TreeMap<String, Format> formatHashMap) {
         List<String> promotionList = getPromotionList();
         for (String item : formatHashMap.keySet()){
-            if (promotionList.contains(item)){
+            if (formatHashMap.get(item).getPromotionFlag() <= PRIORITY && promotionList.contains(item)){
                 int newProductNumber = formatHashMap.get(item).getNumberScope() / FORFREENUMBER + formatHashMap.get(item).getNumberScope();
                 formatHashMap.get(item).setNumberScope(newProductNumber);
-                //formatHashMap.get(item).setSaveMoneyScope(0);
+                formatHashMap.get(item).setPromotionFlag(PRIORITY);
             }
         }
         return formatHashMap;

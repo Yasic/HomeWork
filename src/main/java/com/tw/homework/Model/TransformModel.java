@@ -56,7 +56,6 @@ public class TransformModel{
                     .setPriceScope(ProductInfoHelper.getInstance().getProductInfoList().get(key).getPrice())
                     .setUnitScope(ProductInfoHelper.getInstance().getProductInfoList().get(key).getUnitType())
                     .setTotalMoneyScope(ProductInfoHelper.getInstance().getProductInfoList().get(key).getPrice() * barcodeHashMap.get(key))
-                    .setSaveMoneyScope(0)
                     .build());
         }
         return testList;

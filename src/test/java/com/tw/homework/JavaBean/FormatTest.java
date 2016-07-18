@@ -20,7 +20,6 @@ public class FormatTest {
                 .setPriceScope(0)
                 .setUnitScope("unit")
                 .setTotalMoneyScope(3.0f)
-                .setSaveMoneyScope(0)
                 .build();
     }
 

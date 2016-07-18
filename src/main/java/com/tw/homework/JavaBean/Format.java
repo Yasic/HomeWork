@@ -10,6 +10,7 @@ public class Format {
     private String unitScope;
     private float totalMoneyScope;
     private float saveMoneyScope;
+    private int promotionFlag;
 
     private Format(){}
 
@@ -45,11 +46,6 @@ public class Format {
             return this;
         }
 
-        /*public Builder setPromotionType(PromotionType promotionType) {
-            format.promotionType = promotionType;
-            return this;
-        }*/
-
         public Format build(){
             return format;
         }
@@ -79,6 +75,10 @@ public class Format {
         return saveMoneyScope;
     }
 
+    public int getPromotionFlag() {
+        return promotionFlag;
+    }
+
     public void setTotalMoneyScope(float totalMoneyScope) {
         this.totalMoneyScope = totalMoneyScope;
     }
@@ -91,9 +91,9 @@ public class Format {
         this.numberScope = numberScope;
     }
 
-    /*public void setPromotionType(PromotionType promotionType) {
-        this.promotionType = promotionType;
-    }*/
+    public void setPromotionFlag(int promotionFlag) {
+        this.promotionFlag = promotionFlag;
+    }
 
     @Override
     public boolean equals(Object obj) {
@@ -107,4 +107,8 @@ public class Format {
         return isEqual;
     }
 
+    @Override
+    public String toString() {
+        return this.nameScope + " " + this.numberScope + " " + this.priceScope + " " + this.unitScope + " " + this.totalMoneyScope + " " + this.saveMoneyScope;
+    }
 }
