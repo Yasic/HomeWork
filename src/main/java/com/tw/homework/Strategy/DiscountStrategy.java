@@ -2,6 +2,7 @@ package com.tw.homework.Strategy;
 
 import com.tw.homework.JavaBean.ProductFormat;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.TreeMap;
@@ -20,8 +21,14 @@ public class DiscountStrategy extends BasePromotionStrategy {
         for (String item : formatHashMap.keySet()){
             if (formatHashMap.get(item).getPromotionFlag() <= PRIORITY && promotionList.contains(item)){
                 float originTotalMoney = formatHashMap.get(item).getTotalMoneyScope();
+                BigDecimal b1 = new BigDecimal(originTotalMoney);
+                BigDecimal b2 = new BigDecimal(DISCOUNT);
+                //System.out.println("fuck" + originTotalMoney * DISCOUNT);
+                float ss = b1.subtract(b1.multiply(b2)).floatValue();
+
                 formatHashMap.get(item).setTotalMoneyScope(Float.parseFloat(decimalFormat.format(originTotalMoney * DISCOUNT)));
-                formatHashMap.get(item).setSaveMoneyScope(Float.parseFloat(decimalFormat.format(originTotalMoney - originTotalMoney * DISCOUNT)));
+                formatHashMap.get(item).setSaveMoneyScope(Float.parseFloat(decimalFormat.format(ss)));
+                //formatHashMap.get(item).setSaveMoneyScope(Float.parseFloat(decimalFormat.format(originTotalMoney - originTotalMoney * DISCOUNT)));
                 formatHashMap.get(item).setPromotionFlag(PRIORITY);
             }
         }

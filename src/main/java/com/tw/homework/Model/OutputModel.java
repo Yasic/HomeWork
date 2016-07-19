@@ -6,6 +6,7 @@ import com.tw.homework.Strategy.DiscountStrategy;
 import com.tw.homework.Strategy.ForFreeStrategy;
 import com.tw.homework.Util.ProductInfoHelper;
 
+import java.math.BigDecimal;
 import java.util.Iterator;
 import java.util.TreeMap;
 import java.util.TreeSet;
@@ -15,8 +16,27 @@ import java.util.TreeSet;
  */
 public class OutputModel {
     private static final String HEADTITLE = "***<没钱赚商店>购物清单***\n";
-    private static final String PARTINGLINE = "----------------";
+    private static final String PARTINGLINE = "----------------------\n";
     private static final String FORFREEHEADTITLE = "买二赠一商品：\n";
+    private TreeMap<String, ProductFormat> productFormatTreeMap;
+
+    public void setProductFormatTreeMap(TreeMap<String, ProductFormat> productFormatTreeMap) {
+        this.productFormatTreeMap = productFormatTreeMap;
+    }
+
+    public TreeMap<String, ProductFormat> getProductFormatTreeMap() {
+        TreeMap<String, ProductFormat> cloneMap = new TreeMap<String, ProductFormat>();
+        for (String key: productFormatTreeMap.keySet()) {
+            cloneMap.put(key, new ProductFormat.Builder().setNameScope(productFormatTreeMap.get(key).getNameScope())
+                    .setNumberScope(productFormatTreeMap.get(key).getNumberScope())
+                    .setPriceScope(productFormatTreeMap.get(key).getPriceScope())
+                    .setUnitScope(productFormatTreeMap.get(key).getUnitScope())
+                    .setTotalMoneyScope(productFormatTreeMap.get(key).getTotalMoneyScope())
+                    .setSaveMoneyScope(productFormatTreeMap.get(key).getSaveMoneyScope())
+                    .build());
+        }
+        return cloneMap;
+    }
 
     public String getProductArrayInfoScope(TreeMap<String, ProductFormat> productFormatTreeMap) {
         TreeSet<BasePromotionStrategy> promotionStrategyTreeSet = new TreeSet<BasePromotionStrategy>();
@@ -94,7 +114,7 @@ public class OutputModel {
             return result.toString();
         }
         else {
-            return FORFREEHEADTITLE + result.toString();
+            return PARTINGLINE + FORFREEHEADTITLE + result.toString();
         }
     }
 
@@ -113,8 +133,16 @@ public class OutputModel {
         float savedMoney = 0;
 
         for (String barcode : productFormatTreeMap.keySet()) {
-            totalMoney += productFormatTreeMap.get(barcode).getTotalMoneyScope();
-            savedMoney += productFormatTreeMap.get(barcode).getSaveMoneyScope();
+            //System.out.println(Float.toString(productFormatTreeMap.get(barcode).getTotalMoneyScope()));
+            //System.out.println(Float.toString(productFormatTreeMap.get(barcode).getSaveMoneyScope()));
+            BigDecimal b1 = new BigDecimal(Float.toString(productFormatTreeMap.get(barcode).getTotalMoneyScope()));
+            BigDecimal b2 = new BigDecimal(Float.toString(totalMoney));
+            float ss1 = b1.add(b2).floatValue();
+            BigDecimal b3 = new BigDecimal(Float.toString(productFormatTreeMap.get(barcode).getSaveMoneyScope()));
+            BigDecimal b4 = new BigDecimal(Float.toString(savedMoney));
+            float ss2 = b3.add(b4) .floatValue();
+            totalMoney = ss1;
+            savedMoney = ss2;
         }
         StringBuffer result = new StringBuffer();
         result.append("总计：")
@@ -127,33 +155,16 @@ public class OutputModel {
                     .append("(元)")
                     .append("\n");
         }
-        System.out.println(result.toString());
         return result.toString();
     }
 
     public String getFormatString(TreeMap<String, ProductFormat> formatHashMap){
-        return "***<没钱赚商店>购物清单***\n" +
-                "\n" +
-                "名称：可口可乐，数量：3瓶，单价：3.00(元)，小计：6.00(元)\n" +
-                "\n" +
-                "名称：羽毛球，数量：6个，单价：1.00(元)，小计：4.00(元)\n" +
-                "\n" +
-                "名称：苹果，数量：2斤，单价：5.50(元)，小计：10.45(元)，节省0.55(元)\n" +
-                "\n" +
-                "----------------------\n" +
-                "\n" +
-                "买二赠一商品：\n" +
-                "\n" +
-                "名称：可口可乐，数量：1瓶\n" +
-                "\n" +
-                "名称：羽毛球，数量：2个\n" +
-                "\n" +
-                "----------------------\n" +
-                "\n" +
-                "总计：20.45(元)\n" +
-                "\n" +
-                "节省：5.55(元)\n" +
-                "\n" +
-                "**********************";
+        setProductFormatTreeMap(formatHashMap);
+        String totalString = HEADTITLE
+                + getProductArrayInfoScope(getProductFormatTreeMap())
+                + getForFreeInfoScope(getProductFormatTreeMap())
+                + PARTINGLINE
+                + getMoneyInfoScope(getProductFormatTreeMap());
+        return totalString;
     }
 }

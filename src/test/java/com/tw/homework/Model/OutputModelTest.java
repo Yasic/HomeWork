@@ -52,28 +52,16 @@ public class OutputModelTest {
                 "]";
         String output = outputModel.getFormatString(transformModel.transformBarcodeAndNumberToBarcodeAndFormat(transformModel.transformInputToBarcodeAndNumber(barcodeInput)));
         String exceptOutput = "***<没钱赚商店>购物清单***\n" +
-                "\n" +
-                "名称：可口可乐，数量：3瓶，单价：3.00(元)，小计：6.00(元)\n" +
-                "\n" +
-                "名称：羽毛球，数量：6个，单价：1.00(元)，小计：4.00(元)\n" +
-                "\n" +
-                "名称：苹果，数量：2斤，单价：5.50(元)，小计：10.45(元)，节省0.55(元)\n" +
-                "\n" +
+                "名称：可口可乐，数量：7瓶，单价：3.0(元)，小计：15.0(元)\n" +
+                "名称：羽毛球，数量：3个，单价：2.0(元)，小计：4.0(元)\n" +
+                "名称：苹果，数量：3斤，单价：1.0(元)，小计：2.85(元)，节省0.15(元)\n" +
                 "----------------------\n" +
-                "\n" +
                 "买二赠一商品：\n" +
-                "\n" +
-                "名称：可口可乐，数量：1瓶\n" +
-                "\n" +
-                "名称：羽毛球，数量：2个\n" +
-                "\n" +
+                "名称：可口可乐，数量：2瓶\n" +
+                "名称：羽毛球，数量：1个\n" +
                 "----------------------\n" +
-                "\n" +
-                "总计：20.45(元)\n" +
-                "\n" +
-                "节省：5.55(元)\n" +
-                "\n" +
-                "**********************";
+                "总计：21.85(元)\n" +
+                "节省：8.15(元)\n";
         Assert.assertEquals(exceptOutput, output);
     }
 
@@ -89,7 +77,7 @@ public class OutputModelTest {
                 .setTotalMoneyScope(15.0f).setSaveMoneyScope(0)
                 .build());
         String  exceptString = outputModel.getForFreeInfoScope(givenList);
-        String testString = "买二赠一商品：\n" + "名称：可口可乐，数量：2瓶\n";
+        String testString = "----------------------\n买二赠一商品：\n" + "名称：可口可乐，数量：2瓶\n";
         Assert.assertEquals(exceptString, testString);
     }
 

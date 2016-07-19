@@ -2,6 +2,7 @@ package com.tw.homework.Strategy;
 
 import com.tw.homework.JavaBean.ProductFormat;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.TreeMap;
@@ -16,12 +17,17 @@ public class ForFreeStrategy extends BasePromotionStrategy {
 
     public TreeMap<String, ProductFormat> calculatePromotion(TreeMap<String, ProductFormat> formatHashMap) {
         List<String> promotionList = getPromotionList();
+        TreeMap<String, ProductFormat> productFormatTreeMap = new TreeMap<String, ProductFormat>();
         for (String item : formatHashMap.keySet()){
             if (formatHashMap.get(item).getPromotionFlag() <= PRIORITY && promotionList.contains(item)){
                 int newProductNumber = formatHashMap.get(item).getNumberScope() / FORFREENUMBER + formatHashMap.get(item).getNumberScope();
                 formatHashMap.get(item).setNumberScope(newProductNumber);
-                formatHashMap.get(item).setSaveMoneyScope(newProductNumber * formatHashMap.get(item).getPriceScope() - formatHashMap.get(item).getTotalMoneyScope());
+                BigDecimal b1 = new BigDecimal(Float.toString(newProductNumber * formatHashMap.get(item).getPriceScope()));
+                BigDecimal b2 = new BigDecimal(Float.toString(formatHashMap.get(item).getTotalMoneyScope()));
+                float ss = b1.subtract(b2).floatValue();
+                formatHashMap.get(item).setSaveMoneyScope(ss);
                 formatHashMap.get(item).setPromotionFlag(PRIORITY);
+                //productFormatTreeMap.put(item, new ProductFormat.Builder().);
             }
         }
         return formatHashMap;
