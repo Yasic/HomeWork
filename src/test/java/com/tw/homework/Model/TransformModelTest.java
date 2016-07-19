@@ -2,7 +2,7 @@ package com.tw.homework.Model;
 
 import com.tw.homework.Exception.EmptyInputException;
 import com.tw.homework.Exception.WrongStringInputException;
-import com.tw.homework.JavaBean.Format;
+import com.tw.homework.JavaBean.ProductFormat;
 import com.tw.homework.Util.ProductInfoHelper;
 import org.junit.Before;
 import org.junit.Test;
@@ -106,24 +106,24 @@ public class TransformModelTest {
                 "]";
         TreeMap<String, Integer> beforeList = transformModel.transformInputToBarcodeAndNumber(barcodeInput);
 
-        TreeMap<String, Format> exceptList = transformModel.transformBarcodeAndNumberToBarcodeAndFormat(beforeList);
+        TreeMap<String, ProductFormat> exceptList = transformModel.transformBarcodeAndNumberToBarcodeAndFormat(beforeList);
 
-        TreeMap<String, Format> testList = new TreeMap<String, Format>();
-        testList.put("ITEM000001", new Format.Builder()
+        TreeMap<String, ProductFormat> testList = new TreeMap<String, ProductFormat>();
+        testList.put("ITEM000001", new ProductFormat.Builder()
                 .setNameScope(ProductInfoHelper.getInstance().getProductInfoList().get("ITEM000001").getName())
                 .setNumberScope(5)
                 .setPriceScope(ProductInfoHelper.getInstance().getProductInfoList().get("ITEM000001").getPrice())
                 .setUnitScope(ProductInfoHelper.getInstance().getProductInfoList().get("ITEM000001").getUnitType())
                 .setTotalMoneyScope(ProductInfoHelper.getInstance().getProductInfoList().get("ITEM000001").getPrice() * 5)
                 .build());
-        testList.put("ITEM000003", new Format.Builder()
+        testList.put("ITEM000003", new ProductFormat.Builder()
                 .setNameScope(ProductInfoHelper.getInstance().getProductInfoList().get("ITEM000003").getName())
                 .setNumberScope(2)
                 .setPriceScope(ProductInfoHelper.getInstance().getProductInfoList().get("ITEM000003").getPrice())
                 .setUnitScope(ProductInfoHelper.getInstance().getProductInfoList().get("ITEM000003").getUnitType())
                 .setTotalMoneyScope(ProductInfoHelper.getInstance().getProductInfoList().get("ITEM000003").getPrice() * 2)
                 .build());
-        testList.put("ITEM000005", new Format.Builder()
+        testList.put("ITEM000005", new ProductFormat.Builder()
                 .setNameScope(ProductInfoHelper.getInstance().getProductInfoList().get("ITEM000005").getName())
                 .setNumberScope(3)
                 .setPriceScope(ProductInfoHelper.getInstance().getProductInfoList().get("ITEM000005").getPrice())

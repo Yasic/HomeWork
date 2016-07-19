@@ -2,7 +2,7 @@ package com.tw.homework.Model;
 
 import com.tw.homework.Exception.EmptyInputException;
 import com.tw.homework.Exception.WrongStringInputException;
-import com.tw.homework.JavaBean.Format;
+import com.tw.homework.JavaBean.ProductFormat;
 import com.tw.homework.Util.ProductInfoHelper;
 
 import java.util.TreeMap;
@@ -45,13 +45,13 @@ public class TransformModel{
         return result;
     }
 
-    public TreeMap<String, Format> transformBarcodeAndNumberToBarcodeAndFormat(TreeMap<String, Integer> barcodeHashMap){
+    public TreeMap<String, ProductFormat> transformBarcodeAndNumberToBarcodeAndFormat(TreeMap<String, Integer> barcodeHashMap){
         if (barcodeHashMap == null){
             throw new EmptyInputException();
         }
-        TreeMap<String, Format> testList = new TreeMap<String, Format>();
+        TreeMap<String, ProductFormat> testList = new TreeMap<String, ProductFormat>();
         for (String key : barcodeHashMap.keySet()){
-            testList.put(key,new Format.Builder().setNameScope(ProductInfoHelper.getInstance().getProductInfoList().get(key).getName())
+            testList.put(key,new ProductFormat.Builder().setNameScope(ProductInfoHelper.getInstance().getProductInfoList().get(key).getName())
                     .setNumberScope(barcodeHashMap.get(key))
                     .setPriceScope(ProductInfoHelper.getInstance().getProductInfoList().get(key).getPrice())
                     .setUnitScope(ProductInfoHelper.getInstance().getProductInfoList().get(key).getUnitType())

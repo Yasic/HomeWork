@@ -8,13 +8,13 @@ import static org.junit.Assert.assertEquals;
 /**
  * Created by lichenqiang on 16/7/18.
  */
-public class FormatTest {
+public class ProductFormatTest {
 
-    private Format item1;
+    private ProductFormat item1;
 
     @Before
     public void before() {
-        item1 = new Format.Builder()
+        item1 = new ProductFormat.Builder()
                 .setNameScope("name")
                 .setNumberScope(1)
                 .setPriceScope(0)

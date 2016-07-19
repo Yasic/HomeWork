@@ -1,6 +1,6 @@
 package com.tw.homework.Strategy;
 
-import com.tw.homework.JavaBean.Format;
+import com.tw.homework.JavaBean.ProductFormat;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -25,8 +25,8 @@ public class DiscountStrategyTest {
     @Test
     public void shouldGetDiscountWhen1ItemInList() throws Exception {
         // given
-        TreeMap<String, Format> givenList = new TreeMap<String, Format>();
-        givenList.put("ITEM000001", new Format.Builder()
+        TreeMap<String, ProductFormat> givenList = new TreeMap<String, ProductFormat>();
+        givenList.put("ITEM000001", new ProductFormat.Builder()
                 .setNameScope(" ")
                 .setNumberScope(1)
                 .setPriceScope(3.0f)
@@ -35,10 +35,10 @@ public class DiscountStrategyTest {
                 .build());
         // when
         DiscountStrategy builder = new DiscountStrategy();
-        TreeMap<String, Format> expectList = builder.calculatePromotion(givenList);
+        TreeMap<String, ProductFormat> expectList = builder.calculatePromotion(givenList);
         // expect to
-        HashMap<String, Format> testList = new HashMap<String, Format>();
-        testList.put("ITEM000001", new Format.Builder()
+        HashMap<String, ProductFormat> testList = new HashMap<String, ProductFormat>();
+        testList.put("ITEM000001", new ProductFormat.Builder()
                 .setNameScope(" ")
                 .setNumberScope(1)
                 .setPriceScope(3.0f)
@@ -52,8 +52,8 @@ public class DiscountStrategyTest {
     @Test
     public void shouldGetDiscountWhen3ItemInList() throws Exception {
         // given
-        TreeMap<String, Format> givenList = new TreeMap<String, Format>();
-        givenList.put("ITEM000001", new Format.Builder()
+        TreeMap<String, ProductFormat> givenList = new TreeMap<String, ProductFormat>();
+        givenList.put("ITEM000001", new ProductFormat.Builder()
                 .setNameScope(" ")
                 .setNumberScope(3)
                 .setPriceScope(0)
@@ -62,10 +62,10 @@ public class DiscountStrategyTest {
                 .build());
         // when
         DiscountStrategy builder = new DiscountStrategy();
-        TreeMap<String, Format> expectList = builder.calculatePromotion(givenList);
+        TreeMap<String, ProductFormat> expectList = builder.calculatePromotion(givenList);
         // expect to
-        HashMap<String, Format> testList = new HashMap<String, Format>();
-        testList.put("ITEM000001", new Format.Builder()
+        HashMap<String, ProductFormat> testList = new HashMap<String, ProductFormat>();
+        testList.put("ITEM000001", new ProductFormat.Builder()
                 .setNameScope(" ")
                 .setNumberScope(3)
                 .setPriceScope(0)

@@ -1,6 +1,6 @@
 package com.tw.homework.Strategy;
 
-import com.tw.homework.JavaBean.Format;
+import com.tw.homework.JavaBean.ProductFormat;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +14,7 @@ public class ForFreeStrategy extends BasePromotionStrategy {
     private static final int FORFREENUMBER = 2;
 
 
-    public TreeMap<String, Format> calculatePromotion(TreeMap<String, Format> formatHashMap) {
+    public TreeMap<String, ProductFormat> calculatePromotion(TreeMap<String, ProductFormat> formatHashMap) {
         List<String> promotionList = getPromotionList();
         for (String item : formatHashMap.keySet()){
             if (formatHashMap.get(item).getPromotionFlag() <= PRIORITY && promotionList.contains(item)){
@@ -24,6 +24,18 @@ public class ForFreeStrategy extends BasePromotionStrategy {
             }
         }
         return formatHashMap;
+    }
+
+    public TreeMap<String, Integer> getForFreeProductInfo(TreeMap<String, ProductFormat> productFormatTreeMap) {
+        List<String> promotionList = getPromotionList();
+        TreeMap<String, Integer> resultList = new TreeMap<String, Integer>();
+        for (String item : productFormatTreeMap.keySet()){
+            if (productFormatTreeMap.get(item).getPromotionFlag() <= PRIORITY && promotionList.contains(item)){
+                int forFreeNumber = productFormatTreeMap.get(item).getNumberScope() / FORFREENUMBER;
+                resultList.put(item, forFreeNumber);
+            }
+        }
+        return resultList;
     }
 
     public int getPriority() {

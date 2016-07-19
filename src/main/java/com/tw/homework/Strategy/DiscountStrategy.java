@@ -1,6 +1,6 @@
 package com.tw.homework.Strategy;
 
-import com.tw.homework.JavaBean.Format;
+import com.tw.homework.JavaBean.ProductFormat;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +14,7 @@ public class DiscountStrategy extends BasePromotionStrategy {
     private static final float DISCOUNT = 0.95f;
 
     @Override
-    public TreeMap<String, Format> calculatePromotion(TreeMap<String, Format> formatHashMap) {
+    public TreeMap<String, ProductFormat> calculatePromotion(TreeMap<String, ProductFormat> formatHashMap) {
         java.text.DecimalFormat decimalFormat =new   java.text.DecimalFormat("#.00");
         List<String> promotionList = getPromotionList();
         for (String item : formatHashMap.keySet()){

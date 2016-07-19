@@ -1,6 +1,6 @@
 package com.tw.homework.Strategy;
 
-import com.tw.homework.JavaBean.Format;
+import com.tw.homework.JavaBean.ProductFormat;
 
 import java.util.List;
 import java.util.TreeMap;
@@ -11,7 +11,7 @@ import java.util.TreeMap;
 public abstract class BasePromotionStrategy implements PromotionStrategyInterface, Comparable {
     private int priority;
 
-    public TreeMap<String, Format> calculatePromotion(TreeMap<String, Format> formatHashMap) {
+    public TreeMap<String, ProductFormat> calculatePromotion(TreeMap<String, ProductFormat> formatHashMap) {
         return formatHashMap;
     }
 

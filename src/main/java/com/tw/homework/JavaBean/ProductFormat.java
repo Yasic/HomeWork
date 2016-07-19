@@ -3,7 +3,7 @@ package com.tw.homework.JavaBean;
 /**
  * Created by Yasic on 2016/7/17.
  */
-public class Format {
+public class ProductFormat {
     private String nameScope;
     private int numberScope;
     private float priceScope;
@@ -12,42 +12,42 @@ public class Format {
     private float saveMoneyScope;
     private int promotionFlag;
 
-    private Format(){}
+    private ProductFormat(){}
 
     public static class Builder{
-        private Format format = new Format();
+        private ProductFormat productFormat = new ProductFormat();
         public Builder setNameScope(String nameScope) {
-            format.nameScope = nameScope;
+            productFormat.nameScope = nameScope;
             return this;
         }
 
         public Builder setNumberScope(int numberScope) {
-            format.numberScope = numberScope;
+            productFormat.numberScope = numberScope;
             return this;
         }
 
         public Builder setPriceScope(float priceScope) {
-            format.priceScope = priceScope;
+            productFormat.priceScope = priceScope;
             return this;
         }
 
         public Builder setUnitScope(String unitScope) {
-            format.unitScope = unitScope;
+            productFormat.unitScope = unitScope;
             return this;
         }
 
         public Builder setTotalMoneyScope(float totalMoneyScope) {
-            format.totalMoneyScope = totalMoneyScope;
+            productFormat.totalMoneyScope = totalMoneyScope;
             return this;
         }
 
         public Builder setSaveMoneyScope(float saveMoneyScope) {
-            format.saveMoneyScope = saveMoneyScope;
+            productFormat.saveMoneyScope = saveMoneyScope;
             return this;
         }
 
-        public Format build(){
-            return format;
+        public ProductFormat build(){
+            return productFormat;
         }
     }
 
@@ -97,13 +97,13 @@ public class Format {
 
     @Override
     public boolean equals(Object obj) {
-        Format format = (Format)obj;
+        ProductFormat productFormat = (ProductFormat)obj;
         boolean isEqual = true;
-        isEqual = isEqual & (this.nameScope.equals(format.nameScope)) & (this.numberScope == format.numberScope)
-                & (this.priceScope == format.priceScope)
-                & (this.totalMoneyScope == format.totalMoneyScope)
-                & (this.unitScope.equals(format.unitScope))
-                & (this.saveMoneyScope == format.saveMoneyScope);
+        isEqual = isEqual & (this.nameScope.equals(productFormat.nameScope)) & (this.numberScope == productFormat.numberScope)
+                & (this.priceScope == productFormat.priceScope)
+                & (this.totalMoneyScope == productFormat.totalMoneyScope)
+                & (this.unitScope.equals(productFormat.unitScope))
+                & (this.saveMoneyScope == productFormat.saveMoneyScope);
         return isEqual;
     }
 

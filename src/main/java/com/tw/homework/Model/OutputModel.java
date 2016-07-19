@@ -1,6 +1,6 @@
 package com.tw.homework.Model;
 
-import com.tw.homework.JavaBean.Format;
+import com.tw.homework.JavaBean.ProductFormat;
 import com.tw.homework.Strategy.BasePromotionStrategy;
 import com.tw.homework.Strategy.DiscountStrategy;
 import com.tw.homework.Strategy.ForFreeStrategy;
@@ -14,7 +14,7 @@ public class OutputModel {
     private static final String HEADINFO = "***<没钱赚商店>购物清单***\n";
     private static final String PARTINGLINE = "----------------";
 
-    public String getProductArrayInfoScope(TreeMap<String, Format> formatHashMap) {
+    public String getProductArrayInfoScope(TreeMap<String, ProductFormat> formatHashMap) {
         TreeSet<BasePromotionStrategy> promotionStrategyTreeSet = new TreeSet<BasePromotionStrategy>();
         promotionStrategyTreeSet.add(new ForFreeStrategy());
         promotionStrategyTreeSet.add(new DiscountStrategy());
@@ -53,7 +53,7 @@ public class OutputModel {
         return productArrayBuffer.toString();
     }
 
-    public String getProductArrayInfoScope(LinkedHashMap<String, Format> formatHashMap, TreeSet<BasePromotionStrategy> promotionSet) {
+    public String getProductArrayInfoScope(TreeMap<String, ProductFormat> formatHashMap, TreeSet<BasePromotionStrategy> promotionSet) {
         StringBuffer productArrayBuffer = new StringBuffer();
         for (String barcode : formatHashMap.keySet()) {
             productArrayBuffer.append("名称：")
@@ -75,7 +75,18 @@ public class OutputModel {
         return productArrayBuffer.toString();
     }
 
-    public String getFormatString(TreeMap<String, Format> formatHashMap){
+    public String getForFreeInfoScope(TreeMap<String, ProductFormat> formatHashMap) {
+        TreeSet<BasePromotionStrategy> promotionStrategyTreeSet = new TreeSet<BasePromotionStrategy>();
+        promotionStrategyTreeSet.add(new ForFreeStrategy());
+        promotionStrategyTreeSet.add(new DiscountStrategy());
+        Iterator iterator = promotionStrategyTreeSet.iterator();
+
+
+
+        return "";
+    }
+
+    public String getFormatString(TreeMap<String, ProductFormat> formatHashMap){
         return "***<没钱赚商店>购物清单***\n" +
                 "\n" +
                 "名称：可口可乐，数量：3瓶，单价：3.00(元)，小计：6.00(元)\n" +
