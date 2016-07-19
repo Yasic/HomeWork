@@ -108,4 +108,37 @@ public class OutputModelTest {
         String testString = "";
         Assert.assertEquals(exceptString, testString);
     }
+
+    @Test
+    public void shouldReturnTotalMoneyAndSavedMoney() throws Exception {
+        OutputModel outputModel = new OutputModel();
+        TreeMap<String, ProductFormat> givenList = new TreeMap<String, ProductFormat>();
+        givenList.put("ITEM000001", new ProductFormat.Builder()
+                .setNameScope(" ")
+                .setNumberScope(5)
+                .setPriceScope(3.0f)
+                .setUnitScope(" ")
+                .setTotalMoneyScope(15.0f).setSaveMoneyScope(0)
+                .build());
+        String exceptString = outputModel.getMoneyInfoScope(givenList);
+        String testString = "总计：15.0(元)\n" +
+                "节省：6.0(元)\n";
+        Assert.assertEquals(exceptString, testString);
+    }
+
+    @Test
+    public void shouldReturnOnlyTotalMoney() throws Exception{
+        OutputModel outputModel = new OutputModel();
+        TreeMap<String, ProductFormat> givenList = new TreeMap<String, ProductFormat>();
+        givenList.put("ITEM000002", new ProductFormat.Builder()
+                .setNameScope(" ")
+                .setNumberScope(5)
+                .setPriceScope(3.0f)
+                .setUnitScope(" ")
+                .setTotalMoneyScope(15.0f).setSaveMoneyScope(0)
+                .build());
+        String exceptString = outputModel.getMoneyInfoScope(givenList);
+        String testString = "总计：15.0(元)\n";
+        Assert.assertEquals(exceptString, testString);
+    }
 }
