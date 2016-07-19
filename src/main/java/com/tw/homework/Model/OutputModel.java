@@ -4,6 +4,7 @@ import com.tw.homework.JavaBean.ProductFormat;
 import com.tw.homework.Strategy.BasePromotionStrategy;
 import com.tw.homework.Strategy.DiscountStrategy;
 import com.tw.homework.Strategy.ForFreeStrategy;
+import com.tw.homework.Util.ProductInfoHelper;
 
 import java.util.*;
 
@@ -11,8 +12,9 @@ import java.util.*;
  * Created by Yasic on 2016/7/17.
  */
 public class OutputModel {
-    private static final String HEADINFO = "***<没钱赚商店>购物清单***\n";
+    private static final String HEADTITLE = "***<没钱赚商店>购物清单***\n";
     private static final String PARTINGLINE = "----------------";
+    private static final String FORFREEHEADTITLE = "买二赠一商品：\n";
 
     public String getProductArrayInfoScope(TreeMap<String, ProductFormat> formatHashMap) {
         TreeSet<BasePromotionStrategy> promotionStrategyTreeSet = new TreeSet<BasePromotionStrategy>();
@@ -49,7 +51,6 @@ public class OutputModel {
             }
             productArrayBuffer.append("\n");
         }
-        System.out.println(productArrayBuffer.toString());
         return productArrayBuffer.toString();
     }
 
@@ -76,14 +77,23 @@ public class OutputModel {
     }
 
     public String getForFreeInfoScope(TreeMap<String, ProductFormat> formatHashMap) {
-        TreeSet<BasePromotionStrategy> promotionStrategyTreeSet = new TreeSet<BasePromotionStrategy>();
-        promotionStrategyTreeSet.add(new ForFreeStrategy());
-        promotionStrategyTreeSet.add(new DiscountStrategy());
-        Iterator iterator = promotionStrategyTreeSet.iterator();
-
-
-
-        return "";
+        ForFreeStrategy forFreeStrategy = new ForFreeStrategy();
+        TreeMap<String, Integer> forFreeTreeMap = forFreeStrategy.getForFreeProductInfo(formatHashMap);
+        StringBuffer result = new StringBuffer();
+        for (String item : forFreeTreeMap.keySet()) {
+            result.append("名称：")
+                    .append(ProductInfoHelper.getInstance().getProductInfoList().get(item).getName())
+                    .append("，数量：")
+                    .append(forFreeTreeMap.get(item))
+                    .append(ProductInfoHelper.getInstance().getProductInfoList().get(item).getUnitType())
+                    .append("\n");
+        }
+        if (result.toString().equals("")){
+            return result.toString();
+        }
+        else {
+            return FORFREEHEADTITLE + result.toString();
+        }
     }
 
     public String getFormatString(TreeMap<String, ProductFormat> formatHashMap){

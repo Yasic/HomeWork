@@ -1,7 +1,10 @@
 package com.tw.homework.Model;
 
+import com.tw.homework.JavaBean.ProductFormat;
 import org.junit.Assert;
 import org.junit.Test;
+
+import java.util.TreeMap;
 
 /**
  * Created by Yasic on 2016/7/17.
@@ -72,5 +75,37 @@ public class OutputModelTest {
                 "\n" +
                 "**********************";
         Assert.assertEquals(exceptOutput, output);
+    }
+
+    @Test
+    public void shouldGetForFreeStringWhenProductInputIsInPromotionList(){
+        OutputModel outputModel = new OutputModel();
+        TreeMap<String, ProductFormat> givenList = new TreeMap<String, ProductFormat>();
+        givenList.put("ITEM000001", new ProductFormat.Builder()
+                .setNameScope(" ")
+                .setNumberScope(5)
+                .setPriceScope(3.0f)
+                .setUnitScope(" ")
+                .setTotalMoneyScope(15.0f).setSaveMoneyScope(0)
+                .build());
+        String  exceptString = outputModel.getForFreeInfoScope(givenList);
+        String testString = "买二赠一商品：\n" + "名称：可口可乐，数量：2瓶\n";
+        Assert.assertEquals(exceptString, testString);
+    }
+
+    @Test
+    public void shouldGetEmptyStringWhenProductInputIsNotInPromotionList(){
+        OutputModel outputModel = new OutputModel();
+        TreeMap<String, ProductFormat> givenList = new TreeMap<String, ProductFormat>();
+        givenList.put("ITEM000005", new ProductFormat.Builder()
+                .setNameScope(" ")
+                .setNumberScope(5)
+                .setPriceScope(3.0f)
+                .setUnitScope(" ")
+                .setTotalMoneyScope(15.0f).setSaveMoneyScope(0)
+                .build());
+        String  exceptString = outputModel.getForFreeInfoScope(givenList);
+        String testString = "";
+        Assert.assertEquals(exceptString, testString);
     }
 }

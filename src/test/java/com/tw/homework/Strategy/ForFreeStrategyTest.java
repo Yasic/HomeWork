@@ -26,7 +26,7 @@ public class ForFreeStrategyTest {
         givenList.put("ITEM000001", new ProductFormat.Builder()
                 .setNameScope(" ")
                 .setNumberScope(1)
-                .setPriceScope(0)
+                .setPriceScope(3.0f)
                 .setUnitScope(" ")
                 .setTotalMoneyScope(3.0f).setSaveMoneyScope(0)
                 .build());
@@ -38,7 +38,7 @@ public class ForFreeStrategyTest {
         testList.put("ITEM000001", new ProductFormat.Builder()
                 .setNameScope(" ")
                 .setNumberScope(1)
-                .setPriceScope(0)
+                .setPriceScope(3.0f)
                 .setUnitScope(" ")
                 .setTotalMoneyScope(3.0f).setSaveMoneyScope(0)
                 .build());
@@ -62,13 +62,13 @@ public class ForFreeStrategyTest {
         ForFreeStrategy builder = new ForFreeStrategy();
         TreeMap<String, ProductFormat> expectList = builder.calculatePromotion(givenList);
         // expect to
-        HashMap<String, ProductFormat> testList = new HashMap<String, ProductFormat>();
+        TreeMap<String, ProductFormat> testList = new TreeMap<String, ProductFormat>();
         testList.put("ITEM000001", new ProductFormat.Builder()
                 .setNameScope(" ")
                 .setNumberScope(3)
                 .setPriceScope(3.0f)
                 .setUnitScope(" ")
-                .setTotalMoneyScope(6.0f).setSaveMoneyScope(0)
+                .setTotalMoneyScope(6.0f).setSaveMoneyScope(3)
                 .build());
         // then
         assertEquals(testList, expectList);
@@ -89,13 +89,13 @@ public class ForFreeStrategyTest {
         ForFreeStrategy builder = new ForFreeStrategy();
         TreeMap<String, ProductFormat> expectList = builder.calculatePromotion(givenList);
         // expect to
-        HashMap<String, ProductFormat> testList = new HashMap<String, ProductFormat>();
+        TreeMap<String, ProductFormat> testList = new TreeMap<String, ProductFormat>();
         testList.put("ITEM000001", new ProductFormat.Builder()
                 .setNameScope(" ")
                 .setNumberScope(7)
                 .setPriceScope(3.0f)
                 .setUnitScope(" ")
-                .setTotalMoneyScope(15.0f).setSaveMoneyScope(0)
+                .setTotalMoneyScope(15.0f).setSaveMoneyScope(6)
                 .build());
         // then
         assertEquals(testList, expectList);
@@ -116,6 +116,24 @@ public class ForFreeStrategyTest {
         TreeMap<String, Integer> expectList = builder.getForFreeProductInfo(givenList);
         HashMap<String, Integer> testList = new HashMap<String, Integer>();
         testList.put("ITEM000001", 2);
+
+        assertEquals(testList, expectList);
+    }
+
+    @Test
+    public void shouldReturnNullWhenProductInputIsNotInPromotionList() throws Exception{
+        TreeMap<String, ProductFormat> givenList = new TreeMap<String, ProductFormat>();
+        givenList.put("ITEM000005", new ProductFormat.Builder()
+                .setNameScope(" ")
+                .setNumberScope(5)
+                .setPriceScope(3.0f)
+                .setUnitScope(" ")
+                .setTotalMoneyScope(15.0f).setSaveMoneyScope(0)
+                .build());
+
+        ForFreeStrategy builder = new ForFreeStrategy();
+        TreeMap<String, Integer> expectList = builder.getForFreeProductInfo(givenList);
+        HashMap<String, Integer> testList = new HashMap<String, Integer>();
 
         assertEquals(testList, expectList);
     }
