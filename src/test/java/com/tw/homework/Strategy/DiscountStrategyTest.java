@@ -2,12 +2,17 @@ package com.tw.homework.Strategy;
 
 import com.tw.homework.JavaBean.ProductFormat;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.TreeMap;
 
+import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 
 /**
  * Created by Yasic on 2016/7/18.
@@ -23,7 +28,7 @@ public class DiscountStrategyTest {
     }
 
     @Test
-    public void shouldGetDiscountWhen1ItemInList() throws Exception {
+    public void shouldGetDiscountWhenOneItemInList() throws Exception {
         // given
         TreeMap<String, ProductFormat> givenList = new TreeMap<String, ProductFormat>();
         givenList.put("ITEM000001", new ProductFormat.Builder()
@@ -50,7 +55,7 @@ public class DiscountStrategyTest {
     }
 
     @Test
-    public void shouldGetDiscountWhen3ItemInList() throws Exception {
+    public void shouldGetDiscountWhenThreeItemInList() throws Exception {
         // given
         TreeMap<String, ProductFormat> givenList = new TreeMap<String, ProductFormat>();
         givenList.put("ITEM000001", new ProductFormat.Builder()
@@ -76,8 +81,28 @@ public class DiscountStrategyTest {
         assertEquals(testList, expectList);
     }
 
+    @Test
+    public void shouldReturnDiscountPromotionList() {
+        // given
+        DiscountStrategy discountStrategy = new DiscountStrategy();
+        HashMap<String, ProductFormat> givenList = new HashMap<String, ProductFormat>();
+        // when
+        List<String> expectList = discountStrategy.getPromotionList();
+        List<String> testList = Arrays.asList("ITEM000001", "ITEM000005");
+        // then
+        assertEquals(testList, expectList);
+    }
 
-
-
+    @Test
+    public void shouldNotReturnDiscountPromotionList() {
+        // given
+        DiscountStrategy discountStrategy = new DiscountStrategy();
+        HashMap<String, ProductFormat> givenList = new HashMap<String, ProductFormat>();
+        // when
+        List<String> expectList = discountStrategy.getPromotionList();
+        List<String> testList = Arrays.asList(" ");
+        // then
+        assertNotEquals(testList, expectList);
+    }
 
 }

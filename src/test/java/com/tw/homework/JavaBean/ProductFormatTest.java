@@ -1,9 +1,12 @@
 package com.tw.homework.JavaBean;
 
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Created by lichenqiang on 16/7/18.
@@ -11,6 +14,7 @@ import static org.junit.Assert.assertEquals;
 public class ProductFormatTest {
 
     private ProductFormat item1;
+    private ProductFormat item2;
 
     @Before
     public void before() {
@@ -53,4 +57,38 @@ public class ProductFormatTest {
         assertEquals(item1.getSaveMoneyScope(), 0, 0.0001);
     }
 
+    @Test
+    public void shouldReturnTrueWhenEquals() throws Exception {
+        // given
+        item2 = new ProductFormat.Builder()
+                .setNameScope("name")
+                .setNumberScope(1)
+                .setPriceScope(0)
+                .setUnitScope("unit")
+                .setTotalMoneyScope(3.0f)
+                .build();
+        // then
+        assertTrue(item1.equals(item2));
+    }
+
+    @Test
+    public void shouldReturnFalseWhenDifferent() throws Exception {
+        // given
+        item2 = new ProductFormat.Builder()
+                .setNameScope(" ")
+                .setNumberScope(1)
+                .setPriceScope(0)
+                .setUnitScope("unit")
+                .setTotalMoneyScope(3.0f)
+                .build();
+        // then
+        assertFalse(item1.equals(item2));
+    }
+
+    @Test
+    public void shouldReturnStringWhenGiven() throws Exception {
+        // given
+        String result = "name 1 0.0 unit 3.0 0.0";
+        assertEquals(item1.toString(), result);
+    }
 }
