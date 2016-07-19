@@ -3,7 +3,7 @@ package com.tw.homework.JavaBean;
 /**
  * Created by Yasic on 2016/7/17.
  */
-public class ProductFormat implements Cloneable{
+public class ProductFormat{
     private String nameScope;
     private int numberScope;
     private float priceScope;
@@ -110,17 +110,5 @@ public class ProductFormat implements Cloneable{
     @Override
     public String toString() {
         return this.nameScope + " " + this.numberScope + " " + this.priceScope + " " + this.unitScope + " " + this.totalMoneyScope + " " + this.saveMoneyScope;
-    }
-
-    @Override
-    protected ProductFormat clone() throws CloneNotSupportedException {
-        ProductFormat productFormat = new ProductFormat.Builder().setNameScope(nameScope)
-                .setNumberScope(numberScope)
-                .setPriceScope(priceScope)
-                .setUnitScope(unitScope)
-                .setTotalMoneyScope(totalMoneyScope)
-                .setSaveMoneyScope(saveMoneyScope)
-                .build();
-        return productFormat;
     }
 }

@@ -17,7 +17,7 @@ public class main {
                 "    'ITEM000001',\n" +
                 "    'ITEM000001',\n" +
                 "    'ITEM000001',\n" +
-                "    'ITEM000003-2',\n" +
+                "    'ITEM000003-3',\n" +
                 "    'ITEM000005',\n" +
                 "    'ITEM000005',\n" +
                 "    'ITEM000005'\n" +
