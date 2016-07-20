@@ -93,6 +93,76 @@ public class ForFreeStrategyTest {
     }
 
     @Test
+    public void shouldGetDiscountWhenNight() throws Exception {
+        // given
+        TreeMap<String, ProductFormat> givenList = new TreeMap<String, ProductFormat>();
+        givenList.put("ITEM000001", new ProductFormat.Builder()
+                .setBarcode("ITEM000001")
+                .setNumberScope(8)
+                .setTotalMoneyScope(24.0f).setSaveMoneyScope(0)
+                .build());
+        // when
+        ForFreeStrategy builder = new ForFreeStrategy();
+        TreeMap<String, ProductFormat> expectList = builder.calculatePromotion(givenList);
+        // expect to
+        TreeMap<String, ProductFormat> testList = new TreeMap<String, ProductFormat>();
+        testList.put("ITEM000001", new ProductFormat.Builder()
+                .setBarcode("ITEM000001")
+                .setNumberScope(12)
+                .setTotalMoneyScope(24.0f).setSaveMoneyScope(12)
+                .build());
+        // then
+        assertEquals(testList, expectList);
+    }
+
+    @Test
+    public void shouldGetDiscountWhenNine() throws Exception {
+        // given
+        TreeMap<String, ProductFormat> givenList = new TreeMap<String, ProductFormat>();
+        givenList.put("ITEM000001", new ProductFormat.Builder()
+                .setBarcode("ITEM000001")
+                .setNumberScope(9)
+                .setTotalMoneyScope(27.0f).setSaveMoneyScope(0)
+                .build());
+        // when
+        ForFreeStrategy builder = new ForFreeStrategy();
+        TreeMap<String, ProductFormat> expectList = builder.calculatePromotion(givenList);
+        // expect to
+        TreeMap<String, ProductFormat> testList = new TreeMap<String, ProductFormat>();
+        testList.put("ITEM000001", new ProductFormat.Builder()
+                .setBarcode("ITEM000001")
+                .setNumberScope(13)
+                .setTotalMoneyScope(27.0f).setSaveMoneyScope(12)
+                .build());
+        // then
+        assertEquals(testList, expectList);
+    }
+
+    @Test
+    public void shouldNotGetDiscountWhenBarcodeDifferent() throws Exception {
+        // given
+        TreeMap<String, ProductFormat> givenList = new TreeMap<String, ProductFormat>();
+        givenList.put("ITEM000001", new ProductFormat.Builder()
+                .setBarcode("ITEM000003")
+                .setNumberScope(8)
+                .setTotalMoneyScope(24.0f).setSaveMoneyScope(0)
+                .build());
+        // when
+        ForFreeStrategy builder = new ForFreeStrategy();
+        TreeMap<String, ProductFormat> expectList = builder.calculatePromotion(givenList);
+        // expect to
+        TreeMap<String, ProductFormat> testList = new TreeMap<String, ProductFormat>();
+        testList.put("ITEM000001", new ProductFormat.Builder()
+                .setBarcode("ITEM000001")
+                .setNumberScope(12)
+                .setTotalMoneyScope(24.0f).setSaveMoneyScope(12)
+                .build());
+        // then
+        assertNotEquals(testList, expectList);
+    }
+
+
+    @Test
     public void shouldReturnForFreeTreeMapWhenProductInputIsInPromotionList() throws Exception{
         TreeMap<String, ProductFormat> givenList = new TreeMap<String, ProductFormat>();
         givenList.put("ITEM000001", new ProductFormat.Builder()
