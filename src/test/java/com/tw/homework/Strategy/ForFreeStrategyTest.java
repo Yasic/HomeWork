@@ -4,10 +4,13 @@ import com.tw.homework.JavaBean.ProductFormat;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.TreeMap;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 
 /**
  * Created by Yasic on 2016/7/18.
@@ -136,6 +139,30 @@ public class ForFreeStrategyTest {
         HashMap<String, Integer> testList = new HashMap<String, Integer>();
 
         assertEquals(testList, expectList);
+    }
+
+    @Test
+    public void shouldReturnFroFreePromotionList() {
+        // given
+        ForFreeStrategy forFreeStrategy = new ForFreeStrategy();
+        HashMap<String, ProductFormat> givenList = new HashMap<String, ProductFormat>();
+        // when
+        List<String> expectList = forFreeStrategy.getPromotionList();
+        List<String> testList = Arrays.asList("ITEM000001", "ITEM000003");
+        // then
+        assertEquals(testList, expectList);
+    }
+
+    @Test
+    public void shouldNotReturnForFreePromotionList() {
+        // given
+        ForFreeStrategy forFreeStrategy = new ForFreeStrategy();
+        HashMap<String, ProductFormat> givenList = new HashMap<String, ProductFormat>();
+        // when
+        List<String> expectList = forFreeStrategy.getPromotionList();
+        List<String> testList = Arrays.asList(" ");
+        // then
+        assertNotEquals(testList, expectList);
     }
 
 }
