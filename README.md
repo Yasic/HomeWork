@@ -53,17 +53,26 @@
 
 要求写代码支持上述的功能，并根据输入和设置的不同，输出下列小票。
 
+## 项目使用说明
+
+* 使用git clone命令下载项目文件
+* 进入项目目录下
+* gradle clean
+* gradle build
+* gradle run
+* 看到结果
+* __如果上述步骤出错、请联系我或提交issue__
+
 ## 开发设计
 
 * 采用 TDD开发 和 Travis CI 持续集成服务
-* 采用gradle和Maven架构实现脚本编译
+* 采用Gradle自动化构建工具和Maven结构实现脚本编译
 * 利用简单的MVP架构实现模块化设计和功能分立
 
 ## 相关开发知识点
 
-* 单例模式
-* 工厂模式
-* 策略模式
-* 装饰器模式
+* 单例模式 & 工厂模式 & 策略模式 & 装饰器模式
 * 泛型&多态
 * 抽象骨架类
+* [在Gradle管理的项目中如何使用Travis-CI](https://github.com/Cycade/TravisCITest)
+* [如何在IDEA中使用Gradle管理自己的Java项目](http://jerry-chen.iteye.com/blog/2030637)
