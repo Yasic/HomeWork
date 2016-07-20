@@ -48,6 +48,21 @@ public class TransformModelTest {
     }
 
     @Test
+    public void shouldIgnoreProductIfTheNumberIsZero() throws Exception {
+        TransformModel transformModel = new TransformModel();
+
+        //When
+        String barcodeInput = "[ 'ITEM000001-0']";
+
+        //Expect to
+        LinkedHashMap<String, Integer> expectList = new LinkedHashMap<String, Integer>();
+        //expectList.put("ITEM000001", 1);
+
+        //Then
+        assertEquals(transformModel.transformInputToBarcodeAndNumber(barcodeInput), expectList);
+    }
+
+    @Test
     public void shouldGetBarcodeAndNumberHashMapFromInputString() throws Exception {
         TransformModel transformModel = new TransformModel();
 

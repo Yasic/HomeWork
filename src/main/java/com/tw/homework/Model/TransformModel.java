@@ -35,10 +35,12 @@ public class TransformModel{
                 productNumber = 1;
                 singleBarcode = temp[index];
             } finally {
-                if (result.containsKey(singleBarcode)) {
-                    result.put(singleBarcode, result.get(singleBarcode) + productNumber);
-                } else {
-                    result.put(singleBarcode, productNumber);
+                if (productNumber > 0){
+                    if (result.containsKey(singleBarcode)) {
+                        result.put(singleBarcode, result.get(singleBarcode) + productNumber);
+                    } else {
+                        result.put(singleBarcode, productNumber);
+                    }
                 }
             }
         }

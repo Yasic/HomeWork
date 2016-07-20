@@ -42,7 +42,7 @@ public class MainView implements ViewInterface {
 
     public static void main(String[] args) {
         final String barcodeInput = "[" +
-                "    'ITEM000004',\n" +
+                "    'ITEM000001',\n" +
                 "    'ITEM000001',\n" +
                 "    'ITEM000001',\n" +
                 "    'ITEM000001',\n" +

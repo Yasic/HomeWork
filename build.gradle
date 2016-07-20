@@ -18,3 +18,10 @@ dependencies {
 
 apply plugin: 'application'
 mainClassName = 'com.tw.homework.View.MainView'
+/*mainClassName = 'org.gradle.MyMain'*/
+
+apply plugin: "jacoco"
+jacoco{
+    toolVersion = "0.7.1.201405082137"
+    reportsDir = file("$buildDir/jacocoReports")
+}
