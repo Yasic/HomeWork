@@ -4,10 +4,11 @@ package com.tw.homework.JavaBean;
  * Created by Yasic on 2016/7/17.
  */
 public class ProductFormat{
-    private String nameScope;
+    //private String nameScope;
+    private String barcode;
     private int numberScope;
-    private float priceScope;
-    private String unitScope;
+    //private float priceScope;
+    //private String unitScope;
     private float totalMoneyScope;
     private float saveMoneyScope;
     private int promotionFlag;
@@ -16,8 +17,13 @@ public class ProductFormat{
 
     public static class Builder{
         private ProductFormat productFormat = new ProductFormat();
-        public Builder setNameScope(String nameScope) {
+        /*public Builder setNameScope(String nameScope) {
             productFormat.nameScope = nameScope;
+            return this;
+        }*/
+
+        public Builder setBarcode(String barcode) {
+            productFormat.barcode = barcode;
             return this;
         }
 
@@ -26,15 +32,15 @@ public class ProductFormat{
             return this;
         }
 
-        public Builder setPriceScope(float priceScope) {
+        /*public Builder setPriceScope(float priceScope) {
             productFormat.priceScope = priceScope;
             return this;
-        }
+        }*/
 
-        public Builder setUnitScope(String unitScope) {
+        /*public Builder setUnitScope(String unitScope) {
             productFormat.unitScope = unitScope;
             return this;
-        }
+        }*/
 
         public Builder setTotalMoneyScope(float totalMoneyScope) {
             productFormat.totalMoneyScope = totalMoneyScope;
@@ -51,20 +57,24 @@ public class ProductFormat{
         }
     }
 
-    public String getNameScope() {
+    /*public String getNameScope() {
         return nameScope;
-    }
+    }*/
 
     public int getNumberScope() {
         return numberScope;
     }
 
-    public float getPriceScope() {
+    /*public float getPriceScope() {
         return priceScope;
-    }
+    }*/
 
-    public String getUnitScope() {
+    /*public String getUnitScope() {
         return unitScope;
+    }*/
+
+    public String getBarcode() {
+        return barcode;
     }
 
     public float getTotalMoneyScope() {
@@ -99,16 +109,14 @@ public class ProductFormat{
     public boolean equals(Object obj) {
         ProductFormat productFormat = (ProductFormat)obj;
         boolean isEqual = true;
-        isEqual = isEqual & (this.nameScope.equals(productFormat.nameScope)) & (this.numberScope == productFormat.numberScope)
-                & (this.priceScope == productFormat.priceScope)
+        isEqual = isEqual & (this.barcode.equals(productFormat.barcode)) & (this.numberScope == productFormat.numberScope)
                 & (this.totalMoneyScope == productFormat.totalMoneyScope)
-                & (this.unitScope.equals(productFormat.unitScope))
                 & (this.saveMoneyScope == productFormat.saveMoneyScope);
         return isEqual;
     }
 
     @Override
     public String toString() {
-        return this.nameScope + " " + this.numberScope + " " + this.priceScope + " " + this.unitScope + " " + this.totalMoneyScope + " " + this.saveMoneyScope;
+        return this.barcode + " " + this.numberScope + " "  + " " + " " + this.totalMoneyScope + " " + this.saveMoneyScope;
     }
 }

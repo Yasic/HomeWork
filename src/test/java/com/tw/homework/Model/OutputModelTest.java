@@ -31,7 +31,7 @@ public class OutputModelTest {
         String exceptString = "名称：可口可乐，数量：7瓶，单价：3.00(元)，小计：15.00(元)\n" +
                 "名称：羽毛球，数量：3个，单价：2.00(元)，小计：4.00(元)\n" +
                 "名称：苹果，数量：3斤，单价：1.00(元)，小计：2.85(元)，节省0.15(元)\n";
-        Assert.assertTrue(test.equals(exceptString));
+        Assert.assertEquals(test, exceptString);
     }
 
     @Test
@@ -70,10 +70,8 @@ public class OutputModelTest {
         OutputModel outputModel = new OutputModel();
         TreeMap<String, ProductFormat> givenList = new TreeMap<String, ProductFormat>();
         givenList.put("ITEM000001", new ProductFormat.Builder()
-                .setNameScope(" ")
+                .setBarcode("ITEM000001")
                 .setNumberScope(5)
-                .setPriceScope(3.0f)
-                .setUnitScope(" ")
                 .setTotalMoneyScope(15.0f).setSaveMoneyScope(0)
                 .build());
         String  exceptString = outputModel.getForFreeInfoScope(givenList);
@@ -86,10 +84,8 @@ public class OutputModelTest {
         OutputModel outputModel = new OutputModel();
         TreeMap<String, ProductFormat> givenList = new TreeMap<String, ProductFormat>();
         givenList.put("ITEM000005", new ProductFormat.Builder()
-                .setNameScope(" ")
+                .setBarcode("ITEM000001")
                 .setNumberScope(5)
-                .setPriceScope(3.0f)
-                .setUnitScope(" ")
                 .setTotalMoneyScope(15.0f).setSaveMoneyScope(0)
                 .build());
         String  exceptString = outputModel.getForFreeInfoScope(givenList);
@@ -102,10 +98,8 @@ public class OutputModelTest {
         OutputModel outputModel = new OutputModel();
         TreeMap<String, ProductFormat> givenList = new TreeMap<String, ProductFormat>();
         givenList.put("ITEM000001", new ProductFormat.Builder()
-                .setNameScope(" ")
+                .setBarcode("ITEM000001")
                 .setNumberScope(5)
-                .setPriceScope(3.0f)
-                .setUnitScope(" ")
                 .setTotalMoneyScope(15.0f).setSaveMoneyScope(0)
                 .build());
         String exceptString = outputModel.getMoneyInfoScope(givenList);
@@ -119,10 +113,8 @@ public class OutputModelTest {
         OutputModel outputModel = new OutputModel();
         TreeMap<String, ProductFormat> givenList = new TreeMap<String, ProductFormat>();
         givenList.put("ITEM000002", new ProductFormat.Builder()
-                .setNameScope(" ")
+                .setBarcode("ITEM000001")
                 .setNumberScope(5)
-                .setPriceScope(3.0f)
-                .setUnitScope(" ")
                 .setTotalMoneyScope(15.0f).setSaveMoneyScope(0)
                 .build());
         String exceptString = outputModel.getMoneyInfoScope(givenList);

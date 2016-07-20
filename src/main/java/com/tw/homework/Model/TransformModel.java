@@ -51,10 +51,8 @@ public class TransformModel{
         }
         TreeMap<String, ProductFormat> testList = new TreeMap<String, ProductFormat>();
         for (String key : barcodeHashMap.keySet()){
-            testList.put(key,new ProductFormat.Builder().setNameScope(ProductInfoHelper.getInstance().getProductInfoList().get(key).getName())
+            testList.put(key,new ProductFormat.Builder().setBarcode(key)
                     .setNumberScope(barcodeHashMap.get(key))
-                    .setPriceScope(ProductInfoHelper.getInstance().getProductInfoList().get(key).getPrice())
-                    .setUnitScope(ProductInfoHelper.getInstance().getProductInfoList().get(key).getUnitType())
                     .setTotalMoneyScope(ProductInfoHelper.getInstance().getProductInfoList().get(key).getPrice() * barcodeHashMap.get(key))
                     .build());
         }

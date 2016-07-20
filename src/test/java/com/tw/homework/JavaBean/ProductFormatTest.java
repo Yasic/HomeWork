@@ -1,7 +1,6 @@
 package com.tw.homework.JavaBean;
 
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -17,33 +16,21 @@ public class ProductFormatTest {
     @Before
     public void before() {
         item1 = new ProductFormat.Builder()
-                .setNameScope("name")
+                .setBarcode("ITEM000001")
                 .setNumberScope(1)
-                .setPriceScope(0)
-                .setUnitScope("unit")
                 .setTotalMoneyScope(3.0f)
                 .setSaveMoneyScope(1.0f)
                 .build();
     }
 
     @Test
-    public void shouldGetName() throws Exception {
-        assertEquals(item1.getNameScope(), "name");
+    public void shouldGetBarcode() throws Exception {
+        assertEquals(item1.getBarcode(), "ITEM000001");
     }
 
     @Test
     public void shouldGetNumber() throws Exception {
         assertEquals(item1.getNumberScope(), 1);
-    }
-
-    @Test
-    public void shouldGetPrice() throws Exception {
-        assertEquals(item1.getPriceScope(), 0, 0.0001);
-    }
-
-    @Test
-    public void shouldGetUnit() throws Exception {
-        assertEquals(item1.getUnitScope(), "unit");
     }
 
     @Test
@@ -90,10 +77,8 @@ public class ProductFormatTest {
     public void shouldReturnTrueWhenEquals() throws Exception {
         // given
         item2 = new ProductFormat.Builder()
-                .setNameScope("name")
+                .setBarcode("ITEM000001")
                 .setNumberScope(1)
-                .setPriceScope(0)
-                .setUnitScope("unit")
                 .setTotalMoneyScope(3.0f)
                 .setSaveMoneyScope(1.0f)
                 .build();
@@ -105,10 +90,8 @@ public class ProductFormatTest {
     public void shouldReturnFalseWhenDifferentValue() throws Exception {
         // given
         item2 = new ProductFormat.Builder()
-                .setNameScope(" ")
+                .setBarcode("ITEM000002")
                 .setNumberScope(1)
-                .setPriceScope(0)
-                .setUnitScope("unit")
                 .setTotalMoneyScope(3.0f)
                 .setSaveMoneyScope(1.0f)
                 .build();
@@ -120,10 +103,8 @@ public class ProductFormatTest {
     public void shouldReturnFalseWhenDifferentLength() throws Exception {
         // given
         item2 = new ProductFormat.Builder()
-                .setNameScope(" ")
+                .setBarcode("ITEM000001")
                 .setNumberScope(1)
-                .setPriceScope(0)
-                .setUnitScope("unit")
                 .setTotalMoneyScope(3.0f)
                 .build();
         // then
@@ -133,7 +114,7 @@ public class ProductFormatTest {
     @Test
     public void shouldReturnStringWhenGiven() throws Exception {
         // given
-        String result = "name 1 0.0 unit 3.0 1.0";
+        String result = "ITEM000001 1   3.0 1.0";
         assertEquals(item1.toString(), result);
     }
 }

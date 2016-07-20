@@ -110,24 +110,18 @@ public class TransformModelTest {
 
         TreeMap<String, ProductFormat> testList = new TreeMap<String, ProductFormat>();
         testList.put("ITEM000001", new ProductFormat.Builder()
-                .setNameScope(ProductInfoHelper.getInstance().getProductInfoList().get("ITEM000001").getName())
+                .setBarcode("ITEM000001")
                 .setNumberScope(5)
-                .setPriceScope(ProductInfoHelper.getInstance().getProductInfoList().get("ITEM000001").getPrice())
-                .setUnitScope(ProductInfoHelper.getInstance().getProductInfoList().get("ITEM000001").getUnitType())
                 .setTotalMoneyScope(ProductInfoHelper.getInstance().getProductInfoList().get("ITEM000001").getPrice() * 5)
                 .build());
         testList.put("ITEM000003", new ProductFormat.Builder()
-                .setNameScope(ProductInfoHelper.getInstance().getProductInfoList().get("ITEM000003").getName())
+                .setBarcode("ITEM000003")
                 .setNumberScope(2)
-                .setPriceScope(ProductInfoHelper.getInstance().getProductInfoList().get("ITEM000003").getPrice())
-                .setUnitScope(ProductInfoHelper.getInstance().getProductInfoList().get("ITEM000003").getUnitType())
                 .setTotalMoneyScope(ProductInfoHelper.getInstance().getProductInfoList().get("ITEM000003").getPrice() * 2)
                 .build());
         testList.put("ITEM000005", new ProductFormat.Builder()
-                .setNameScope(ProductInfoHelper.getInstance().getProductInfoList().get("ITEM000005").getName())
+                .setBarcode("ITEM000005")
                 .setNumberScope(3)
-                .setPriceScope(ProductInfoHelper.getInstance().getProductInfoList().get("ITEM000005").getPrice())
-                .setUnitScope(ProductInfoHelper.getInstance().getProductInfoList().get("ITEM000005").getUnitType())
                 .setTotalMoneyScope(ProductInfoHelper.getInstance().getProductInfoList().get("ITEM000005").getPrice() * 3)
                 .build());
         assertEquals(testList, exceptList);

@@ -28,10 +28,8 @@ public class DiscountStrategyTest {
         // given
         TreeMap<String, ProductFormat> givenList = new TreeMap<String, ProductFormat>();
         givenList.put("ITEM000001", new ProductFormat.Builder()
-                .setNameScope(" ")
+                .setBarcode("ITEM000001")
                 .setNumberScope(1)
-                .setPriceScope(3.0f)
-                .setUnitScope(" ")
                 .setTotalMoneyScope(3.0f).setSaveMoneyScope(0)
                 .build());
         // when
@@ -40,10 +38,8 @@ public class DiscountStrategyTest {
         // expect to
         TreeMap<String, ProductFormat> testList = new TreeMap<String, ProductFormat>();
         testList.put("ITEM000001", new ProductFormat.Builder()
-                .setNameScope(" ")
+                .setBarcode("ITEM000001")
                 .setNumberScope(1)
-                .setPriceScope(3.0f)
-                .setUnitScope(" ")
                 .setTotalMoneyScope(2.85f).setSaveMoneyScope(0.15f)
                 .build());
         // then
@@ -55,10 +51,8 @@ public class DiscountStrategyTest {
         // given
         TreeMap<String, ProductFormat> givenList = new TreeMap<String, ProductFormat>();
         givenList.put("ITEM000001", new ProductFormat.Builder()
-                .setNameScope(" ")
+                .setBarcode("ITEM000001")
                 .setNumberScope(3)
-                .setPriceScope(0)
-                .setUnitScope(" ")
                 .setTotalMoneyScope(9.0f).setSaveMoneyScope(0)
                 .build());
         // when
@@ -67,10 +61,8 @@ public class DiscountStrategyTest {
         // expect to
         HashMap<String, ProductFormat> testList = new HashMap<String, ProductFormat>();
         testList.put("ITEM000001", new ProductFormat.Builder()
-                .setNameScope(" ")
+                .setBarcode("ITEM000001")
                 .setNumberScope(3)
-                .setPriceScope(0)
-                .setUnitScope(" ")
                 .setTotalMoneyScope(8.55f).setSaveMoneyScope(0.45f)
                 .build());
         // then

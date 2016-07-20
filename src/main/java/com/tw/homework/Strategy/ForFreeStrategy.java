@@ -1,6 +1,7 @@
 package com.tw.homework.Strategy;
 
 import com.tw.homework.JavaBean.ProductFormat;
+import com.tw.homework.Util.ProductInfoHelper;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -12,17 +13,17 @@ import java.util.TreeMap;
  */
 public class ForFreeStrategy extends BasePromotionStrategy {
     private static final int PRIORITY = 2;
-    private static final int FORFREENUMBER = 2;
+    private static final int NUMBERFORFREE = 2;
 
 
     public TreeMap<String, ProductFormat> calculatePromotion(TreeMap<String, ProductFormat> formatHashMap) {
         List<String> promotionList = getPromotionList();
         java.text.DecimalFormat decimalFormat =  new java.text.DecimalFormat("0.00#");
         for (String item : formatHashMap.keySet()){
-            if ( promotionList.contains(item) && formatHashMap.get(item).getPromotionFlag() <= PRIORITY && formatHashMap.get(item).getNumberScope() >= FORFREENUMBER){
-                int newProductNumber = formatHashMap.get(item).getNumberScope() / FORFREENUMBER + formatHashMap.get(item).getNumberScope();
+            if ( promotionList.contains(item) && formatHashMap.get(item).getPromotionFlag() <= PRIORITY && formatHashMap.get(item).getNumberScope() >= NUMBERFORFREE){
+                int newProductNumber = formatHashMap.get(item).getNumberScope() / NUMBERFORFREE + formatHashMap.get(item).getNumberScope();
                 formatHashMap.get(item).setNumberScope(newProductNumber);
-                BigDecimal b1 = new BigDecimal(Float.toString(newProductNumber * formatHashMap.get(item).getPriceScope()));
+                BigDecimal b1 = new BigDecimal(Float.toString(newProductNumber * ProductInfoHelper.getInstance().getProductInfoList().get(item).getPrice()));
                 BigDecimal b2 = new BigDecimal(Float.toString(formatHashMap.get(item).getTotalMoneyScope()));
                 float ss = b1.subtract(b2).floatValue();
                 formatHashMap.get(item).setSaveMoneyScope(Float.parseFloat(decimalFormat.format(ss)));
@@ -36,8 +37,8 @@ public class ForFreeStrategy extends BasePromotionStrategy {
         List<String> promotionList = getPromotionList();
         TreeMap<String, Integer> resultList = new TreeMap<String, Integer>();
         for (String item : productFormatTreeMap.keySet()){
-            if (promotionList.contains(item) && productFormatTreeMap.get(item).getPromotionFlag() <= PRIORITY && productFormatTreeMap.get(item).getNumberScope() >= FORFREENUMBER){
-                int forFreeNumber = productFormatTreeMap.get(item).getNumberScope() / FORFREENUMBER;
+            if (promotionList.contains(item) && productFormatTreeMap.get(item).getPromotionFlag() <= PRIORITY && productFormatTreeMap.get(item).getNumberScope() >= NUMBERFORFREE){
+                int forFreeNumber = productFormatTreeMap.get(item).getNumberScope() / NUMBERFORFREE;
                 resultList.put(item, forFreeNumber);
             }
         }

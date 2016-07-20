@@ -27,10 +27,8 @@ public class ForFreeStrategyTest {
         // given
         TreeMap<String, ProductFormat> givenList = new TreeMap<String, ProductFormat>();
         givenList.put("ITEM000001", new ProductFormat.Builder()
-                .setNameScope(" ")
+                .setBarcode("ITEM000001")
                 .setNumberScope(1)
-                .setPriceScope(3.0f)
-                .setUnitScope(" ")
                 .setTotalMoneyScope(3.0f).setSaveMoneyScope(0)
                 .build());
         // when
@@ -39,10 +37,8 @@ public class ForFreeStrategyTest {
         // expect to
         HashMap<String, ProductFormat> testList = new HashMap<String, ProductFormat>();
         testList.put("ITEM000001", new ProductFormat.Builder()
-                .setNameScope(" ")
+                .setBarcode("ITEM000001")
                 .setNumberScope(1)
-                .setPriceScope(3.0f)
-                .setUnitScope(" ")
                 .setTotalMoneyScope(3.0f).setSaveMoneyScope(0)
                 .build());
         // then
@@ -55,10 +51,8 @@ public class ForFreeStrategyTest {
         // given
         TreeMap<String, ProductFormat> givenList = new TreeMap<String, ProductFormat>();
         givenList.put("ITEM000001", new ProductFormat.Builder()
-                .setNameScope(" ")
+                .setBarcode("ITEM000001")
                 .setNumberScope(2)
-                .setPriceScope(3.0f)
-                .setUnitScope(" ")
                 .setTotalMoneyScope(6.0f).setSaveMoneyScope(0)
                 .build());
         // when
@@ -67,10 +61,8 @@ public class ForFreeStrategyTest {
         // expect to
         TreeMap<String, ProductFormat> testList = new TreeMap<String, ProductFormat>();
         testList.put("ITEM000001", new ProductFormat.Builder()
-                .setNameScope(" ")
+                .setBarcode("ITEM000001")
                 .setNumberScope(3)
-                .setPriceScope(3.0f)
-                .setUnitScope(" ")
                 .setTotalMoneyScope(6.0f).setSaveMoneyScope(3)
                 .build());
         // then
@@ -82,10 +74,8 @@ public class ForFreeStrategyTest {
         // given
         TreeMap<String, ProductFormat> givenList = new TreeMap<String, ProductFormat>();
         givenList.put("ITEM000001", new ProductFormat.Builder()
-                .setNameScope(" ")
+                .setBarcode("ITEM000001")
                 .setNumberScope(5)
-                .setPriceScope(3.0f)
-                .setUnitScope(" ")
                 .setTotalMoneyScope(15.0f).setSaveMoneyScope(0)
                 .build());
         // when
@@ -94,10 +84,8 @@ public class ForFreeStrategyTest {
         // expect to
         TreeMap<String, ProductFormat> testList = new TreeMap<String, ProductFormat>();
         testList.put("ITEM000001", new ProductFormat.Builder()
-                .setNameScope(" ")
+                .setBarcode("ITEM000001")
                 .setNumberScope(7)
-                .setPriceScope(3.0f)
-                .setUnitScope(" ")
                 .setTotalMoneyScope(15.0f).setSaveMoneyScope(6)
                 .build());
         // then
@@ -108,10 +96,8 @@ public class ForFreeStrategyTest {
     public void shouldReturnForFreeTreeMapWhenProductInputIsInPromotionList() throws Exception{
         TreeMap<String, ProductFormat> givenList = new TreeMap<String, ProductFormat>();
         givenList.put("ITEM000001", new ProductFormat.Builder()
-                .setNameScope(" ")
+                .setBarcode("ITEM000001")
                 .setNumberScope(5)
-                .setPriceScope(3.0f)
-                .setUnitScope(" ")
                 .setTotalMoneyScope(15.0f).setSaveMoneyScope(0)
                 .build());
 
@@ -127,10 +113,8 @@ public class ForFreeStrategyTest {
     public void shouldReturnNullWhenProductInputIsNotInPromotionList() throws Exception{
         TreeMap<String, ProductFormat> givenList = new TreeMap<String, ProductFormat>();
         givenList.put("ITEM000005", new ProductFormat.Builder()
-                .setNameScope(" ")
+                .setBarcode("ITEM000001")
                 .setNumberScope(5)
-                .setPriceScope(3.0f)
-                .setUnitScope(" ")
                 .setTotalMoneyScope(15.0f).setSaveMoneyScope(0)
                 .build());
 
@@ -169,10 +153,8 @@ public class ForFreeStrategyTest {
     public void shouldNotReturnForFreeStringIfProductNumberIsLessThanForFreeNumber() throws Exception{
         TreeMap<String, ProductFormat> givenList = new TreeMap<String, ProductFormat>();
         givenList.put("ITEM000005", new ProductFormat.Builder()
-                .setNameScope(" ")
+                .setBarcode("ITEM000001")
                 .setNumberScope(1)
-                .setPriceScope(3.0f)
-                .setUnitScope(" ")
                 .setTotalMoneyScope(15.0f).setSaveMoneyScope(0)
                 .build());
 

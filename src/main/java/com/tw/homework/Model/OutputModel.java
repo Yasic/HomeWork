@@ -27,10 +27,8 @@ public class OutputModel {
     public TreeMap<String, ProductFormat> getProductFormatTreeMap() {
         TreeMap<String, ProductFormat> cloneMap = new TreeMap<String, ProductFormat>();
         for (String key: productFormatTreeMap.keySet()) {
-            cloneMap.put(key, new ProductFormat.Builder().setNameScope(productFormatTreeMap.get(key).getNameScope())
+            cloneMap.put(key, new ProductFormat.Builder().setBarcode(key)
                     .setNumberScope(productFormatTreeMap.get(key).getNumberScope())
-                    .setPriceScope(productFormatTreeMap.get(key).getPriceScope())
-                    .setUnitScope(productFormatTreeMap.get(key).getUnitScope())
                     .setTotalMoneyScope(productFormatTreeMap.get(key).getTotalMoneyScope())
                     .setSaveMoneyScope(productFormatTreeMap.get(key).getSaveMoneyScope())
                     .build());
@@ -53,14 +51,14 @@ public class OutputModel {
         StringBuffer productArrayBuffer = new StringBuffer();
         for (String barcode : productFormatTreeMap.keySet()) {
             productArrayBuffer.append("名称：")
-                    .append(productFormatTreeMap.get(barcode).getNameScope())
+                    .append(ProductInfoHelper.getInstance().getProductInfoList().get(productFormatTreeMap.get(barcode).getBarcode()).getName())
                     .append("，")
                     .append("数量：")
                     .append(productFormatTreeMap.get(barcode).getNumberScope())
-                    .append(productFormatTreeMap.get(barcode).getUnitScope())
+                    .append(ProductInfoHelper.getInstance().getProductInfoList().get(productFormatTreeMap.get(barcode).getBarcode()).getUnitType())
                     .append("，")
                     .append("单价：")
-                    .append(decimalFormat.format(productFormatTreeMap.get(barcode).getPriceScope()))
+                    .append(decimalFormat.format(ProductInfoHelper.getInstance().getProductInfoList().get(productFormatTreeMap.get(barcode).getBarcode()).getPrice()))
                     .append("(元)")
                     .append("，")
                     .append("小计：")
@@ -90,7 +88,7 @@ public class OutputModel {
                     .append("\n");
         }
         if (result.toString().equals("")){
-            return result.toString();
+            return "";
         }
         else {
             return PARTINGLINE + FORFREEHEADTITLE + result.toString();
