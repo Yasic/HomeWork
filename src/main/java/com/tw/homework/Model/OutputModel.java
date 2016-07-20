@@ -32,9 +32,41 @@ public class OutputModel {
         return totalString;
     }
 
-    public String getFormatOutPut(TreeMap<String, ProductFormat> productFormatTreeMap, TreeSet<BasePromotionStrategy> strategyTreeSet) {
+    public String getFormatOutput(TreeMap<String, ProductFormat> productFormatTreeMap, TreeSet<BasePromotionStrategy> strategyTreeSet) {
         setStrategyTreeSet(strategyTreeSet);
         return getFormatOutput(productFormatTreeMap);
+    }
+
+    public void setProductFormatTreeMap(TreeMap<String, ProductFormat> productFormatTreeMap) {
+        this.productFormatTreeMap = productFormatTreeMap;
+    }
+
+    public void setStrategyTreeSet(TreeSet<BasePromotionStrategy> strategyTreeSet) {
+        this.strategyTreeSet = strategyTreeSet;
+    }
+
+    public TreeMap<String, ProductFormat> getProductFormatTreeMap() {
+        TreeMap<String, ProductFormat> cloneMap = new TreeMap<String, ProductFormat>();
+        for (String key: productFormatTreeMap.keySet()) {
+            cloneMap.put(key, new ProductFormat.Builder().setBarcode(key)
+                    .setNumberScope(productFormatTreeMap.get(key).getNumberScope())
+                    .setTotalMoneyScope(productFormatTreeMap.get(key).getTotalMoneyScope())
+                    .setSaveMoneyScope(productFormatTreeMap.get(key).getSaveMoneyScope())
+                    .build());
+        }
+        return cloneMap;
+    }
+
+    public TreeSet<BasePromotionStrategy> getStrategyTreeSet() {
+        if (strategyTreeSet != null){
+            return strategyTreeSet;
+        }
+        else {
+            TreeSet<BasePromotionStrategy> promotionStrategyTreeSet = new TreeSet<BasePromotionStrategy>();
+            promotionStrategyTreeSet.add(new ForFreeStrategy());
+            promotionStrategyTreeSet.add(new DiscountStrategy());
+            return promotionStrategyTreeSet;
+        }
     }
 
     public String getProductArrayInfoScope(TreeMap<String, ProductFormat> productFormatTreeMap) {
@@ -127,37 +159,5 @@ public class OutputModel {
                     .append("\n");
         }
         return result.toString();
-    }
-
-    public void setProductFormatTreeMap(TreeMap<String, ProductFormat> productFormatTreeMap) {
-        this.productFormatTreeMap = productFormatTreeMap;
-    }
-
-    public void setStrategyTreeSet(TreeSet<BasePromotionStrategy> strategyTreeSet) {
-        this.strategyTreeSet = strategyTreeSet;
-    }
-
-    public TreeMap<String, ProductFormat> getProductFormatTreeMap() {
-        TreeMap<String, ProductFormat> cloneMap = new TreeMap<String, ProductFormat>();
-        for (String key: productFormatTreeMap.keySet()) {
-            cloneMap.put(key, new ProductFormat.Builder().setBarcode(key)
-                    .setNumberScope(productFormatTreeMap.get(key).getNumberScope())
-                    .setTotalMoneyScope(productFormatTreeMap.get(key).getTotalMoneyScope())
-                    .setSaveMoneyScope(productFormatTreeMap.get(key).getSaveMoneyScope())
-                    .build());
-        }
-        return cloneMap;
-    }
-
-    public TreeSet<BasePromotionStrategy> getStrategyTreeSet() {
-        if (strategyTreeSet != null){
-            return strategyTreeSet;
-        }
-        else {
-            TreeSet<BasePromotionStrategy> promotionStrategyTreeSet = new TreeSet<BasePromotionStrategy>();
-            promotionStrategyTreeSet.add(new ForFreeStrategy());
-            promotionStrategyTreeSet.add(new DiscountStrategy());
-            return promotionStrategyTreeSet;
-        }
     }
 }

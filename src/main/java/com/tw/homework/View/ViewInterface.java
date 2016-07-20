@@ -7,5 +7,4 @@ import com.tw.homework.Presenter.BasePresenter;
  */
 public interface ViewInterface<T extends BasePresenter> {
     ViewInterface getView();
-    void setPresenter(T t);
 }
