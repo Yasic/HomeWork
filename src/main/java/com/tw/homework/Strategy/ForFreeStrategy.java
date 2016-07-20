@@ -17,17 +17,16 @@ public class ForFreeStrategy extends BasePromotionStrategy {
 
     public TreeMap<String, ProductFormat> calculatePromotion(TreeMap<String, ProductFormat> formatHashMap) {
         List<String> promotionList = getPromotionList();
-        TreeMap<String, ProductFormat> productFormatTreeMap = new TreeMap<String, ProductFormat>();
+        java.text.DecimalFormat decimalFormat =  new java.text.DecimalFormat("0.00#");
         for (String item : formatHashMap.keySet()){
-            if (formatHashMap.get(item).getPromotionFlag() <= PRIORITY && promotionList.contains(item)){
+            if ( promotionList.contains(item) && formatHashMap.get(item).getPromotionFlag() <= PRIORITY && formatHashMap.get(item).getNumberScope() >= FORFREENUMBER){
                 int newProductNumber = formatHashMap.get(item).getNumberScope() / FORFREENUMBER + formatHashMap.get(item).getNumberScope();
                 formatHashMap.get(item).setNumberScope(newProductNumber);
                 BigDecimal b1 = new BigDecimal(Float.toString(newProductNumber * formatHashMap.get(item).getPriceScope()));
                 BigDecimal b2 = new BigDecimal(Float.toString(formatHashMap.get(item).getTotalMoneyScope()));
                 float ss = b1.subtract(b2).floatValue();
-                formatHashMap.get(item).setSaveMoneyScope(ss);
+                formatHashMap.get(item).setSaveMoneyScope(Float.parseFloat(decimalFormat.format(ss)));
                 formatHashMap.get(item).setPromotionFlag(PRIORITY);
-                //productFormatTreeMap.put(item, new ProductFormat.Builder().);
             }
         }
         return formatHashMap;
@@ -37,7 +36,7 @@ public class ForFreeStrategy extends BasePromotionStrategy {
         List<String> promotionList = getPromotionList();
         TreeMap<String, Integer> resultList = new TreeMap<String, Integer>();
         for (String item : productFormatTreeMap.keySet()){
-            if (productFormatTreeMap.get(item).getPromotionFlag() <= PRIORITY && promotionList.contains(item)){
+            if (promotionList.contains(item) && productFormatTreeMap.get(item).getPromotionFlag() <= PRIORITY && productFormatTreeMap.get(item).getNumberScope() >= FORFREENUMBER){
                 int forFreeNumber = productFormatTreeMap.get(item).getNumberScope() / FORFREENUMBER;
                 resultList.put(item, forFreeNumber);
             }

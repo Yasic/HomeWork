@@ -16,19 +16,17 @@ public class DiscountStrategy extends BasePromotionStrategy {
 
     @Override
     public TreeMap<String, ProductFormat> calculatePromotion(TreeMap<String, ProductFormat> formatHashMap) {
-        java.text.DecimalFormat decimalFormat =new   java.text.DecimalFormat("#.00");
         List<String> promotionList = getPromotionList();
+        java.text.DecimalFormat decimalFormat =  new java.text.DecimalFormat("0.00#");
         for (String item : formatHashMap.keySet()){
             if (formatHashMap.get(item).getPromotionFlag() <= PRIORITY && promotionList.contains(item)){
                 float originTotalMoney = formatHashMap.get(item).getTotalMoneyScope();
                 BigDecimal b1 = new BigDecimal(originTotalMoney);
                 BigDecimal b2 = new BigDecimal(DISCOUNT);
-                //System.out.println("fuck" + originTotalMoney * DISCOUNT);
                 float ss = b1.subtract(b1.multiply(b2)).floatValue();
 
-                formatHashMap.get(item).setTotalMoneyScope(Float.parseFloat(decimalFormat.format(originTotalMoney * DISCOUNT)));
+                formatHashMap.get(item).setTotalMoneyScope(originTotalMoney * DISCOUNT);
                 formatHashMap.get(item).setSaveMoneyScope(Float.parseFloat(decimalFormat.format(ss)));
-                //formatHashMap.get(item).setSaveMoneyScope(Float.parseFloat(decimalFormat.format(originTotalMoney - originTotalMoney * DISCOUNT)));
                 formatHashMap.get(item).setPromotionFlag(PRIORITY);
             }
         }

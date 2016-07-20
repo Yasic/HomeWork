@@ -165,4 +165,21 @@ public class ForFreeStrategyTest {
         assertNotEquals(testList, expectList);
     }
 
+    @Test
+    public void shouldNotReturnForFreeStringIfProductNumberIsLessThanForFreeNumber() throws Exception{
+        TreeMap<String, ProductFormat> givenList = new TreeMap<String, ProductFormat>();
+        givenList.put("ITEM000005", new ProductFormat.Builder()
+                .setNameScope(" ")
+                .setNumberScope(1)
+                .setPriceScope(3.0f)
+                .setUnitScope(" ")
+                .setTotalMoneyScope(15.0f).setSaveMoneyScope(0)
+                .build());
+
+        ForFreeStrategy builder = new ForFreeStrategy();
+        TreeMap<String, Integer> expectList = builder.getForFreeProductInfo(givenList);
+        HashMap<String, Integer> testList = new HashMap<String, Integer>();
+        assertEquals(testList, expectList);
+    }
+
 }

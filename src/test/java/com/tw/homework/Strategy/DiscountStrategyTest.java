@@ -2,7 +2,6 @@ package com.tw.homework.Strategy;
 
 import com.tw.homework.JavaBean.ProductFormat;
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 
 import java.util.Arrays;
@@ -10,7 +9,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.TreeMap;
 
-import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 
@@ -40,7 +38,7 @@ public class DiscountStrategyTest {
         DiscountStrategy builder = new DiscountStrategy();
         TreeMap<String, ProductFormat> expectList = builder.calculatePromotion(givenList);
         // expect to
-        HashMap<String, ProductFormat> testList = new HashMap<String, ProductFormat>();
+        TreeMap<String, ProductFormat> testList = new TreeMap<String, ProductFormat>();
         testList.put("ITEM000001", new ProductFormat.Builder()
                 .setNameScope(" ")
                 .setNumberScope(1)

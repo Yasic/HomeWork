@@ -28,9 +28,9 @@ public class OutputModelTest {
                 "    'ITEM000005'\n" +
                 "]";
         String test = outputModel.getProductArrayInfoScope(transformModel.transformBarcodeAndNumberToBarcodeAndFormat(transformModel.transformInputToBarcodeAndNumber(barcodeInput)));
-        String exceptString = "名称：可口可乐，数量：7瓶，单价：3.0(元)，小计：15.0(元)\n" +
-                "名称：羽毛球，数量：3个，单价：2.0(元)，小计：4.0(元)\n" +
-                "名称：苹果，数量：3斤，单价：1.0(元)，小计：2.85(元)，节省0.15(元)\n";
+        String exceptString = "名称：可口可乐，数量：7瓶，单价：3.00(元)，小计：15.00(元)\n" +
+                "名称：羽毛球，数量：3个，单价：2.00(元)，小计：4.00(元)\n" +
+                "名称：苹果，数量：3斤，单价：1.00(元)，小计：2.85(元)，节省0.15(元)\n";
         Assert.assertTrue(test.equals(exceptString));
     }
 
@@ -50,11 +50,11 @@ public class OutputModelTest {
                 "    'ITEM000005',\n" +
                 "    'ITEM000005'\n" +
                 "]";
-        String output = outputModel.getFormatString(transformModel.transformBarcodeAndNumberToBarcodeAndFormat(transformModel.transformInputToBarcodeAndNumber(barcodeInput)));
+        String output = outputModel.getFormatOutput(transformModel.transformBarcodeAndNumberToBarcodeAndFormat(transformModel.transformInputToBarcodeAndNumber(barcodeInput)));
         String exceptOutput = "***<没钱赚商店>购物清单***\n" +
-                "名称：可口可乐，数量：7瓶，单价：3.0(元)，小计：15.0(元)\n" +
-                "名称：羽毛球，数量：3个，单价：2.0(元)，小计：4.0(元)\n" +
-                "名称：苹果，数量：3斤，单价：1.0(元)，小计：2.85(元)，节省0.15(元)\n" +
+                "名称：可口可乐，数量：7瓶，单价：3.00(元)，小计：15.00(元)\n" +
+                "名称：羽毛球，数量：3个，单价：2.00(元)，小计：4.00(元)\n" +
+                "名称：苹果，数量：3斤，单价：1.00(元)，小计：2.85(元)，节省0.15(元)\n" +
                 "----------------------\n" +
                 "买二赠一商品：\n" +
                 "名称：可口可乐，数量：2瓶\n" +
@@ -109,8 +109,8 @@ public class OutputModelTest {
                 .setTotalMoneyScope(15.0f).setSaveMoneyScope(0)
                 .build());
         String exceptString = outputModel.getMoneyInfoScope(givenList);
-        String testString = "总计：15.0(元)\n" +
-                "节省：6.0(元)\n";
+        String testString = "总计：15.00(元)\n" +
+                "节省：6.00(元)\n";
         Assert.assertEquals(exceptString, testString);
     }
 
@@ -126,7 +126,7 @@ public class OutputModelTest {
                 .setTotalMoneyScope(15.0f).setSaveMoneyScope(0)
                 .build());
         String exceptString = outputModel.getMoneyInfoScope(givenList);
-        String testString = "总计：15.0(元)\n";
+        String testString = "总计：15.00(元)\n";
         Assert.assertEquals(exceptString, testString);
     }
 }

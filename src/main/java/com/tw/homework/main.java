@@ -17,7 +17,7 @@ public class main {
                 "    'ITEM000001',\n" +
                 "    'ITEM000001',\n" +
                 "    'ITEM000001',\n" +
-                "    'ITEM000003-3',\n" +
+                "    'ITEM000003-1',\n" +
                 "    'ITEM000005',\n" +
                 "    'ITEM000005',\n" +
                 "    'ITEM000005'\n" +
@@ -25,6 +25,6 @@ public class main {
         TransformModel transformModel = new TransformModel();
         TreeMap<String, ProductFormat> productFormatTreeMap =  transformModel.transformBarcodeAndNumberToBarcodeAndFormat(transformModel.transformInputToBarcodeAndNumber(barcodeInput));
         OutputModel outputModel = new OutputModel();
-        System.out.println(outputModel.getFormatString(productFormatTreeMap));
+        System.out.println(outputModel.getFormatOutput(productFormatTreeMap));
     }
 }

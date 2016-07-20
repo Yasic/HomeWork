@@ -40,6 +40,7 @@ public class OutputModel {
 
     public String getProductArrayInfoScope(TreeMap<String, ProductFormat> productFormatTreeMap) {
         TreeSet<BasePromotionStrategy> promotionStrategyTreeSet = new TreeSet<BasePromotionStrategy>();
+        java.text.DecimalFormat decimalFormat =  new java.text.DecimalFormat("0.00#");
         promotionStrategyTreeSet.add(new ForFreeStrategy());
         promotionStrategyTreeSet.add(new DiscountStrategy());
         Iterator iterator = promotionStrategyTreeSet.iterator();
@@ -59,41 +60,19 @@ public class OutputModel {
                     .append(productFormatTreeMap.get(barcode).getUnitScope())
                     .append("，")
                     .append("单价：")
-                    .append(productFormatTreeMap.get(barcode).getPriceScope())
+                    .append(decimalFormat.format(productFormatTreeMap.get(barcode).getPriceScope()))
                     .append("(元)")
                     .append("，")
                     .append("小计：")
-                    .append(productFormatTreeMap.get(barcode).getTotalMoneyScope())
+                    .append(decimalFormat.format(productFormatTreeMap.get(barcode).getTotalMoneyScope()))
                     .append("(元)");
             if (productFormatTreeMap.get(barcode).getPromotionFlag() == 1){
                 productArrayBuffer.append("，")
                         .append("节省")
-                        .append(productFormatTreeMap.get(barcode).getSaveMoneyScope())
+                        .append(decimalFormat.format(productFormatTreeMap.get(barcode).getSaveMoneyScope()))
                         .append("(元)");
             }
             productArrayBuffer.append("\n");
-        }
-        return productArrayBuffer.toString();
-    }
-
-    public String getProductArrayInfoScope(TreeMap<String, ProductFormat> formatHashMap, TreeSet<BasePromotionStrategy> promotionSet) {
-        StringBuffer productArrayBuffer = new StringBuffer();
-        for (String barcode : formatHashMap.keySet()) {
-            productArrayBuffer.append("名称：")
-                    .append(formatHashMap.get(barcode).getNameScope())
-                    .append("，")
-                    .append("数量：")
-                    .append(formatHashMap.get(barcode).getNumberScope())
-                    .append(formatHashMap.get(barcode).getUnitScope())
-                    .append("，")
-                    .append("单价：")
-                    .append(formatHashMap.get(barcode).getPriceScope())
-                    .append("(元)")
-                    .append("，")
-                    .append("小计：")
-                    .append(formatHashMap.get(barcode).getTotalMoneyScope())
-                    .append("(元)")
-                    .append("\n");
         }
         return productArrayBuffer.toString();
     }
@@ -119,6 +98,7 @@ public class OutputModel {
     }
 
     public String getMoneyInfoScope(TreeMap<String, ProductFormat> productFormatTreeMap){
+        java.text.DecimalFormat decimalFormat =  new java.text.DecimalFormat("0.00#");
         TreeSet<BasePromotionStrategy> promotionStrategyTreeSet = new TreeSet<BasePromotionStrategy>();
         promotionStrategyTreeSet.add(new ForFreeStrategy());
         promotionStrategyTreeSet.add(new DiscountStrategy());
@@ -133,8 +113,6 @@ public class OutputModel {
         float savedMoney = 0;
 
         for (String barcode : productFormatTreeMap.keySet()) {
-            //System.out.println(Float.toString(productFormatTreeMap.get(barcode).getTotalMoneyScope()));
-            //System.out.println(Float.toString(productFormatTreeMap.get(barcode).getSaveMoneyScope()));
             BigDecimal b1 = new BigDecimal(Float.toString(productFormatTreeMap.get(barcode).getTotalMoneyScope()));
             BigDecimal b2 = new BigDecimal(Float.toString(totalMoney));
             float ss1 = b1.add(b2).floatValue();
@@ -146,19 +124,19 @@ public class OutputModel {
         }
         StringBuffer result = new StringBuffer();
         result.append("总计：")
-                .append(totalMoney)
+                .append(decimalFormat.format(totalMoney))
                 .append("(元)")
                 .append("\n");
         if (savedMoney != 0){
             result.append("节省：")
-                    .append(savedMoney)
+                    .append(decimalFormat.format(savedMoney))
                     .append("(元)")
                     .append("\n");
         }
         return result.toString();
     }
 
-    public String getFormatString(TreeMap<String, ProductFormat> formatHashMap){
+    public String getFormatOutput(TreeMap<String, ProductFormat> formatHashMap){
         setProductFormatTreeMap(formatHashMap);
         String totalString = HEADTITLE
                 + getProductArrayInfoScope(getProductFormatTreeMap())
