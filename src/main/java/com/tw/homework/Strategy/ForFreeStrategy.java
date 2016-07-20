@@ -2,6 +2,7 @@ package com.tw.homework.Strategy;
 
 import com.tw.homework.JavaBean.ProductFormat;
 import com.tw.homework.Util.ProductInfoHelper;
+import com.tw.homework.Util.PromotionPriority;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -12,13 +13,13 @@ import java.util.TreeMap;
  * Created by yasic on 16-7-16.
  */
 public class ForFreeStrategy extends BasePromotionStrategy {
-    private static final int PRIORITY = 2;
+    private static final int PRIORITY = PromotionPriority.FORFREE.getPriority();
     private static final int NUMBERFORFREE = 2;
 
 
     public TreeMap<String, ProductFormat> calculatePromotion(TreeMap<String, ProductFormat> formatHashMap) {
-        List<String> promotionList = getPromotionList();
         java.text.DecimalFormat decimalFormat =  new java.text.DecimalFormat("0.00#");
+        List<String> promotionList = getPromotionList();
         for (String item : formatHashMap.keySet()){
             if ( promotionList.contains(item) && formatHashMap.get(item).getPromotionFlag() <= PRIORITY && formatHashMap.get(item).getNumberScope() >= NUMBERFORFREE){
                 int newProductNumber = formatHashMap.get(item).getNumberScope() / NUMBERFORFREE + formatHashMap.get(item).getNumberScope();
@@ -45,11 +46,11 @@ public class ForFreeStrategy extends BasePromotionStrategy {
         return resultList;
     }
 
-    public int getPriority() {
+    protected int getPriority() {
         return PRIORITY;
     }
 
-    public List<String> getPromotionList() {
+    protected List<String> getPromotionList() {
         List<String> promotionList = new ArrayList<String>();
         promotionList.add("ITEM000001");
         promotionList.add("ITEM000003");

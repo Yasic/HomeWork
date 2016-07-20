@@ -1,6 +1,7 @@
 package com.tw.homework.Strategy;
 
 import com.tw.homework.JavaBean.ProductFormat;
+import com.tw.homework.Util.PromotionPriority;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -11,13 +12,13 @@ import java.util.TreeMap;
  * Created by yasic on 16-7-16.
  */
 public class DiscountStrategy extends BasePromotionStrategy {
-    private static final int PRIORITY = 1;
+    private static final int PRIORITY = PromotionPriority.DISCOUNT.getPriority();
     private static final float DISCOUNT = 0.95f;
 
     @Override
     public TreeMap<String, ProductFormat> calculatePromotion(TreeMap<String, ProductFormat> formatHashMap) {
-        List<String> promotionList = getPromotionList();
         java.text.DecimalFormat decimalFormat =  new java.text.DecimalFormat("0.00#");
+        List<String> promotionList = getPromotionList();
         for (String item : formatHashMap.keySet()){
             if (formatHashMap.get(item).getPromotionFlag() <= PRIORITY && promotionList.contains(item)){
                 float originTotalMoney = formatHashMap.get(item).getTotalMoneyScope();
@@ -33,11 +34,11 @@ public class DiscountStrategy extends BasePromotionStrategy {
         return formatHashMap;
     }
 
-    public int getPriority() {
+    protected int getPriority() {
         return PRIORITY;
     }
 
-    public List<String> getPromotionList() {
+    protected List<String> getPromotionList() {
         List<String> promotionList = new ArrayList<String>();
         promotionList.add("ITEM000001");
         promotionList.add("ITEM000005");

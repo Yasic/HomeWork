@@ -9,17 +9,16 @@ import java.util.TreeMap;
  * Created by Yasic on 2016/7/18.
  */
 public abstract class BasePromotionStrategy implements PromotionStrategyInterface, Comparable {
-    private int priority;
 
     public TreeMap<String, ProductFormat> calculatePromotion(TreeMap<String, ProductFormat> formatHashMap) {
         return formatHashMap;
     }
 
-    public abstract int getPriority();
+    protected abstract int getPriority();
 
-    public abstract List<String> getPromotionList();
+    protected abstract List<String> getPromotionList();
 
     public int compareTo(Object o) {
-        return -(this.priority - ((BasePromotionStrategy)o).getPriority());
+        return -(getPriority() - ((BasePromotionStrategy)o).getPriority());
     }
 }
