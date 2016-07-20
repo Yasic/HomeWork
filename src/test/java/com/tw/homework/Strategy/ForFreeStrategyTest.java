@@ -93,7 +93,7 @@ public class ForFreeStrategyTest {
     }
 
     @Test
-    public void shouldGetDiscountWhenNight() throws Exception {
+    public void shouldGetDiscountWhenEight() throws Exception {
         // given
         TreeMap<String, ProductFormat> givenList = new TreeMap<String, ProductFormat>();
         givenList.put("ITEM000001", new ProductFormat.Builder()

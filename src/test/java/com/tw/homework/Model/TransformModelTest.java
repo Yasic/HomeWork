@@ -39,6 +39,14 @@ public class TransformModelTest {
         transformModel.transformInputToBarcodeAndNumber("1234");
     }
 
+    @Test(expected = WrongStringInputException.class)
+    public void ShouldThrowErrorIfProductBarcodeIsNotInProductInfoList() throws Exception {
+        TransformModel transformModel = new TransformModel();
+        TreeMap<String, Integer> testList = new TreeMap<String, Integer>();
+        testList.put("ITEM000000", 1);
+        transformModel.transformBarcodeAndNumberToBarcodeAndFormat(testList);
+    }
+
     @Test
     public void shouldGetBarcodeAndNumberHashMapFromInputString() throws Exception {
         TransformModel transformModel = new TransformModel();
