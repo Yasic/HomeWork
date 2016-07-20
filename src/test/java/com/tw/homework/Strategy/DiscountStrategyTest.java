@@ -19,8 +19,6 @@ import static org.junit.Assert.assertNotEquals;
  */
 public class DiscountStrategyTest {
 
-
-
     @Test
     public void shouldReturnOneWhenGetPriority() throws Exception {
         DiscountStrategy discountStrategy = new DiscountStrategy();
