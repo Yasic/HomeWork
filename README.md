@@ -62,6 +62,11 @@
 * gradle run
 * 看到结果
 * __如果上述步骤出错、请联系我或提交issue__
+* 
+
+## 可视化界面截图
+
+![](http://diycode.b0.upaiyun.com/photo/2016/0d49490afbb6d24ab1242daeb020c22c.png)
 
 ## 开发设计
 
