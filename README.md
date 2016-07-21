@@ -66,7 +66,7 @@
 
 ## 可视化界面截图
 
-![](http://diycode.b0.upaiyun.com/photo/2016/0d49490afbb6d24ab1242daeb020c22c.png)
+![](http://diycode.b0.upaiyun.com/photo/2016/5b1dd05f2fbe499f7c21699408fb0668.png)
 
 ## 开发设计
 
@@ -79,5 +79,6 @@
 * 单例模式 & 工厂模式 & 策略模式 & 装饰器模式
 * 泛型&多态
 * 抽象骨架类
+* RXJava框架
 * [在Gradle管理的项目中如何使用Travis-CI](https://github.com/Cycade/TravisCITest)
 * [如何在IDEA中使用Gradle管理自己的Java项目](http://jerry-chen.iteye.com/blog/2030637)
