@@ -14,18 +14,6 @@ import java.awt.event.ActionEvent;
  * Created by Yasic on 2016/7/20.
  */
 public class UserView extends JFrame implements ViewInterface<MainPresenter> {
-    private JTextField jTargetIPField;
-    private JLabel jGateWayText;
-    private JTextField jGateWayField;
-    private JLabel jLocalMacText;
-    private JTextField jLocalMacField;
-    private JLabel jTargetMacText;
-    private JTextField jTargetMacField;
-    private JButton jLocalNetworkAttackButton;
-    private JButton jSingleTargetAttackButton;
-    private JButton jCancelAttackButton;
-    private JButton jExitButton;
-    private Thread thread;
     private JLabel jTipText;
 
     private JLabel inputText;
