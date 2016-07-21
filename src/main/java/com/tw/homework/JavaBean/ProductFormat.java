@@ -1,53 +1,51 @@
 package com.tw.homework.JavaBean;
 
+import com.tw.homework.Exception.EmptyInputException;
+import com.tw.homework.Exception.IllegalParameter;
+
 /**
  * Created by Yasic on 2016/7/17.
  */
 public class ProductFormat{
-    //private String nameScope;
     private String barcode;
     private int numberScope;
-    //private float priceScope;
-    //private String unitScope;
     private float totalMoneyScope;
     private float saveMoneyScope;
-    private int promotionFlag;
+    private int promotionPriority;
 
     private ProductFormat(){}
 
     public static class Builder{
         private ProductFormat productFormat = new ProductFormat();
-        /*public Builder setNameScope(String nameScope) {
-            productFormat.nameScope = nameScope;
-            return this;
-        }*/
 
         public Builder setBarcode(String barcode) {
+            if (barcode == null || barcode.equals("")){
+                throw new EmptyInputException();
+            }
             productFormat.barcode = barcode;
             return this;
         }
 
         public Builder setNumberScope(int numberScope) {
+            if (numberScope < 0){
+                throw new IllegalParameter();
+            }
             productFormat.numberScope = numberScope;
             return this;
         }
 
-        /*public Builder setPriceScope(float priceScope) {
-            productFormat.priceScope = priceScope;
-            return this;
-        }*/
-
-        /*public Builder setUnitScope(String unitScope) {
-            productFormat.unitScope = unitScope;
-            return this;
-        }*/
-
         public Builder setTotalMoneyScope(float totalMoneyScope) {
+            if (totalMoneyScope < 0){
+                throw new IllegalParameter();
+            }
             productFormat.totalMoneyScope = totalMoneyScope;
             return this;
         }
 
         public Builder setSaveMoneyScope(float saveMoneyScope) {
+            if (saveMoneyScope < 0){
+                throw new IllegalParameter();
+            }
             productFormat.saveMoneyScope = saveMoneyScope;
             return this;
         }
@@ -57,21 +55,9 @@ public class ProductFormat{
         }
     }
 
-    /*public String getNameScope() {
-        return nameScope;
-    }*/
-
     public int getNumberScope() {
         return numberScope;
     }
-
-    /*public float getPriceScope() {
-        return priceScope;
-    }*/
-
-    /*public String getUnitScope() {
-        return unitScope;
-    }*/
 
     public String getBarcode() {
         return barcode;
@@ -85,24 +71,36 @@ public class ProductFormat{
         return saveMoneyScope;
     }
 
-    public int getPromotionFlag() {
-        return promotionFlag;
+    public int getPromotionPriority() {
+        return promotionPriority;
     }
 
     public void setTotalMoneyScope(float totalMoneyScope) {
+        if (totalMoneyScope < 0){
+            throw new IllegalParameter();
+        }
         this.totalMoneyScope = totalMoneyScope;
     }
 
     public void setSaveMoneyScope(float saveMoneyScope) {
+        if (saveMoneyScope < 0){
+            throw new IllegalParameter();
+        }
         this.saveMoneyScope = saveMoneyScope;
     }
 
     public void setNumberScope(int numberScope) {
+        if (numberScope < 0){
+            throw new IllegalParameter();
+        }
         this.numberScope = numberScope;
     }
 
-    public void setPromotionFlag(int promotionFlag) {
-        this.promotionFlag = promotionFlag;
+    public void setPromotionPriority(int promotionPriority) {
+        if (promotionPriority < 0){
+            throw new IllegalParameter();
+        }
+        this.promotionPriority = promotionPriority;
     }
 
     @Override

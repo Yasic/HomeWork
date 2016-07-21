@@ -14,7 +14,7 @@ public class OutputModelTest {
 
     @Test
     public void shouldReturnFormatString() throws Exception {
-        OutputModel outputModel = new OutputModel();
+        OutputModel outputModel = new OutputModel.Builder().build();
         TransformModel transformModel = new TransformModel();
         // when
         String barcodeInput = "[" +
@@ -28,8 +28,8 @@ public class OutputModelTest {
                 "    'ITEM000005',\n" +
                 "    'ITEM000005'\n" +
                 "]";
-        String output = outputModel.getFormatOutput(transformModel.transformBarcodeAndNumberToBarcodeAndFormat(transformModel.transformInputToBarcodeAndNumber(barcodeInput)));
-        String exceptOutput = "***<没钱赚商店>购物清单***\n" +
+        String actualString = outputModel.getFormatOutput(transformModel.transformBarcodeAndNumberToBarcodeAndFormat(transformModel.transformInputToBarcodeAndNumber(barcodeInput)));
+        String exceptString = "***<没钱赚商店>购物清单***\n" +
                 "名称：可口可乐，数量：7瓶，单价：3.00(元)，小计：15.00(元)\n" +
                 "名称：羽毛球，数量：3个，单价：2.00(元)，小计：4.00(元)\n" +
                 "名称：苹果，数量：3斤，单价：1.00(元)，小计：2.85(元)，节省0.15(元)\n" +
@@ -40,7 +40,7 @@ public class OutputModelTest {
                 "----------------------\n" +
                 "总计：21.85(元)\n" +
                 "节省：8.15(元)\n";
-        Assert.assertEquals(exceptOutput, output);
+        Assert.assertEquals(exceptString, actualString);
     }
 
     @Test
@@ -59,11 +59,11 @@ public class OutputModelTest {
                 "    'ITEM000005'\n" +
                 "]";
         Class<OutputModel> outputModelClass = OutputModel.class;
-        Object instance = outputModelClass.newInstance();
+        //Object instance = outputModelClass.newInstance();
         Method method = outputModelClass.getDeclaredMethod("getProductArrayInfoScope", TreeMap.class);
         method.setAccessible(true);
 
-        String actualString = (String) method.invoke(instance, transformModel.transformBarcodeAndNumberToBarcodeAndFormat(transformModel.transformInputToBarcodeAndNumber(barcodeInput)));
+        String actualString = (String) method.invoke(new OutputModel.Builder().build(), transformModel.transformBarcodeAndNumberToBarcodeAndFormat(transformModel.transformInputToBarcodeAndNumber(barcodeInput)));
         String exceptString = "名称：可口可乐，数量：7瓶，单价：3.00(元)，小计：15.00(元)\n" +
                 "名称：羽毛球，数量：3个，单价：2.00(元)，小计：4.00(元)\n" +
                 "名称：苹果，数量：3斤，单价：1.00(元)，小计：2.85(元)，节省0.15(元)\n";
@@ -80,11 +80,10 @@ public class OutputModelTest {
                 .build());
 
         Class<OutputModel> outputModelClass = OutputModel.class;
-        Object instance = outputModelClass.newInstance();
         Method method = outputModelClass.getDeclaredMethod("getForFreeInfoScope", TreeMap.class);
         method.setAccessible(true);
 
-        String actualString = (String) method.invoke(instance, givenList);
+        String actualString = (String) method.invoke(new OutputModel.Builder().build(), givenList);
         String exceptString = "----------------------\n买二赠一商品：\n" + "名称：可口可乐，数量：2瓶\n";
         Assert.assertEquals(actualString, exceptString);
     }
@@ -99,11 +98,10 @@ public class OutputModelTest {
                 .build());
 
         Class<OutputModel> outputModelClass = OutputModel.class;
-        Object instance = outputModelClass.newInstance();
         Method method = outputModelClass.getDeclaredMethod("getForFreeInfoScope", TreeMap.class);
         method.setAccessible(true);
 
-        String actualString = (String) method.invoke(instance, givenList);
+        String actualString = (String) method.invoke(new OutputModel.Builder().build(), givenList);
         String exceptString = "";
         Assert.assertEquals(actualString, exceptString);
     }
@@ -118,11 +116,10 @@ public class OutputModelTest {
                 .build());
 
         Class<OutputModel> outputModelClass = OutputModel.class;
-        Object instance = outputModelClass.newInstance();
         Method method = outputModelClass.getDeclaredMethod("getMoneyInfoScope", TreeMap.class);
         method.setAccessible(true);
 
-        String actualString = (String) method.invoke(instance, givenList);
+        String actualString = (String) method.invoke(new OutputModel.Builder().build(), givenList);
         String exceptString = "总计：15.00(元)\n" +
                 "节省：6.00(元)\n";
         Assert.assertEquals(actualString, exceptString);
@@ -138,11 +135,10 @@ public class OutputModelTest {
                 .build());
 
         Class<OutputModel> outputModelClass = OutputModel.class;
-        Object instance = outputModelClass.newInstance();
         Method method = outputModelClass.getDeclaredMethod("getMoneyInfoScope", TreeMap.class);
         method.setAccessible(true);
 
-        String actualString = (String) method.invoke(instance, givenList);
+        String actualString = (String) method.invoke(new OutputModel.Builder().build(), givenList);
         String exceptString = "总计：15.00(元)\n";
         Assert.assertEquals(actualString, exceptString);
     }

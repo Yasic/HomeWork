@@ -22,6 +22,21 @@ public class OutputModel {
     private TreeMap<String, ProductFormat> productFormatTreeMap;
     private TreeSet<BasePromotionStrategy> strategyTreeSet;
 
+    private OutputModel() {}
+
+    public static class Builder{
+        private OutputModel outputModel = new OutputModel();
+
+        public Builder setStrategyTreeSet(TreeSet<BasePromotionStrategy> strategyTreeSet) {
+            outputModel.strategyTreeSet = strategyTreeSet;
+            return this;
+        }
+
+        public OutputModel build(){
+            return outputModel;
+        }
+    }
+
     public String getFormatOutput(TreeMap<String, ProductFormat> productFormatTreeMap){
         setProductFormatTreeMap(productFormatTreeMap);
         String totalString = HEADTITLE
@@ -94,7 +109,7 @@ public class OutputModel {
                     .append("小计：")
                     .append(decimalFormat.format(productFormatTreeMap.get(barcode).getTotalMoneyScope()))
                     .append("(元)");
-            if (productFormatTreeMap.get(barcode).getPromotionFlag() == 1){
+            if (productFormatTreeMap.get(barcode).getPromotionPriority() == 1){
                 productArrayBuffer.append("，")
                         .append("节省")
                         .append(decimalFormat.format(productFormatTreeMap.get(barcode).getSaveMoneyScope()))

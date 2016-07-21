@@ -12,7 +12,7 @@ import java.util.TreeMap;
  */
 public class MainPresenter extends BasePresenter<MainView>{
     private final TransformModel transformModel = new TransformModel();
-    private final OutputModel outputModel = new OutputModel();
+    private final OutputModel outputModel = new OutputModel.Builder().build();
 
     public String transString(final String input){
         TreeMap<String, ProductFormat> productFormatTreeMap = transformModel.transformBarcodeAndNumberToBarcodeAndFormat(transformModel.transformInputToBarcodeAndNumber(input));

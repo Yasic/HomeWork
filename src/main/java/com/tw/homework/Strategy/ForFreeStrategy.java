@@ -21,14 +21,14 @@ public class ForFreeStrategy extends BasePromotionStrategy {
         java.text.DecimalFormat decimalFormat =  new java.text.DecimalFormat("0.00#");
         List<String> promotionList = getPromotionList();
         for (String item : formatHashMap.keySet()){
-            if ( promotionList.contains(item) && formatHashMap.get(item).getPromotionFlag() <= PRIORITY && formatHashMap.get(item).getNumberScope() >= NUMBERFORFREE){
+            if ( promotionList.contains(item) && formatHashMap.get(item).getPromotionPriority() <= PRIORITY && formatHashMap.get(item).getNumberScope() >= NUMBERFORFREE){
                 int newProductNumber = formatHashMap.get(item).getNumberScope() / NUMBERFORFREE + formatHashMap.get(item).getNumberScope();
                 formatHashMap.get(item).setNumberScope(newProductNumber);
                 BigDecimal b1 = new BigDecimal(Float.toString(newProductNumber * ProductInfoHelper.getInstance().getProductInfoList().get(item).getPrice()));
                 BigDecimal b2 = new BigDecimal(Float.toString(formatHashMap.get(item).getTotalMoneyScope()));
                 float ss = b1.subtract(b2).floatValue();
                 formatHashMap.get(item).setSaveMoneyScope(Float.parseFloat(decimalFormat.format(ss)));
-                formatHashMap.get(item).setPromotionFlag(PRIORITY);
+                formatHashMap.get(item).setPromotionPriority(PRIORITY);
             }
         }
         return formatHashMap;
@@ -38,7 +38,7 @@ public class ForFreeStrategy extends BasePromotionStrategy {
         List<String> promotionList = getPromotionList();
         TreeMap<String, Integer> resultList = new TreeMap<String, Integer>();
         for (String item : productFormatTreeMap.keySet()){
-            if (promotionList.contains(item) && productFormatTreeMap.get(item).getPromotionFlag() <= PRIORITY && productFormatTreeMap.get(item).getNumberScope() >= NUMBERFORFREE){
+            if (promotionList.contains(item) && productFormatTreeMap.get(item).getPromotionPriority() <= PRIORITY && productFormatTreeMap.get(item).getNumberScope() >= NUMBERFORFREE){
                 int forFreeNumber = productFormatTreeMap.get(item).getNumberScope() / NUMBERFORFREE;
                 resultList.put(item, forFreeNumber);
             }

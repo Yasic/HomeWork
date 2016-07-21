@@ -16,32 +16,30 @@ import static org.junit.Assert.assertEquals;
  * Created by lichenqiang on 16/7/16.
  */
 public class TransformModelTest {
+    TransformModel transformModel;
+
     @Before
     public void setUp() throws Exception {
-
+        transformModel = new TransformModel();
     }
 
     @Test(expected = EmptyInputException.class)
     public void TransformToHashMapShouldThrowExceptionWhenEncounterEmptyInput() throws Exception{
-        TransformModel transformModel = new TransformModel();
         transformModel.transformInputToBarcodeAndNumber("");
     }
 
     @Test(expected = EmptyInputException.class)
     public void TransformToHashMapShouldThrowExceptionWhenEncounterNullInput() throws Exception{
-        TransformModel transformModel = new TransformModel();
         transformModel.transformInputToBarcodeAndNumber(null);
     }
 
     @Test(expected = WrongStringInputException.class)
     public void TransformToHashMapShouldThrowExceptionWhenInputFormatIsWrong() throws Exception{
-        TransformModel transformModel = new TransformModel();
         transformModel.transformInputToBarcodeAndNumber("1234");
     }
 
     @Test(expected = WrongStringInputException.class)
     public void ShouldThrowErrorIfProductBarcodeIsNotInProductInfoList() throws Exception {
-        TransformModel transformModel = new TransformModel();
         TreeMap<String, Integer> testList = new TreeMap<String, Integer>();
         testList.put("ITEM000000", 1);
         transformModel.transformBarcodeAndNumberToBarcodeAndFormat(testList);
@@ -49,14 +47,11 @@ public class TransformModelTest {
 
     @Test
     public void shouldIgnoreProductIfTheNumberIsZero() throws Exception {
-        TransformModel transformModel = new TransformModel();
-
         //When
         String barcodeInput = "[ 'ITEM000001-0']";
 
         //Expect to
         LinkedHashMap<String, Integer> expectList = new LinkedHashMap<String, Integer>();
-        //expectList.put("ITEM000001", 1);
 
         //Then
         assertEquals(transformModel.transformInputToBarcodeAndNumber(barcodeInput), expectList);
@@ -64,7 +59,6 @@ public class TransformModelTest {
 
     @Test
     public void shouldGetBarcodeAndNumberHashMapFromInputString() throws Exception {
-        TransformModel transformModel = new TransformModel();
 
         //When
         String barcodeInput = "[ 'ITEM000001']";
@@ -79,9 +73,6 @@ public class TransformModelTest {
 
     @Test
     public void shouldGetBarcodeAndNumberListWithoutRepeat() throws Exception {
-
-        TransformModel transformModel = new TransformModel();
-
         // when
         String barcodeInput = "[" +
                 "    'ITEM000001',\n" +
@@ -107,14 +98,11 @@ public class TransformModelTest {
 
     @Test(expected = EmptyInputException.class)
     public void TransformToBarcodeAndFormatHashMapShouldThrowExceptionWhenEncounterNullInput() throws Exception{
-        TransformModel transformModel = new TransformModel();
         transformModel.transformBarcodeAndNumberToBarcodeAndFormat(null);
     }
 
     @Test
     public void shouldGetFormatHashMapFromHashMapByMethodOfTransformToFormatList() throws Exception {
-        TransformModel transformModel = new TransformModel();
-
         // when
         String barcodeInput = "[" +
                 "    'ITEM000001',\n" +
@@ -149,6 +137,4 @@ public class TransformModelTest {
                 .build());
         assertEquals(testList, exceptList);
     }
-
-
 }

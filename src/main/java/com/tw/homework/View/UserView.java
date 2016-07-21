@@ -14,8 +14,6 @@ import java.awt.event.ActionEvent;
  * Created by Yasic on 2016/7/20.
  */
 public class UserView extends JFrame implements ViewInterface<MainPresenter> {
-    private JLabel jTipText;
-
     private JLabel inputText;
     private JButton jButton;
     private JTextArea inputCase;
@@ -23,7 +21,6 @@ public class UserView extends JFrame implements ViewInterface<MainPresenter> {
     private JTextArea outputCase;
     private MainPresenter mainPresenter;
     private JTextField promotionInfo;
-
 
     private UserView(){
         super();
@@ -63,15 +60,6 @@ public class UserView extends JFrame implements ViewInterface<MainPresenter> {
                         });
             }
         });
-    }
-
-    private javax.swing.JLabel getjTipText() {
-        if (jTipText == null) {
-            jTipText = new javax.swing.JLabel();
-            jTipText.setBounds(20, 235, 190, 60);
-            jTipText.setText("等待指令");
-        }
-        return jTipText;
     }
 
     private JLabel getJTargetInputText() {

@@ -20,7 +20,7 @@ public class DiscountStrategy extends BasePromotionStrategy {
         java.text.DecimalFormat decimalFormat =  new java.text.DecimalFormat("0.00#");
         List<String> promotionList = getPromotionList();
         for (String item : formatHashMap.keySet()){
-            if (formatHashMap.get(item).getPromotionFlag() <= PRIORITY && promotionList.contains(item)){
+            if (formatHashMap.get(item).getPromotionPriority() <= PRIORITY && promotionList.contains(item)){
                 float originTotalMoney = formatHashMap.get(item).getTotalMoneyScope();
                 BigDecimal b1 = new BigDecimal(originTotalMoney);
                 BigDecimal b2 = new BigDecimal(DISCOUNT);
@@ -28,7 +28,7 @@ public class DiscountStrategy extends BasePromotionStrategy {
 
                 formatHashMap.get(item).setTotalMoneyScope(originTotalMoney * DISCOUNT);
                 formatHashMap.get(item).setSaveMoneyScope(Float.parseFloat(decimalFormat.format(ss)));
-                formatHashMap.get(item).setPromotionFlag(PRIORITY);
+                formatHashMap.get(item).setPromotionPriority(PRIORITY);
             }
         }
         return formatHashMap;
