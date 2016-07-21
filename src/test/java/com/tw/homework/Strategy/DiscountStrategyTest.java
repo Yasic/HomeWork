@@ -32,18 +32,21 @@ public class DiscountStrategyTest {
                 .setNumberScope(1)
                 .setTotalMoneyScope(3.0f).setSaveMoneyScope(0)
                 .build());
+
         // when
-        DiscountStrategy builder = new DiscountStrategy();
-        TreeMap<String, ProductFormat> expectList = builder.calculatePromotion(givenList);
+        DiscountStrategy discountStrategy = new DiscountStrategy();
+        TreeMap<String, ProductFormat> actualList = discountStrategy.calculatePromotion(givenList);
+
         // expect to
-        TreeMap<String, ProductFormat> testList = new TreeMap<String, ProductFormat>();
-        testList.put("ITEM000001", new ProductFormat.Builder()
+        TreeMap<String, ProductFormat> exceptList = new TreeMap<String, ProductFormat>();
+        exceptList.put("ITEM000001", new ProductFormat.Builder()
                 .setBarcode("ITEM000001")
                 .setNumberScope(1)
                 .setTotalMoneyScope(2.85f).setSaveMoneyScope(0.15f)
                 .build());
+
         // then
-        assertEquals(testList, expectList);
+        assertEquals(exceptList, actualList);
     }
 
     @Test

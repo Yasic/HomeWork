@@ -11,6 +11,7 @@ public class Product {
     private String name;
     private float price;
     private String unitType;
+    private volatile int hashCode;
 
     private Product(){}
 
@@ -67,6 +68,35 @@ public class Product {
 
     public String getUnitType() {
         return unitType;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = hashCode;
+        if (hashCode() == 0){
+            result = 17;
+            result = Integer.parseInt(31 * result + name);
+            result = Integer.parseInt(31 * result + barcode);
+            result = 31 * result + Float.floatToIntBits(price);
+            result = Integer.parseInt(31 * result + unitType);
+            hashCode = result;
+        }
+        return hashCode;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof Product){
+            Product product = (Product) obj;
+            boolean isEqual = true;
+            isEqual = isEqual & (this.barcode.equals(product.barcode)) & (this.name.equals(product.name))
+                    & (this.price == product.price)
+                    & (this.unitType.equals(product.unitType));
+            return isEqual;
+        }
+        else {
+            return false;
+        }
     }
 }
 

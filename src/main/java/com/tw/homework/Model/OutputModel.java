@@ -18,7 +18,6 @@ public class OutputModel {
     private static final String HEADTITLE = "***<没钱赚商店>购物清单***\n";
     private static final String PARTINGLINE = "----------------------\n";
     private static final String FORFREEHEADTITLE = "买二赠一商品：\n";
-
     private TreeMap<String, ProductFormat> productFormatTreeMap;
     private TreeSet<BasePromotionStrategy> strategyTreeSet;
 
@@ -60,18 +59,6 @@ public class OutputModel {
         this.strategyTreeSet = strategyTreeSet;
     }
 
-    private TreeMap<String, ProductFormat> getProductFormatTreeMap() {
-        TreeMap<String, ProductFormat> cloneMap = new TreeMap<String, ProductFormat>();
-        for (String key: productFormatTreeMap.keySet()) {
-            cloneMap.put(key, new ProductFormat.Builder().setBarcode(key)
-                    .setNumberScope(productFormatTreeMap.get(key).getNumberScope())
-                    .setTotalMoneyScope(productFormatTreeMap.get(key).getTotalMoneyScope())
-                    .setSaveMoneyScope(productFormatTreeMap.get(key).getSaveMoneyScope())
-                    .build());
-        }
-        return cloneMap;
-    }
-
     private TreeSet<BasePromotionStrategy> getStrategyTreeSet() {
         if (strategyTreeSet != null){
             return strategyTreeSet;
@@ -82,6 +69,18 @@ public class OutputModel {
             promotionStrategyTreeSet.add(new DiscountStrategy());
             return promotionStrategyTreeSet;
         }
+    }
+
+    private TreeMap<String, ProductFormat> getProductFormatTreeMap() {
+        TreeMap<String, ProductFormat> cloneMap = new TreeMap<String, ProductFormat>();
+        for (String key: productFormatTreeMap.keySet()) {
+            cloneMap.put(key, new ProductFormat.Builder().setBarcode(key)
+                    .setNumberScope(productFormatTreeMap.get(key).getNumberScope())
+                    .setTotalMoneyScope(productFormatTreeMap.get(key).getTotalMoneyScope())
+                    .setSaveMoneyScope(productFormatTreeMap.get(key).getSaveMoneyScope())
+                    .build());
+        }
+        return cloneMap;
     }
 
     private String getProductArrayInfoScope(TreeMap<String, ProductFormat> productFormatTreeMap) {
