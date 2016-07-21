@@ -24,7 +24,7 @@ public class UserView extends JFrame implements ViewInterface<MainPresenter> {
 
     private UserView(){
         super();
-        this.setSize(1000, 600);
+        this.setSize(1200, 600);
         this.getContentPane().setLayout(null);
         this.add(getJTargetInputCase());
         this.add(getJTargetInputText());
@@ -97,7 +97,7 @@ public class UserView extends JFrame implements ViewInterface<MainPresenter> {
     private javax.swing.JButton getSendButton() {
         if(jButton == null) {
             jButton = new javax.swing.JButton();
-            jButton.setBounds(20, 500, 940, 50);
+            jButton.setBounds(20, 500, 1140, 50);
             jButton.setText("输入");
         }
         return jButton;
@@ -106,7 +106,7 @@ public class UserView extends JFrame implements ViewInterface<MainPresenter> {
     private JLabel getOutPutText(){
         if (outputText == null){
             outputText = new JLabel();
-            outputText.setBounds(500, 10, 300, 40);
+            outputText.setBounds(500, 10, 500, 40);
             Font font=new Font("楷体", Font.ROMAN_BASELINE,18);
             outputText.setFont(font);
             outputText.setText("输出结果：");
@@ -117,7 +117,7 @@ public class UserView extends JFrame implements ViewInterface<MainPresenter> {
     private JTextArea getOutputCase() {
         if (outputCase == null) {
             outputCase = new JTextArea();
-            outputCase.setBounds(500, 60, 420, 350);
+            outputCase.setBounds(500, 60, 620, 350);
             Font font=new Font("宋体", Font.ROMAN_BASELINE,18);
             outputCase.setFont(font);
             outputCase.setLineWrap(true);
@@ -129,9 +129,9 @@ public class UserView extends JFrame implements ViewInterface<MainPresenter> {
     private JTextField getPromotionList(){
         if (promotionInfo == null){
             promotionInfo = new JTextField();
-            promotionInfo.setBounds(20, 450, 940, 50);
+            promotionInfo.setBounds(20, 450, 1140, 50);
             Font font=new Font("宋体", Font.ROMAN_BASELINE,18);
-            promotionInfo.setText("买二赠一：可口可乐，羽毛球" + "\t" + "九五折优惠：羽毛球，可口可乐");
+            promotionInfo.setText("买二赠一：可口可乐(ITEM000001)，羽毛球(ITEM000003)" + "\t" + "九五折：羽毛球(ITEM000003)，苹果(ITEM000005)");
 
             promotionInfo.setFont(font);
             promotionInfo.setEditable(false);

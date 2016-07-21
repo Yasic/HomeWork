@@ -107,10 +107,10 @@ public class ProductFormat{
     @Override
     public int hashCode() {
         int result = hashCode;
-        if (hashCode() == 0){
+        if (hashCode == 0){
             result = 17;
             result = 31 * result + numberScope;
-            result = Integer.parseInt(31 * result + barcode);
+            result = 31 * result + barcode.hashCode();
             result = 31 * result + Float.floatToIntBits(totalMoneyScope);
             result = 31 * result + Float.floatToIntBits(saveMoneyScope);
             result = 31 * result + promotionPriority;

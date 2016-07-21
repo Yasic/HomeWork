@@ -73,12 +73,9 @@ public class Product {
     @Override
     public int hashCode() {
         int result = hashCode;
-        if (hashCode() == 0){
+        if (hashCode == 0){
             result = 17;
-            result = Integer.parseInt(31 * result + name);
-            result = Integer.parseInt(31 * result + barcode);
-            result = 31 * result + Float.floatToIntBits(price);
-            result = Integer.parseInt(31 * result + unitType);
+            result = 31 * result + barcode.hashCode();
             hashCode = result;
         }
         return hashCode;
@@ -97,6 +94,11 @@ public class Product {
         else {
             return false;
         }
+    }
+
+    @Override
+    public String toString() {
+        return this.barcode + " " + this.name + " " + this.price + " " + this.unitType;
     }
 }
 

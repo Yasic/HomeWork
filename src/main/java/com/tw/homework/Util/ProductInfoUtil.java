@@ -21,9 +21,21 @@ public class ProductInfoUtil {
                     .setPrice(3.0f)
                     .setUnitType("瓶")
                     .build());
+            productList.put("ITEM000002", new Product.Builder()
+                    .setBarcode("ITEM000002")
+                    .setName("百事可乐")
+                    .setPrice(3.0f)
+                    .setUnitType("瓶")
+                    .build());
             productList.put("ITEM000003", new Product.Builder()
                     .setBarcode("ITEM000003")
                     .setName("羽毛球")
+                    .setPrice(2.0f)
+                    .setUnitType("个")
+                    .build());
+            productList.put("ITEM000004", new Product.Builder()
+                    .setBarcode("ITEM000004")
+                    .setName("篮球")
                     .setPrice(2.0f)
                     .setUnitType("个")
                     .build());
