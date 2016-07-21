@@ -12,6 +12,7 @@ public class ProductFormat{
     private float totalMoneyScope;
     private float saveMoneyScope;
     private int promotionPriority;
+    private volatile int hashCode;
 
     private ProductFormat(){}
 
@@ -104,13 +105,33 @@ public class ProductFormat{
     }
 
     @Override
+    public int hashCode() {
+        int result = hashCode;
+        if (hashCode() == 0){
+            result = 17;
+            result = 31 * result + numberScope;
+            result = Integer.parseInt(31 * result + barcode);
+            result = 31 * result + Float.floatToIntBits(totalMoneyScope);
+            result = 31 * result + Float.floatToIntBits(saveMoneyScope);
+            result = 31 * result + promotionPriority;
+            hashCode = result;
+        }
+        return hashCode;
+    }
+
+    @Override
     public boolean equals(Object obj) {
-        ProductFormat productFormat = (ProductFormat)obj;
-        boolean isEqual = true;
-        isEqual = isEqual & (this.barcode.equals(productFormat.barcode)) & (this.numberScope == productFormat.numberScope)
-                & (this.totalMoneyScope == productFormat.totalMoneyScope)
-                & (this.saveMoneyScope == productFormat.saveMoneyScope);
-        return isEqual;
+        if (obj instanceof ProductFormat){
+            ProductFormat productFormat = (ProductFormat)obj;
+            boolean isEqual = true;
+            isEqual = isEqual & (this.barcode.equals(productFormat.barcode)) & (this.numberScope == productFormat.numberScope)
+                    & (this.totalMoneyScope == productFormat.totalMoneyScope)
+                    & (this.saveMoneyScope == productFormat.saveMoneyScope);
+            return isEqual;
+        }
+        else {
+            return false;
+        }
     }
 
     @Override
