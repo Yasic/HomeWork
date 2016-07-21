@@ -1,7 +1,7 @@
 package com.tw.homework.Strategy;
 
 import com.tw.homework.JavaBean.ProductFormat;
-import com.tw.homework.Util.ProductInfoHelper;
+import com.tw.homework.Util.ProductInfoUtil;
 import com.tw.homework.Util.PromotionPriority;
 
 import java.math.BigDecimal;
@@ -24,7 +24,7 @@ public class ForFreeStrategy extends BasePromotionStrategy {
             if ( promotionList.contains(item) && formatHashMap.get(item).getPromotionPriority() <= PRIORITY && formatHashMap.get(item).getNumberScope() >= NUMBERFORFREE){
                 int newProductNumber = formatHashMap.get(item).getNumberScope() / NUMBERFORFREE + formatHashMap.get(item).getNumberScope();
                 formatHashMap.get(item).setNumberScope(newProductNumber);
-                BigDecimal b1 = new BigDecimal(Float.toString(newProductNumber * ProductInfoHelper.getInstance().getProductInfoList().get(item).getPrice()));
+                BigDecimal b1 = new BigDecimal(Float.toString(newProductNumber * ProductInfoUtil.getInstance().getProductInfoList().get(item).getPrice()));
                 BigDecimal b2 = new BigDecimal(Float.toString(formatHashMap.get(item).getTotalMoneyScope()));
                 float ss = b1.subtract(b2).floatValue();
                 formatHashMap.get(item).setSaveMoneyScope(Float.parseFloat(decimalFormat.format(ss)));

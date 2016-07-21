@@ -3,7 +3,7 @@ package com.tw.homework.Model;
 import com.tw.homework.Exception.EmptyInputException;
 import com.tw.homework.Exception.WrongStringInputException;
 import com.tw.homework.JavaBean.ProductFormat;
-import com.tw.homework.Util.ProductInfoHelper;
+import com.tw.homework.Util.ProductInfoUtil;
 
 import java.util.TreeMap;
 
@@ -53,12 +53,12 @@ public class TransformModel{
         }
         TreeMap<String, ProductFormat> testList = new TreeMap<String, ProductFormat>();
         for (String key : barcodeHashMap.keySet()){
-            if (ProductInfoHelper.getInstance().getProductInfoList().get(key) == null){
+            if (ProductInfoUtil.getInstance().getProductInfoList().get(key) == null){
                 throw new WrongStringInputException();
             }
             testList.put(key, new ProductFormat.Builder().setBarcode(key)
                     .setNumberScope(barcodeHashMap.get(key))
-                    .setTotalMoneyScope(ProductInfoHelper.getInstance().getProductInfoList().get(key).getPrice() * barcodeHashMap.get(key))
+                    .setTotalMoneyScope(ProductInfoUtil.getInstance().getProductInfoList().get(key).getPrice() * barcodeHashMap.get(key))
                     .build());
         }
         return testList;

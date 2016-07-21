@@ -9,7 +9,7 @@ import java.util.TreeMap;
 /**
  * Created by Yasic on 2016/7/21.
  */
-public class ProductInfoHelperTest {
+public class ProductInfoUtilTest {
 
     @Test
     public void shouldGetProductTreeMap() throws Exception{
@@ -32,7 +32,7 @@ public class ProductInfoHelperTest {
                 .setPrice(1.0f)
                 .setUnitType("斤")
                 .build());
-        Assert.assertEquals(exceptTreeMap, ProductInfoHelper.getInstance().getProductInfoList());
+        Assert.assertEquals(exceptTreeMap, ProductInfoUtil.getInstance().getProductInfoList());
     }
 
 }

@@ -4,7 +4,8 @@ import com.tw.homework.JavaBean.ProductFormat;
 import com.tw.homework.Strategy.BasePromotionStrategy;
 import com.tw.homework.Strategy.DiscountStrategy;
 import com.tw.homework.Strategy.ForFreeStrategy;
-import com.tw.homework.Util.ProductInfoHelper;
+import com.tw.homework.Util.ProductInfoUtil;
+import com.tw.homework.Util.StaticStringScopeUtil;
 
 import java.math.BigDecimal;
 import java.util.Iterator;
@@ -15,9 +16,6 @@ import java.util.TreeSet;
  * Created by Yasic on 2016/7/17.
  */
 public class OutputModel {
-    private static final String HEADTITLE = "***<没钱赚商店>购物清单***\n";
-    private static final String PARTINGLINE = "----------------------\n";
-    private static final String FORFREEHEADTITLE = "买二赠一商品：\n";
     private TreeMap<String, ProductFormat> productFormatTreeMap;
     private TreeSet<BasePromotionStrategy> strategyTreeSet;
 
@@ -38,10 +36,10 @@ public class OutputModel {
 
     public String getFormatOutput(TreeMap<String, ProductFormat> productFormatTreeMap){
         setProductFormatTreeMap(productFormatTreeMap);
-        String totalString = HEADTITLE
+        String totalString = StaticStringScopeUtil.HEADTITLETEXT
                 + getProductArrayInfoScope(getProductFormatTreeMap())
                 + getForFreeInfoScope(getProductFormatTreeMap())
-                + PARTINGLINE
+                + StaticStringScopeUtil.PARTINGLINETEXT
                 + getMoneyInfoScope(getProductFormatTreeMap());
         return totalString;
     }
@@ -94,25 +92,25 @@ public class OutputModel {
 
         StringBuffer productArrayBuffer = new StringBuffer();
         for (String barcode : productFormatTreeMap.keySet()) {
-            productArrayBuffer.append("名称：")
-                    .append(ProductInfoHelper.getInstance().getProductInfoList().get(productFormatTreeMap.get(barcode).getBarcode()).getName())
+            productArrayBuffer.append(StaticStringScopeUtil.NAMETEXT)
+                    .append(ProductInfoUtil.getInstance().getProductInfoList().get(productFormatTreeMap.get(barcode).getBarcode()).getName())
                     .append("，")
-                    .append("数量：")
+                    .append(StaticStringScopeUtil.NUMBERTEXT)
                     .append(productFormatTreeMap.get(barcode).getNumberScope())
-                    .append(ProductInfoHelper.getInstance().getProductInfoList().get(productFormatTreeMap.get(barcode).getBarcode()).getUnitType())
+                    .append(ProductInfoUtil.getInstance().getProductInfoList().get(productFormatTreeMap.get(barcode).getBarcode()).getUnitType())
                     .append("，")
-                    .append("单价：")
-                    .append(decimalFormat.format(ProductInfoHelper.getInstance().getProductInfoList().get(productFormatTreeMap.get(barcode).getBarcode()).getPrice()))
-                    .append("(元)")
+                    .append(StaticStringScopeUtil.PRICETEXT)
+                    .append(decimalFormat.format(ProductInfoUtil.getInstance().getProductInfoList().get(productFormatTreeMap.get(barcode).getBarcode()).getPrice()))
+                    .append(StaticStringScopeUtil.MONEYUNITTEXT)
                     .append("，")
-                    .append("小计：")
+                    .append(StaticStringScopeUtil.SUBTOTALTEXT)
                     .append(decimalFormat.format(productFormatTreeMap.get(barcode).getTotalMoneyScope()))
-                    .append("(元)");
+                    .append(StaticStringScopeUtil.MONEYUNITTEXT);
             if (productFormatTreeMap.get(barcode).getPromotionPriority() == 1){
                 productArrayBuffer.append("，")
-                        .append("节省")
+                        .append(StaticStringScopeUtil.SAVETEXT)
                         .append(decimalFormat.format(productFormatTreeMap.get(barcode).getSaveMoneyScope()))
-                        .append("(元)");
+                        .append(StaticStringScopeUtil.MONEYUNITTEXT);
             }
             productArrayBuffer.append("\n");
         }
@@ -124,18 +122,19 @@ public class OutputModel {
         TreeMap<String, Integer> forFreeTreeMap = forFreeStrategy.getForFreeProductInfo(formatHashMap);
         StringBuffer result = new StringBuffer();
         for (String item : forFreeTreeMap.keySet()) {
-            result.append("名称：")
-                    .append(ProductInfoHelper.getInstance().getProductInfoList().get(item).getName())
-                    .append("，数量：")
+            result.append(StaticStringScopeUtil.NAMETEXT)
+                    .append(ProductInfoUtil.getInstance().getProductInfoList().get(item).getName())
+                    .append("，")
+                    .append(StaticStringScopeUtil.NUMBERTEXT)
                     .append(forFreeTreeMap.get(item))
-                    .append(ProductInfoHelper.getInstance().getProductInfoList().get(item).getUnitType())
+                    .append(ProductInfoUtil.getInstance().getProductInfoList().get(item).getUnitType())
                     .append("\n");
         }
         if (result.toString().equals("")){
             return "";
         }
         else {
-            return PARTINGLINE + FORFREEHEADTITLE + result.toString();
+            return StaticStringScopeUtil.PARTINGLINETEXT + StaticStringScopeUtil.FORFREEHEADTITLETEXT + result.toString();
         }
     }
 
@@ -162,14 +161,15 @@ public class OutputModel {
         }
 
         StringBuffer result = new StringBuffer();
-        result.append("总计：")
+        result.append(StaticStringScopeUtil.TOTALTEXT)
                 .append(decimalFormat.format(totalMoney))
-                .append("(元)")
+                .append(StaticStringScopeUtil.MONEYUNITTEXT)
                 .append("\n");
         if (savedMoney != 0){
-            result.append("节省：")
+            result.append(StaticStringScopeUtil.SAVETEXT)
+                    .append("：")
                     .append(decimalFormat.format(savedMoney))
-                    .append("(元)")
+                    .append(StaticStringScopeUtil.MONEYUNITTEXT)
                     .append("\n");
         }
         return result.toString();

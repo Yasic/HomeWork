@@ -7,9 +7,9 @@ import java.util.TreeMap;
 /**
  * Created by Yasic on 2016/7/17.
  */
-public class ProductInfoHelper {
+public class ProductInfoUtil {
     private static TreeMap<String, Product> productList;
-    private ProductInfoHelper(){
+    private ProductInfoUtil(){
     }
 
     public TreeMap<String, Product> getProductInfoList(){
@@ -37,11 +37,11 @@ public class ProductInfoHelper {
         return productList;
     }
 
-    public static ProductInfoHelper getInstance() {
+    public static ProductInfoUtil getInstance() {
         return SingletonHolder.instance;
     }
 
     private static class SingletonHolder {
-        private static final ProductInfoHelper instance = new ProductInfoHelper();
+        private static final ProductInfoUtil instance = new ProductInfoUtil();
     }
 }

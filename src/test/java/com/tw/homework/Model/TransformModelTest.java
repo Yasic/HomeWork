@@ -3,7 +3,7 @@ package com.tw.homework.Model;
 import com.tw.homework.Exception.EmptyInputException;
 import com.tw.homework.Exception.WrongStringInputException;
 import com.tw.homework.JavaBean.ProductFormat;
-import com.tw.homework.Util.ProductInfoHelper;
+import com.tw.homework.Util.ProductInfoUtil;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -123,17 +123,17 @@ public class TransformModelTest {
         testList.put("ITEM000001", new ProductFormat.Builder()
                 .setBarcode("ITEM000001")
                 .setNumberScope(5)
-                .setTotalMoneyScope(ProductInfoHelper.getInstance().getProductInfoList().get("ITEM000001").getPrice() * 5)
+                .setTotalMoneyScope(ProductInfoUtil.getInstance().getProductInfoList().get("ITEM000001").getPrice() * 5)
                 .build());
         testList.put("ITEM000003", new ProductFormat.Builder()
                 .setBarcode("ITEM000003")
                 .setNumberScope(2)
-                .setTotalMoneyScope(ProductInfoHelper.getInstance().getProductInfoList().get("ITEM000003").getPrice() * 2)
+                .setTotalMoneyScope(ProductInfoUtil.getInstance().getProductInfoList().get("ITEM000003").getPrice() * 2)
                 .build());
         testList.put("ITEM000005", new ProductFormat.Builder()
                 .setBarcode("ITEM000005")
                 .setNumberScope(3)
-                .setTotalMoneyScope(ProductInfoHelper.getInstance().getProductInfoList().get("ITEM000005").getPrice() * 3)
+                .setTotalMoneyScope(ProductInfoUtil.getInstance().getProductInfoList().get("ITEM000005").getPrice() * 3)
                 .build());
         assertEquals(testList, exceptList);
     }
