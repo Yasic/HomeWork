@@ -21,7 +21,6 @@ public class UserView extends JFrame implements ViewInterface<MainPresenter> {
     private JTextField jLocalMacField;
     private JLabel jTargetMacText;
     private JTextField jTargetMacField;
-    private JButton jButton;
     private JButton jLocalNetworkAttackButton;
     private JButton jSingleTargetAttackButton;
     private JButton jCancelAttackButton;
@@ -30,20 +29,24 @@ public class UserView extends JFrame implements ViewInterface<MainPresenter> {
     private JLabel jTipText;
 
     private JLabel inputText;
+    private JButton jButton;
     private JTextArea inputCase;
     private JLabel outputText;
     private JTextArea outputCase;
     private MainPresenter mainPresenter;
+    private JTextField promotionInfo;
+
 
     private UserView(){
         super();
-        this.setSize(1000, 550);
+        this.setSize(1000, 600);
         this.getContentPane().setLayout(null);
         this.add(getJTargetInputCase());
         this.add(getJTargetInputText());
         this.add(getSendButton());
         this.add(getOutPutText());
         this.add(getOutputCase());
+        this.add(getPromotionList());
         this.setTitle("没钱赚商店的收银机");
         mainPresenter = new MainPresenter();
 
@@ -72,60 +75,6 @@ public class UserView extends JFrame implements ViewInterface<MainPresenter> {
                         });
             }
         });
-
-        /*jLocalNetworkAttackButton.addActionListener(new AbstractAction() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                try {
-                    if (thread != null){
-                        thread.stop();
-                    }
-                    jTipText.setText("正在进行全局域网攻击");
-                    *//*thread = Main.localNetworkAttack(new ARPBean(
-                            jTargetIPField.getText(),
-                            jGateWayField.getText(),
-                            jTargetMacField.getText(),
-                            jLocalMacField.getText(),false));*//*
-                } catch (Exception e1) {
-                    e1.printStackTrace();
-                }
-            }
-        });
-
-        jSingleTargetAttackButton.addActionListener(new AbstractAction() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                try {
-                    if (thread != null){
-                        thread.stop();
-                    }
-                    jTipText.setText("正在对目标进行攻击");
-                    *//*thread = Main.localNetworkAttack(new ARPBean(
-                            jTargetIPField.getText(),
-                            jGateWayField.getText(),
-                            jTargetMacField.getText(),
-                            jLocalMacField.getText(),true));*//*
-                } catch (Exception e1) {
-                    e1.printStackTrace();
-                }
-            }
-        });
-        jCancelAttackButton.addActionListener(new AbstractAction() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if (thread != null){
-                    thread.stop();
-                }
-                jTipText.setText("等待指令");
-            }
-        });
-
-        jExitButton.addActionListener(new AbstractAction() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                System.exit(-1);
-            }
-        });*/
     }
 
     private javax.swing.JLabel getjTipText() {
@@ -172,7 +121,7 @@ public class UserView extends JFrame implements ViewInterface<MainPresenter> {
     private javax.swing.JButton getSendButton() {
         if(jButton == null) {
             jButton = new javax.swing.JButton();
-            jButton.setBounds(20, 450, 940, 50);
+            jButton.setBounds(20, 500, 940, 50);
             jButton.setText("输入");
         }
         return jButton;
@@ -199,6 +148,19 @@ public class UserView extends JFrame implements ViewInterface<MainPresenter> {
             outputCase.setText("");
         }
         return outputCase;
+    }
+
+    private JTextField getPromotionList(){
+        if (promotionInfo == null){
+            promotionInfo = new JTextField();
+            promotionInfo.setBounds(20, 450, 940, 50);
+            Font font=new Font("宋体", Font.ROMAN_BASELINE,18);
+            promotionInfo.setText("买二赠一：可口可乐，羽毛球" + "\t" + "九五折优惠：羽毛球，可口可乐");
+
+            promotionInfo.setFont(font);
+            promotionInfo.setEditable(false);
+        }
+        return promotionInfo;
     }
 
     public static void main(String[] args)

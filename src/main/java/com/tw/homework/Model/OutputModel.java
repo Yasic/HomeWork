@@ -37,15 +37,15 @@ public class OutputModel {
         return getFormatOutput(productFormatTreeMap);
     }
 
-    public void setProductFormatTreeMap(TreeMap<String, ProductFormat> productFormatTreeMap) {
+    private void setProductFormatTreeMap(TreeMap<String, ProductFormat> productFormatTreeMap) {
         this.productFormatTreeMap = productFormatTreeMap;
     }
 
-    public void setStrategyTreeSet(TreeSet<BasePromotionStrategy> strategyTreeSet) {
+    private void setStrategyTreeSet(TreeSet<BasePromotionStrategy> strategyTreeSet) {
         this.strategyTreeSet = strategyTreeSet;
     }
 
-    public TreeMap<String, ProductFormat> getProductFormatTreeMap() {
+    private TreeMap<String, ProductFormat> getProductFormatTreeMap() {
         TreeMap<String, ProductFormat> cloneMap = new TreeMap<String, ProductFormat>();
         for (String key: productFormatTreeMap.keySet()) {
             cloneMap.put(key, new ProductFormat.Builder().setBarcode(key)
@@ -57,7 +57,7 @@ public class OutputModel {
         return cloneMap;
     }
 
-    public TreeSet<BasePromotionStrategy> getStrategyTreeSet() {
+    private TreeSet<BasePromotionStrategy> getStrategyTreeSet() {
         if (strategyTreeSet != null){
             return strategyTreeSet;
         }
@@ -69,10 +69,10 @@ public class OutputModel {
         }
     }
 
-    public String getProductArrayInfoScope(TreeMap<String, ProductFormat> productFormatTreeMap) {
+    private String getProductArrayInfoScope(TreeMap<String, ProductFormat> productFormatTreeMap) {
         java.text.DecimalFormat decimalFormat =  new java.text.DecimalFormat("0.00#");
-        Iterator iterator = getStrategyTreeSet().iterator();
 
+        Iterator iterator = getStrategyTreeSet().iterator();
         while (iterator.hasNext()){
             BasePromotionStrategy basePromotionStrategy = (BasePromotionStrategy) iterator.next();
             basePromotionStrategy.calculatePromotion(productFormatTreeMap);
@@ -105,7 +105,7 @@ public class OutputModel {
         return productArrayBuffer.toString();
     }
 
-    public String getForFreeInfoScope(TreeMap<String, ProductFormat> formatHashMap) {
+    private String getForFreeInfoScope(TreeMap<String, ProductFormat> formatHashMap) {
         ForFreeStrategy forFreeStrategy = new ForFreeStrategy();
         TreeMap<String, Integer> forFreeTreeMap = forFreeStrategy.getForFreeProductInfo(formatHashMap);
         StringBuffer result = new StringBuffer();
@@ -125,10 +125,9 @@ public class OutputModel {
         }
     }
 
-    public String getMoneyInfoScope(TreeMap<String, ProductFormat> productFormatTreeMap){
+    private String getMoneyInfoScope(TreeMap<String, ProductFormat> productFormatTreeMap){
         java.text.DecimalFormat decimalFormat =  new java.text.DecimalFormat("0.00#");
         Iterator iterator = getStrategyTreeSet().iterator();
-
         while (iterator.hasNext()){
             BasePromotionStrategy basePromotionStrategy = (BasePromotionStrategy) iterator.next();
             basePromotionStrategy.calculatePromotion(productFormatTreeMap);
@@ -147,6 +146,7 @@ public class OutputModel {
             totalMoney = ss1;
             savedMoney = ss2;
         }
+
         StringBuffer result = new StringBuffer();
         result.append("总计：")
                 .append(decimalFormat.format(totalMoney))
