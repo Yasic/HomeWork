@@ -66,7 +66,8 @@
 
 ## 可视化界面截图
 
-![](http://diycode.b0.upaiyun.com/photo/2016/5b1dd05f2fbe499f7c21699408fb0668.png)
+![](http://diycode.b0.upaiyun.com/photo/2016/d19aabcfcdb716b101329d6fdf1145e9.png)
+![](http://diycode.b0.upaiyun.com/photo/2016/520566b3822c06e9ecae13530529b08b.png)
 
 ## 开发设计
 
