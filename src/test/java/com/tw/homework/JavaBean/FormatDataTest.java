@@ -10,14 +10,14 @@ import static org.junit.Assert.*;
 /**
  * Created by lichenqiang on 16/7/18.
  */
-public class ProductFormatTest {
+public class FormatDataTest {
 
-    private ProductFormat item1;
-    private ProductFormat item2;
+    private FormatData item1;
+    private FormatData item2;
 
     @Before
     public void before() {
-        item1 = new ProductFormat.Builder()
+        item1 = new FormatData.Builder()
                 .setBarcode("ITEM000001")
                 .setNumberScope(1)
                 .setTotalMoneyScope(3.0f)
@@ -53,7 +53,7 @@ public class ProductFormatTest {
 
     @Test(expected = EmptyInputException.class)
     public void shouldThrowExceptionWhenAttemptToSetBarcodeToNull() throws Exception{
-        item2 = new ProductFormat.Builder()
+        item2 = new FormatData.Builder()
                 .setBarcode(null)
                 .setNumberScope(1)
                 .setTotalMoneyScope(3.0f)
@@ -63,7 +63,7 @@ public class ProductFormatTest {
 
     @Test(expected = IllegalParameter.class)
     public void shouldThrowExceptionWhenAttemptToSetNumberScopeToTheNumberLessThanZero() throws Exception{
-        item2 = new ProductFormat.Builder()
+        item2 = new FormatData.Builder()
                 .setBarcode("ITEM000001")
                 .setNumberScope(-1)
                 .setTotalMoneyScope(3.0f)
@@ -73,7 +73,7 @@ public class ProductFormatTest {
 
     @Test(expected = IllegalParameter.class)
     public void shouldThrowExceptionWhenAttemptToSetTotalMoneyScopeToTheNumberLessThanZero() throws Exception{
-        item2 = new ProductFormat.Builder()
+        item2 = new FormatData.Builder()
                 .setBarcode("ITEM000001")
                 .setNumberScope(1)
                 .setTotalMoneyScope(-3.0f)
@@ -83,7 +83,7 @@ public class ProductFormatTest {
 
     @Test(expected = IllegalParameter.class)
     public void shouldThrowExceptionWhenAttemptToSetSavedMoneyScopeToTheNumberLessThanZero() throws Exception{
-        item2 = new ProductFormat.Builder()
+        item2 = new FormatData.Builder()
                 .setBarcode("ITEM000001")
                 .setNumberScope(1)
                 .setTotalMoneyScope(-3.0f)
@@ -138,7 +138,7 @@ public class ProductFormatTest {
     @Test
     public void shouldReturnTrueWhenEquals() throws Exception {
         // given
-        item2 = new ProductFormat.Builder()
+        item2 = new FormatData.Builder()
                 .setBarcode("ITEM000001")
                 .setNumberScope(1)
                 .setTotalMoneyScope(3.0f)
@@ -151,7 +151,7 @@ public class ProductFormatTest {
     @Test
     public void shouldReturnFalseWhenDifferentValue() throws Exception {
         // given
-        item2 = new ProductFormat.Builder()
+        item2 = new FormatData.Builder()
                 .setBarcode("ITEM000002")
                 .setNumberScope(1)
                 .setTotalMoneyScope(3.0f)
@@ -164,7 +164,7 @@ public class ProductFormatTest {
     @Test
     public void shouldReturnFalseWhenDifferentLength() throws Exception {
         // given
-        item2 = new ProductFormat.Builder()
+        item2 = new FormatData.Builder()
                 .setBarcode("ITEM000001")
                 .setNumberScope(1)
                 .setTotalMoneyScope(3.0f)

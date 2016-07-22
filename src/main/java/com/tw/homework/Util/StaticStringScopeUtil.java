@@ -6,7 +6,7 @@ package com.tw.homework.Util;
 public class StaticStringScopeUtil {
     public static String HEADTITLETEXT = "***<没钱赚商店>购物清单***\n";
     public static final String PARTINGLINETEXT = "----------------------\n";
-    public static final String FORFREEHEADTITLETEXT = "买二赠一商品：\n";
+    public static final String FULLFREEHEADTITLETEXT = "买二赠一商品：\n";
     public static final String NAMETEXT = "名称：";
     public static final String NUMBERTEXT = "数量：";
     public static final String PRICETEXT = "单价：";

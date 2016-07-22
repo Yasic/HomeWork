@@ -2,7 +2,7 @@ package com.tw.homework.Model;
 
 import com.tw.homework.Exception.EmptyInputException;
 import com.tw.homework.Exception.WrongStringInputException;
-import com.tw.homework.JavaBean.ProductFormat;
+import com.tw.homework.JavaBean.FormatData;
 import com.tw.homework.Util.ProductInfoUtil;
 
 import java.util.TreeMap;
@@ -12,7 +12,7 @@ import java.util.TreeMap;
  */
 public class TransformModel{
 
-    public TreeMap<String, Integer> transformInputToBarcodeAndNumber(String input) {
+    public TreeMap<String, Integer> transformToBarcodeAndNumberMap(String input) {
         TreeMap<String, Integer> result = new TreeMap<String, Integer>();
         String[] temp = null;
         if (input == null || input.equals("")){
@@ -22,6 +22,7 @@ public class TransformModel{
         if (temp.length == 1) {
             throw new WrongStringInputException();
         }
+
         int productNumber = 0;
         String singleBarcode = "";
         for (int index = 1; index < temp.length - 1; index += 2) {
@@ -47,16 +48,17 @@ public class TransformModel{
         return result;
     }
 
-    public TreeMap<String, ProductFormat> transformBarcodeAndNumberToBarcodeAndFormat(TreeMap<String, Integer> barcodeHashMap){
+    public TreeMap<String, FormatData> transformToBarcodeAndFormatMap(TreeMap<String, Integer> barcodeHashMap){
         if (barcodeHashMap == null){
             throw new EmptyInputException();
         }
-        TreeMap<String, ProductFormat> testList = new TreeMap<String, ProductFormat>();
+
+        TreeMap<String, FormatData> testList = new TreeMap<String, FormatData>();
         for (String key : barcodeHashMap.keySet()){
             if (ProductInfoUtil.getInstance().getProductInfoList().get(key) == null){
                 throw new WrongStringInputException();
             }
-            testList.put(key, new ProductFormat.Builder().setBarcode(key)
+            testList.put(key, new FormatData.Builder().setBarcode(key)
                     .setNumberScope(barcodeHashMap.get(key))
                     .setTotalMoneyScope(ProductInfoUtil.getInstance().getProductInfoList().get(key).getPrice() * barcodeHashMap.get(key))
                     .build());

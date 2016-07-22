@@ -6,7 +6,7 @@ import com.tw.homework.Exception.IllegalParameter;
 /**
  * Created by Yasic on 2016/7/17.
  */
-public class ProductFormat{
+public class FormatData {
     private String barcode;
     private int numberScope;
     private float totalMoneyScope;
@@ -14,16 +14,16 @@ public class ProductFormat{
     private int promotionPriority;
     private volatile int hashCode;
 
-    private ProductFormat(){}
+    private FormatData(){}
 
     public static class Builder{
-        private ProductFormat productFormat = new ProductFormat();
+        private FormatData formatData = new FormatData();
 
         public Builder setBarcode(String barcode) {
             if (barcode == null || barcode.equals("")){
                 throw new EmptyInputException();
             }
-            productFormat.barcode = barcode;
+            formatData.barcode = barcode;
             return this;
         }
 
@@ -31,7 +31,7 @@ public class ProductFormat{
             if (numberScope < 0){
                 throw new IllegalParameter();
             }
-            productFormat.numberScope = numberScope;
+            formatData.numberScope = numberScope;
             return this;
         }
 
@@ -39,7 +39,7 @@ public class ProductFormat{
             if (totalMoneyScope < 0){
                 throw new IllegalParameter();
             }
-            productFormat.totalMoneyScope = totalMoneyScope;
+            formatData.totalMoneyScope = totalMoneyScope;
             return this;
         }
 
@@ -47,12 +47,12 @@ public class ProductFormat{
             if (saveMoneyScope < 0){
                 throw new IllegalParameter();
             }
-            productFormat.saveMoneyScope = saveMoneyScope;
+            formatData.saveMoneyScope = saveMoneyScope;
             return this;
         }
 
-        public ProductFormat build(){
-            return productFormat;
+        public FormatData build(){
+            return formatData;
         }
     }
 
@@ -121,12 +121,12 @@ public class ProductFormat{
 
     @Override
     public boolean equals(Object obj) {
-        if (obj instanceof ProductFormat){
-            ProductFormat productFormat = (ProductFormat)obj;
+        if (obj instanceof FormatData){
+            FormatData formatData = (FormatData)obj;
             boolean isEqual = true;
-            isEqual = isEqual & (this.barcode.equals(productFormat.barcode)) & (this.numberScope == productFormat.numberScope)
-                    & (this.totalMoneyScope == productFormat.totalMoneyScope)
-                    & (this.saveMoneyScope == productFormat.saveMoneyScope);
+            isEqual = isEqual & (this.barcode.equals(formatData.barcode)) & (this.numberScope == formatData.numberScope)
+                    & (this.totalMoneyScope == formatData.totalMoneyScope)
+                    & (this.saveMoneyScope == formatData.saveMoneyScope);
             return isEqual;
         }
         else {

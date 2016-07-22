@@ -3,12 +3,12 @@ package com.tw.homework.Util;
 /**
  * Created by Yasic on 2016/7/20.
  */
-public enum PromotionPriority {
+public enum PromotionPriorityUtil {
     DISCOUNT(1),
-    FORFREE(2);
+    FULLFREE(2);
 
     private int  priority;
-    private PromotionPriority(int priority){
+    private PromotionPriorityUtil(int priority){
         this.priority = priority;
     }
 

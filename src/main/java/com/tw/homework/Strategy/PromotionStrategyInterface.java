@@ -1,6 +1,6 @@
 package com.tw.homework.Strategy;
 
-import com.tw.homework.JavaBean.ProductFormat;
+import com.tw.homework.JavaBean.FormatData;
 
 import java.util.TreeMap;
 
@@ -8,5 +8,5 @@ import java.util.TreeMap;
  * Created by yasic on 16-7-16.
  */
 public interface PromotionStrategyInterface {
-    TreeMap<String, ProductFormat> calculatePromotion(TreeMap<String, ProductFormat> formatTreeMap);
+    TreeMap<String, FormatData> calculatePromotion(TreeMap<String, FormatData> formatTreeMap);
 }

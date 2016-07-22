@@ -1,8 +1,8 @@
 package com.tw.homework.Strategy;
 
-import com.tw.homework.JavaBean.ProductFormat;
+import com.tw.homework.JavaBean.FormatData;
 import com.tw.homework.Util.ProductInfoUtil;
-import com.tw.homework.Util.PromotionPriority;
+import com.tw.homework.Util.PromotionPriorityUtil;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -12,17 +12,17 @@ import java.util.TreeMap;
 /**
  * Created by yasic on 16-7-16.
  */
-public class ForFreeStrategy extends BasePromotionStrategy {
-    private static final int PRIORITY = PromotionPriority.FORFREE.getPriority();
-    private static final int NUMBERFORFREE = 2;
+public class FullFreeStrategy extends BasePromotionStrategy {
+    private static final int PRIORITY = PromotionPriorityUtil.FULLFREE.getPriority();
+    private static final int NUMBERFULLFREE = 2;
 
 
-    public TreeMap<String, ProductFormat> calculatePromotion(TreeMap<String, ProductFormat> formatHashMap) {
+    public TreeMap<String, FormatData> calculatePromotion(TreeMap<String, FormatData> formatHashMap) {
         java.text.DecimalFormat decimalFormat =  new java.text.DecimalFormat("0.00#");
         List<String> promotionList = getPromotionList();
         for (String item : formatHashMap.keySet()){
-            if ( promotionList.contains(item) && formatHashMap.get(item).getPromotionPriority() <= PRIORITY && formatHashMap.get(item).getNumberScope() >= NUMBERFORFREE){
-                int newProductNumber = formatHashMap.get(item).getNumberScope() / NUMBERFORFREE + formatHashMap.get(item).getNumberScope();
+            if ( promotionList.contains(item) && formatHashMap.get(item).getPromotionPriority() <= PRIORITY && formatHashMap.get(item).getNumberScope() >= NUMBERFULLFREE){
+                int newProductNumber = formatHashMap.get(item).getNumberScope() / NUMBERFULLFREE + formatHashMap.get(item).getNumberScope();
                 formatHashMap.get(item).setNumberScope(newProductNumber);
                 BigDecimal b1 = new BigDecimal(Float.toString(newProductNumber * ProductInfoUtil.getInstance().getProductInfoList().get(item).getPrice()));
                 BigDecimal b2 = new BigDecimal(Float.toString(formatHashMap.get(item).getTotalMoneyScope()));
@@ -34,12 +34,12 @@ public class ForFreeStrategy extends BasePromotionStrategy {
         return formatHashMap;
     }
 
-    public TreeMap<String, Integer> getForFreeProductInfo(TreeMap<String, ProductFormat> productFormatTreeMap) {
+    public TreeMap<String, Integer> getFullFreeProductInfo(TreeMap<String, FormatData> productFormatTreeMap) {
         List<String> promotionList = getPromotionList();
         TreeMap<String, Integer> resultList = new TreeMap<String, Integer>();
         for (String item : productFormatTreeMap.keySet()){
-            if (promotionList.contains(item) && productFormatTreeMap.get(item).getPromotionPriority() <= PRIORITY && productFormatTreeMap.get(item).getNumberScope() >= NUMBERFORFREE){
-                int forFreeNumber = productFormatTreeMap.get(item).getNumberScope() / NUMBERFORFREE;
+            if (promotionList.contains(item) && productFormatTreeMap.get(item).getPromotionPriority() <= PRIORITY && productFormatTreeMap.get(item).getNumberScope() >= NUMBERFULLFREE){
+                int forFreeNumber = productFormatTreeMap.get(item).getNumberScope() / NUMBERFULLFREE;
                 resultList.put(item, forFreeNumber);
             }
         }

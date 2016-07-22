@@ -2,7 +2,7 @@ package com.tw.homework.Model;
 
 import com.tw.homework.Exception.EmptyInputException;
 import com.tw.homework.Exception.WrongStringInputException;
-import com.tw.homework.JavaBean.ProductFormat;
+import com.tw.homework.JavaBean.FormatData;
 import com.tw.homework.Util.ProductInfoUtil;
 import org.junit.Before;
 import org.junit.Test;
@@ -25,24 +25,24 @@ public class TransformModelTest {
 
     @Test(expected = EmptyInputException.class)
     public void TransformToHashMapShouldThrowExceptionWhenEncounterEmptyInput() throws Exception{
-        transformModel.transformInputToBarcodeAndNumber("");
+        transformModel.transformToBarcodeAndNumberMap("");
     }
 
     @Test(expected = EmptyInputException.class)
     public void TransformToHashMapShouldThrowExceptionWhenEncounterNullInput() throws Exception{
-        transformModel.transformInputToBarcodeAndNumber(null);
+        transformModel.transformToBarcodeAndNumberMap(null);
     }
 
     @Test(expected = WrongStringInputException.class)
     public void TransformToHashMapShouldThrowExceptionWhenInputFormatIsWrong() throws Exception{
-        transformModel.transformInputToBarcodeAndNumber("1234");
+        transformModel.transformToBarcodeAndNumberMap("1234");
     }
 
     @Test(expected = WrongStringInputException.class)
     public void ShouldThrowErrorIfProductBarcodeIsNotInProductInfoList() throws Exception {
         TreeMap<String, Integer> testList = new TreeMap<String, Integer>();
         testList.put("ITEM000000", 1);
-        transformModel.transformBarcodeAndNumberToBarcodeAndFormat(testList);
+        transformModel.transformToBarcodeAndFormatMap(testList);
     }
 
     @Test
@@ -54,7 +54,7 @@ public class TransformModelTest {
         LinkedHashMap<String, Integer> expectList = new LinkedHashMap<String, Integer>();
 
         //Then
-        assertEquals(transformModel.transformInputToBarcodeAndNumber(barcodeInput), expectList);
+        assertEquals(transformModel.transformToBarcodeAndNumberMap(barcodeInput), expectList);
     }
 
     @Test
@@ -68,7 +68,7 @@ public class TransformModelTest {
         expectList.put("ITEM000001", 1);
 
         //Then
-        assertEquals(transformModel.transformInputToBarcodeAndNumber(barcodeInput), expectList);
+        assertEquals(transformModel.transformToBarcodeAndNumberMap(barcodeInput), expectList);
     }
 
     @Test
@@ -93,12 +93,12 @@ public class TransformModelTest {
         expectList.put("ITEM000005", 3);
 
         // then
-        assertEquals(transformModel.transformInputToBarcodeAndNumber(barcodeInput), expectList);
+        assertEquals(transformModel.transformToBarcodeAndNumberMap(barcodeInput), expectList);
     }
 
     @Test(expected = EmptyInputException.class)
     public void TransformToBarcodeAndFormatHashMapShouldThrowExceptionWhenEncounterNullInput() throws Exception{
-        transformModel.transformBarcodeAndNumberToBarcodeAndFormat(null);
+        transformModel.transformToBarcodeAndFormatMap(null);
     }
 
     @Test
@@ -115,22 +115,22 @@ public class TransformModelTest {
                 "    'ITEM000005',\n" +
                 "    'ITEM000005'\n" +
                 "]";
-        TreeMap<String, Integer> beforeList = transformModel.transformInputToBarcodeAndNumber(barcodeInput);
+        TreeMap<String, Integer> beforeList = transformModel.transformToBarcodeAndNumberMap(barcodeInput);
 
-        TreeMap<String, ProductFormat> exceptList = transformModel.transformBarcodeAndNumberToBarcodeAndFormat(beforeList);
+        TreeMap<String, FormatData> exceptList = transformModel.transformToBarcodeAndFormatMap(beforeList);
 
-        TreeMap<String, ProductFormat> testList = new TreeMap<String, ProductFormat>();
-        testList.put("ITEM000001", new ProductFormat.Builder()
+        TreeMap<String, FormatData> testList = new TreeMap<String, FormatData>();
+        testList.put("ITEM000001", new FormatData.Builder()
                 .setBarcode("ITEM000001")
                 .setNumberScope(5)
                 .setTotalMoneyScope(ProductInfoUtil.getInstance().getProductInfoList().get("ITEM000001").getPrice() * 5)
                 .build());
-        testList.put("ITEM000003", new ProductFormat.Builder()
+        testList.put("ITEM000003", new FormatData.Builder()
                 .setBarcode("ITEM000003")
                 .setNumberScope(2)
                 .setTotalMoneyScope(ProductInfoUtil.getInstance().getProductInfoList().get("ITEM000003").getPrice() * 2)
                 .build());
-        testList.put("ITEM000005", new ProductFormat.Builder()
+        testList.put("ITEM000005", new FormatData.Builder()
                 .setBarcode("ITEM000005")
                 .setNumberScope(3)
                 .setTotalMoneyScope(ProductInfoUtil.getInstance().getProductInfoList().get("ITEM000005").getPrice() * 3)

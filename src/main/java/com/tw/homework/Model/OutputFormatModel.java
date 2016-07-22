@@ -1,9 +1,9 @@
 package com.tw.homework.Model;
 
-import com.tw.homework.JavaBean.ProductFormat;
+import com.tw.homework.JavaBean.FormatData;
 import com.tw.homework.Strategy.BasePromotionStrategy;
 import com.tw.homework.Strategy.DiscountStrategy;
-import com.tw.homework.Strategy.ForFreeStrategy;
+import com.tw.homework.Strategy.FullFreeStrategy;
 import com.tw.homework.Util.ProductInfoUtil;
 import com.tw.homework.Util.StaticStringScopeUtil;
 
@@ -15,41 +15,41 @@ import java.util.TreeSet;
 /**
  * Created by Yasic on 2016/7/17.
  */
-public class OutputModel {
-    private TreeMap<String, ProductFormat> productFormatTreeMap;
+public class OutputFormatModel {
+    private TreeMap<String, FormatData> productFormatTreeMap;
     private TreeSet<BasePromotionStrategy> strategyTreeSet;
 
-    private OutputModel() {}
+    private OutputFormatModel() {}
 
     public static class Builder{
-        private OutputModel outputModel = new OutputModel();
+        private OutputFormatModel outputFormatModel = new OutputFormatModel();
 
         public Builder setStrategyTreeSet(TreeSet<BasePromotionStrategy> strategyTreeSet) {
-            outputModel.strategyTreeSet = strategyTreeSet;
+            outputFormatModel.strategyTreeSet = strategyTreeSet;
             return this;
         }
 
-        public OutputModel build(){
-            return outputModel;
+        public OutputFormatModel build(){
+            return outputFormatModel;
         }
     }
 
-    public String getFormatOutput(TreeMap<String, ProductFormat> productFormatTreeMap){
+    public String getFormatOutput(TreeMap<String, FormatData> productFormatTreeMap){
         setProductFormatTreeMap(productFormatTreeMap);
         String totalString = StaticStringScopeUtil.HEADTITLETEXT
                 + getProductArrayInfoScope(getProductFormatTreeMap())
-                + getForFreeInfoScope(getProductFormatTreeMap())
+                + getFullFreeInfoScope(getProductFormatTreeMap())
                 + StaticStringScopeUtil.PARTINGLINETEXT
                 + getMoneyInfoScope(getProductFormatTreeMap());
         return totalString;
     }
 
-    public String getFormatOutput(TreeMap<String, ProductFormat> productFormatTreeMap, TreeSet<BasePromotionStrategy> strategyTreeSet) {
+    public String getFormatOutput(TreeMap<String, FormatData> productFormatTreeMap, TreeSet<BasePromotionStrategy> strategyTreeSet) {
         setStrategyTreeSet(strategyTreeSet);
         return getFormatOutput(productFormatTreeMap);
     }
 
-    private void setProductFormatTreeMap(TreeMap<String, ProductFormat> productFormatTreeMap) {
+    private void setProductFormatTreeMap(TreeMap<String, FormatData> productFormatTreeMap) {
         this.productFormatTreeMap = productFormatTreeMap;
     }
 
@@ -63,16 +63,16 @@ public class OutputModel {
         }
         else {
             TreeSet<BasePromotionStrategy> promotionStrategyTreeSet = new TreeSet<BasePromotionStrategy>();
-            promotionStrategyTreeSet.add(new ForFreeStrategy());
+            promotionStrategyTreeSet.add(new FullFreeStrategy());
             promotionStrategyTreeSet.add(new DiscountStrategy());
             return promotionStrategyTreeSet;
         }
     }
 
-    private TreeMap<String, ProductFormat> getProductFormatTreeMap() {
-        TreeMap<String, ProductFormat> cloneMap = new TreeMap<String, ProductFormat>();
+    private TreeMap<String, FormatData> getProductFormatTreeMap() {
+        TreeMap<String, FormatData> cloneMap = new TreeMap<String, FormatData>();
         for (String key: productFormatTreeMap.keySet()) {
-            cloneMap.put(key, new ProductFormat.Builder().setBarcode(key)
+            cloneMap.put(key, new FormatData.Builder().setBarcode(key)
                     .setNumberScope(productFormatTreeMap.get(key).getNumberScope())
                     .setTotalMoneyScope(productFormatTreeMap.get(key).getTotalMoneyScope())
                     .setSaveMoneyScope(productFormatTreeMap.get(key).getSaveMoneyScope())
@@ -81,7 +81,7 @@ public class OutputModel {
         return cloneMap;
     }
 
-    private String getProductArrayInfoScope(TreeMap<String, ProductFormat> productFormatTreeMap) {
+    private String getProductArrayInfoScope(TreeMap<String, FormatData> productFormatTreeMap) {
         java.text.DecimalFormat decimalFormat =  new java.text.DecimalFormat("0.00#");
 
         Iterator iterator = getStrategyTreeSet().iterator();
@@ -117,9 +117,9 @@ public class OutputModel {
         return productArrayBuffer.toString();
     }
 
-    private String getForFreeInfoScope(TreeMap<String, ProductFormat> formatHashMap) {
-        ForFreeStrategy forFreeStrategy = new ForFreeStrategy();
-        TreeMap<String, Integer> forFreeTreeMap = forFreeStrategy.getForFreeProductInfo(formatHashMap);
+    private String getFullFreeInfoScope(TreeMap<String, FormatData> formatHashMap) {
+        FullFreeStrategy fullFreeStrategy = new FullFreeStrategy();
+        TreeMap<String, Integer> forFreeTreeMap = fullFreeStrategy.getFullFreeProductInfo(formatHashMap);
         StringBuffer result = new StringBuffer();
         for (String item : forFreeTreeMap.keySet()) {
             result.append(StaticStringScopeUtil.NAMETEXT)
@@ -134,11 +134,11 @@ public class OutputModel {
             return "";
         }
         else {
-            return StaticStringScopeUtil.PARTINGLINETEXT + StaticStringScopeUtil.FORFREEHEADTITLETEXT + result.toString();
+            return StaticStringScopeUtil.PARTINGLINETEXT + StaticStringScopeUtil.FULLFREEHEADTITLETEXT + result.toString();
         }
     }
 
-    private String getMoneyInfoScope(TreeMap<String, ProductFormat> productFormatTreeMap){
+    private String getMoneyInfoScope(TreeMap<String, FormatData> productFormatTreeMap){
         java.text.DecimalFormat decimalFormat =  new java.text.DecimalFormat("0.00#");
         Iterator iterator = getStrategyTreeSet().iterator();
         while (iterator.hasNext()){
