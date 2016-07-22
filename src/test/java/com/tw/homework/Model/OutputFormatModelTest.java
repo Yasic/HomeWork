@@ -80,7 +80,7 @@ public class OutputFormatModelTest {
                 .build());
 
         Class<OutputFormatModel> outputModelClass = OutputFormatModel.class;
-        Method method = outputModelClass.getDeclaredMethod("getForFreeInfoScope", TreeMap.class);
+        Method method = outputModelClass.getDeclaredMethod("getFullFreeInfoScope", TreeMap.class);
         method.setAccessible(true);
 
         String actualString = (String) method.invoke(new OutputFormatModel.Builder().build(), givenList);
@@ -98,7 +98,7 @@ public class OutputFormatModelTest {
                 .build());
 
         Class<OutputFormatModel> outputModelClass = OutputFormatModel.class;
-        Method method = outputModelClass.getDeclaredMethod("getForFreeInfoScope", TreeMap.class);
+        Method method = outputModelClass.getDeclaredMethod("getFullFreeInfoScope", TreeMap.class);
         method.setAccessible(true);
 
         String actualString = (String) method.invoke(new OutputFormatModel.Builder().build(), givenList);
