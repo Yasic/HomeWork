@@ -4,7 +4,6 @@ import com.tw.homework.JavaBean.FormatData;
 import com.tw.homework.Util.ProductInfoUtil;
 import com.tw.homework.Util.PromotionPriorityUtil;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.TreeMap;
@@ -14,7 +13,7 @@ import java.util.TreeMap;
  */
 public class FullFreeStrategy extends BasePromotionStrategy {
     private static final int PRIORITY = PromotionPriorityUtil.FULLFREE.getPriority();
-    private static final int NUMBERFULLFREE = 2;
+    private static final int NUMBERFULLFREE = 3;
 
 
     public TreeMap<String, FormatData> calculatePromotion(TreeMap<String, FormatData> formatHashMap) {
@@ -22,13 +21,18 @@ public class FullFreeStrategy extends BasePromotionStrategy {
         List<String> promotionList = getPromotionList();
         for (String item : formatHashMap.keySet()){
             if ( promotionList.contains(item) && formatHashMap.get(item).getPromotionPriority() <= PRIORITY && formatHashMap.get(item).getNumberScope() >= NUMBERFULLFREE){
-                int newProductNumber = formatHashMap.get(item).getNumberScope() / NUMBERFULLFREE + formatHashMap.get(item).getNumberScope();
+                int freeNumber = formatHashMap.get(item).getNumberScope() / NUMBERFULLFREE;
+                formatHashMap.get(item).setTotalMoneyScope((formatHashMap.get(item).getNumberScope() - freeNumber) * ProductInfoUtil.getInstance().getProductInfoList().get(item).getPrice());
+                formatHashMap.get(item).setSaveMoneyScope(freeNumber * ProductInfoUtil.getInstance().getProductInfoList().get(item).getPrice());
+                formatHashMap.get(item).setPromotionPriority(PRIORITY);
+
+                /*int newProductNumber = formatHashMap.get(item).getNumberScope() / NUMBERFULLFREE + formatHashMap.get(item).getNumberScope();
                 formatHashMap.get(item).setNumberScope(newProductNumber);
                 BigDecimal b1 = new BigDecimal(Float.toString(newProductNumber * ProductInfoUtil.getInstance().getProductInfoList().get(item).getPrice()));
                 BigDecimal b2 = new BigDecimal(Float.toString(formatHashMap.get(item).getTotalMoneyScope()));
                 float ss = b1.subtract(b2).floatValue();
                 formatHashMap.get(item).setSaveMoneyScope(Float.parseFloat(decimalFormat.format(ss)));
-                formatHashMap.get(item).setPromotionPriority(PRIORITY);
+                formatHashMap.get(item).setPromotionPriority(PRIORITY);*/
             }
         }
         return formatHashMap;

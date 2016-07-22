@@ -30,16 +30,15 @@ public class OutputFormatModelTest {
                 "]";
         String actualString = outputFormatModel.getFormatOutput(transformModel.transformToBarcodeAndFormatMap(transformModel.transformToBarcodeAndNumberMap(barcodeInput)));
         String exceptString = "***<没钱赚商店>购物清单***\n" +
-                "名称：可口可乐，数量：7瓶，单价：3.00(元)，小计：15.00(元)\n" +
-                "名称：羽毛球，数量：3个，单价：2.00(元)，小计：4.00(元)\n" +
+                "名称：可口可乐，数量：5瓶，单价：3.00(元)，小计：12.00(元)\n" +
+                "名称：羽毛球，数量：2个，单价：2.00(元)，小计：4.00(元)\n" +
                 "名称：苹果，数量：3斤，单价：1.00(元)，小计：2.85(元)，节省0.15(元)\n" +
                 "----------------------\n" +
                 "买二赠一商品：\n" +
-                "名称：可口可乐，数量：2瓶\n" +
-                "名称：羽毛球，数量：1个\n" +
+                "名称：可口可乐，数量：1瓶\n" +
                 "----------------------\n" +
-                "总计：21.85(元)\n" +
-                "节省：8.15(元)\n";
+                "总计：18.85(元)\n" +
+                "节省：3.15(元)\n";
         Assert.assertEquals(exceptString, actualString);
     }
 
@@ -64,8 +63,8 @@ public class OutputFormatModelTest {
         method.setAccessible(true);
 
         String actualString = (String) method.invoke(new OutputFormatModel.Builder().build(), transformModel.transformToBarcodeAndFormatMap(transformModel.transformToBarcodeAndNumberMap(barcodeInput)));
-        String exceptString = "名称：可口可乐，数量：7瓶，单价：3.00(元)，小计：15.00(元)\n" +
-                "名称：羽毛球，数量：3个，单价：2.00(元)，小计：4.00(元)\n" +
+        String exceptString = "名称：可口可乐，数量：5瓶，单价：3.00(元)，小计：12.00(元)\n" +
+                "名称：羽毛球，数量：2个，单价：2.00(元)，小计：4.00(元)\n" +
                 "名称：苹果，数量：3斤，单价：1.00(元)，小计：2.85(元)，节省0.15(元)\n";
         Assert.assertEquals(actualString, exceptString);
     }
@@ -84,7 +83,7 @@ public class OutputFormatModelTest {
         method.setAccessible(true);
 
         String actualString = (String) method.invoke(new OutputFormatModel.Builder().build(), givenList);
-        String exceptString = "----------------------\n买二赠一商品：\n" + "名称：可口可乐，数量：2瓶\n";
+        String exceptString = "----------------------\n买二赠一商品：\n" + "名称：可口可乐，数量：1瓶\n";
         Assert.assertEquals(actualString, exceptString);
     }
 
@@ -120,8 +119,8 @@ public class OutputFormatModelTest {
         method.setAccessible(true);
 
         String actualString = (String) method.invoke(new OutputFormatModel.Builder().build(), givenList);
-        String exceptString = "总计：15.00(元)\n" +
-                "节省：6.00(元)\n";
+        String exceptString = "总计：12.00(元)\n" +
+                "节省：3.00(元)\n";
         Assert.assertEquals(actualString, exceptString);
     }
 

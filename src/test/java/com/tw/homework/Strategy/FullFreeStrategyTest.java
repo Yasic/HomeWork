@@ -62,8 +62,8 @@ public class FullFreeStrategyTest {
         TreeMap<String, FormatData> testList = new TreeMap<String, FormatData>();
         testList.put("ITEM000001", new FormatData.Builder()
                 .setBarcode("ITEM000001")
-                .setNumberScope(3)
-                .setTotalMoneyScope(6.0f).setSaveMoneyScope(3)
+                .setNumberScope(2)
+                .setTotalMoneyScope(6.0f).setSaveMoneyScope(0)
                 .build());
         // then
         assertEquals(testList, expectList);
@@ -85,8 +85,8 @@ public class FullFreeStrategyTest {
         TreeMap<String, FormatData> testList = new TreeMap<String, FormatData>();
         testList.put("ITEM000001", new FormatData.Builder()
                 .setBarcode("ITEM000001")
-                .setNumberScope(7)
-                .setTotalMoneyScope(15.0f).setSaveMoneyScope(6)
+                .setNumberScope(5)
+                .setTotalMoneyScope(12.0f).setSaveMoneyScope(3)
                 .build());
         // then
         assertEquals(testList, expectList);
@@ -108,8 +108,8 @@ public class FullFreeStrategyTest {
         TreeMap<String, FormatData> testList = new TreeMap<String, FormatData>();
         testList.put("ITEM000001", new FormatData.Builder()
                 .setBarcode("ITEM000001")
-                .setNumberScope(12)
-                .setTotalMoneyScope(24.0f).setSaveMoneyScope(12)
+                .setNumberScope(8)
+                .setTotalMoneyScope(18.0f).setSaveMoneyScope(6)
                 .build());
         // then
         assertEquals(testList, expectList);
@@ -131,8 +131,8 @@ public class FullFreeStrategyTest {
         TreeMap<String, FormatData> testList = new TreeMap<String, FormatData>();
         testList.put("ITEM000001", new FormatData.Builder()
                 .setBarcode("ITEM000001")
-                .setNumberScope(13)
-                .setTotalMoneyScope(27.0f).setSaveMoneyScope(12)
+                .setNumberScope(9)
+                .setTotalMoneyScope(18.0f).setSaveMoneyScope(9)
                 .build());
         // then
         assertEquals(testList, expectList);
@@ -174,7 +174,7 @@ public class FullFreeStrategyTest {
         FullFreeStrategy builder = new FullFreeStrategy();
         TreeMap<String, Integer> expectList = builder.getFullFreeProductInfo(givenList);
         HashMap<String, Integer> testList = new HashMap<String, Integer>();
-        testList.put("ITEM000001", 2);
+        testList.put("ITEM000001", 1);
 
         assertEquals(testList, expectList);
     }
