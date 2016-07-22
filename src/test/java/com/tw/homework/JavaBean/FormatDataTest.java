@@ -113,7 +113,7 @@ public class FormatDataTest {
         item1.setSaveMoneyScope(-2.0f);
     }
 
-    @Test
+    /*@Test
     public void shouldSetNumber() throws Exception {
         item1.setNumberScope(2);
         assertEquals(item1.getNumberScope(), 2);
@@ -122,7 +122,7 @@ public class FormatDataTest {
     @Test(expected = IllegalParameter.class)
     public void shouldThrowExceptionWhenAttemptToSetNumberToTheNumberLessThanZero() throws  Exception{
         item1.setNumberScope(-1);
-    }
+    }*/
 
     @Test
     public void shouldSetPromotionFlag() throws Exception {

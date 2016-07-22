@@ -90,13 +90,6 @@ public class FormatData {
         this.saveMoneyScope = saveMoneyScope;
     }
 
-    public void setNumberScope(int numberScope) {
-        if (numberScope < 0){
-            throw new IllegalParameter();
-        }
-        this.numberScope = numberScope;
-    }
-
     public void setPromotionPriority(int promotionPriority) {
         if (promotionPriority < 0){
             throw new IllegalParameter();
